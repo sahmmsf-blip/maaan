@@ -298,12 +298,8 @@ footer .in{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="grid">
    <div class="stat live"><div class="n" data-stat="visits">—</div><div class="t">زائر للموقع</div></div>
    <div class="stat live"><div class="n" data-stat="survey">—</div><div class="t">أجابوا عن الاستبانة</div></div>
-   <div class="stat live"><div class="n" data-stat="registrations">—</div><div class="t">مشارك في المبادرة</div></div>
    <div class="stat"><div class="n">10</div><div class="t">فئات نعرّف بها</div></div>
-   <div class="stat live"><div class="n" data-stat="طالب">—</div><div class="t">طالب مشارك</div></div>
-   <div class="stat live"><div class="n" data-stat="ولي أمر">—</div><div class="t">ولي أمر مشارك</div></div>
-   <div class="stat live"><div class="n" data-stat="معلم">—</div><div class="t">معلم مشارك</div></div>
-   <div class="stat live"><div class="n" data-stat="مجتمع محلي">—</div><div class="t">من المجتمع المحلي</div></div>
+   <div class="stat"><div class="n">20</div><div class="t">طالبًا في فريق المبادرة</div></div>
   </div>
   <p class="note" id="statsNote">الأرقام تُحدَّث مباشرة</p>
  </div>
@@ -546,8 +542,8 @@ document.addEventListener("click",e=>{ if(e.target.matches("[data-close]")||e.ta
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModals(); });
 
 /* ===== الإحصاءات ===== */
-function animateNum(node,to){ to=Number(to)||0; const from=0, t0=performance.now(), d=900; const step=t=>{ const p=Math.min(1,(t-t0)/d); node.textContent=Math.round(from+(to-from)*p).toLocaleString("ar-EG"); if(p<1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
-function renderStats(s){ if(!s) return; const map={visits:s.visits,survey:s.survey,registrations:s.registrations}; Object.assign(map, s.byRole||{}); document.querySelectorAll("[data-stat]").forEach(n=>{ const k=n.dataset.stat; if(k in map) animateNum(n,map[k]); else if(s.byRole) animateNum(n,0); }); }
+function animateNum(node,to){ to=Number(to)||0; const from=0, t0=performance.now(), d=900; const step=t=>{ const p=Math.min(1,(t-t0)/d); node.textContent=Math.round(from+(to-from)*p).toLocaleString("en-US"); if(p<1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
+function renderStats(s){ if(!s) return; document.querySelectorAll("[data-stat]").forEach(n=>{ const k=n.dataset.stat; if(k in s) animateNum(n,s[k]); }); }
 
 /* ===== الأخبار والصور ===== */
 function renderNews(list){ const g=$("#newsGrid"); if(!list||!list.length) return; g.textContent=""; list.forEach(n=>{ const card=el("article",{class:"news"}); const src=driveImg(n.image); if(src) card.appendChild(el("img",{src,alt:n.title||"",loading:"lazy"})); const b=el("div",{class:"b"}); if(n.date) b.appendChild(el("div",{class:"d"},n.date)); b.append(el("h3",{},n.title||""), el("p",{},n.text||"")); card.appendChild(b); g.appendChild(card); }); }
