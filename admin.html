@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>لوحة الإدارة | معًا في كل خطوة</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=Tajawal:wght@400;500;700&display=swap">
+<style>
+:root{--navy:#14213D;--orange:#D9601F;--cream:#FAF6EE;--sand:#F1EADC;--line:#E3DACA;--ink:#2B3445;--muted:#5A6478;--teal:#0F6E6B}
+*{box-sizing:border-box;margin:0;padding:0;min-width:0}
+body{font-family:'Tajawal',Tahoma,Arial,sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;font-size:16px}
+h1,h2,h3{font-family:'Cairo',Tahoma,sans-serif;color:var(--navy);line-height:1.35}
+.top{background:var(--navy);color:#fff;padding:14px max(4vw,16px);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.top h1{color:#fff;font-size:20px}
+.top a,.top button{margin-inline-start:auto;color:#D9E1EA}
+.wrap{width:min(1180px,94%);margin:24px auto}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:18px}
+.btn{font-family:'Cairo',Tahoma,sans-serif;font-weight:700;border:0;border-radius:12px;padding:10px 18px;cursor:pointer;font-size:15px;min-height:44px}
+.btn.main{background:var(--orange);color:#fff}.btn.dark{background:var(--navy);color:#fff}.btn.light{background:var(--sand);color:var(--navy)}.btn.red{background:#FCE8E1;color:#9B2C2C}
+input,select,textarea{font:inherit;font-size:16px;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--cream);width:100%}
+textarea{min-height:90px}
+label{font-family:'Cairo',Tahoma,sans-serif;font-weight:700;font-size:14px;color:var(--navy);display:block;margin-bottom:4px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{background:#fff;border:1.5px solid var(--line);color:var(--navy)}
+.tabs button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat{background:var(--navy);color:#fff;border-radius:16px;padding:16px;text-align:center}
+.stat b{display:block;font-family:'Cairo',Tahoma,sans-serif;font-size:32px;color:#F4A574}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.full{grid-column:1/-1}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top}
+th{background:var(--sand);font-family:'Cairo',Tahoma,sans-serif}
+.scroll{overflow-x:auto}
+.item{display:flex;gap:12px;align-items:flex-start;border-bottom:1px solid var(--line);padding:12px 0}
+.item img{width:90px;height:70px;object-fit:cover;border-radius:10px;flex:none}
+.item .t{flex:1}
+.item .t small{color:var(--muted)}
+.item .acts{display:flex;gap:6px;flex-wrap:wrap}
+.hidden{opacity:.5}
+.bar{height:10px;background:var(--sand);border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--orange)}
+.msg{padding:10px 14px;border-radius:12px;margin-top:10px;display:none;font-weight:700}
+.msg.ok{display:block;background:#E3F4EC;color:#16603F}.msg.err{display:block;background:#FCE8E1;color:#9B2C2C}
+.preview{max-width:240px;max-height:160px;border-radius:12px;margin-top:8px;display:none}
+.login{max-width:420px;margin:12vh auto}
+.muted{color:var(--muted);font-size:14px}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="top"><h1>لوحة إدارة موقع «معًا في كل خطوة»</h1><a href="index.html">عرض الموقع ←</a></div>
+
+<div class="login card" id="loginBox">
+ <h2 style="margin-bottom:10px">دخول الإدارة</h2>
+ <label for="code">رمز الإدارة</label>
+ <input id="code" type="password" autocomplete="current-password" dir="ltr">
+ <button class="btn main" style="margin-top:12px;width:100%" id="loginBtn">دخول</button>
+ <div class="msg" id="loginMsg"></div>
+</div>
+
+<div class="wrap" id="app" hidden>
+ <div class="tabs" id="tabs">
+  <button class="btn on" data-tab="dash">الإحصاءات والاستبانة</button>
+  <button class="btn" data-tab="reg">المشاركون</button>
+  <button class="btn" data-tab="ticker">الشريط الإخباري</button>
+  <button class="btn" data-tab="news">الأخبار</button>
+  <button class="btn" data-tab="photo">الصور</button>
+  <button class="btn" data-tab="settings">الإعدادات</button>
+ </div>
+
+ <section data-panel="dash">
+  <div class="grid" id="statGrid"></div>
+  <div class="card" style="margin-top:18px"><h3>نتائج الاستبانة</h3><p class="muted" id="svN"></p><div id="svRes"></div></div>
+ </section>
+
+ <section data-panel="reg" hidden>
+  <div class="card"><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px"><h3>المسجّلون في المبادرة</h3><button class="btn light" id="csvBtn" style="margin-inline-start:auto">تنزيل Excel (CSV)</button></div>
+  <div class="scroll"><table id="regTable"></table></div></div>
+ </section>
+
+ <section data-panel="editor" hidden>
+  <div class="card">
+   <h3 id="edTitle" style="margin-bottom:12px"></h3>
+   <input type="hidden" id="e_id">
+   <div class="row">
+    <div class="full"><label for="e_title" id="l_title">العنوان</label><input id="e_title" maxlength="200"></div>
+    <div class="full" id="w_body"><label for="e_body">النص</label><textarea id="e_body" maxlength="3000"></textarea></div>
+    <div id="w_date"><label for="e_date">التاريخ</label><input id="e_date" placeholder="2026/11/26" dir="ltr" style="text-align:right"></div>
+    <div><label for="e_sort">الترتيب (الأصغر أولًا)</label><input id="e_sort" type="number" value="0"></div>
+    <div class="full" id="w_img"><label for="e_file">الصورة</label><input id="e_file" type="file" accept="image/*"><p class="muted">أو الصق رابط صورة يبدأ بـ https://</p><input id="e_url" dir="ltr" placeholder="https://"><img class="preview" id="e_prev" alt=""></div>
+    <div><label><input type="checkbox" id="e_vis" checked style="width:auto"> ظاهر في الموقع</label></div>
+   </div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn main" id="saveBtn">حفظ</button><button class="btn light" id="newBtn">جديد</button></div>
+   <div class="msg" id="edMsg"></div>
+  </div>
+  <div class="card"><h3 style="margin-bottom:6px">المنشور حاليًا</h3><div id="list"></div></div>
+ </section>
+
+ <section data-panel="settings" hidden>
+  <div class="card" style="max-width:520px">
+   <h3 style="margin-bottom:10px">تغيير رمز الإدارة</h3>
+   <label for="newCode">الرمز الجديد (8 أحرف على الأقل)</label><input id="newCode" type="password" dir="ltr" autocomplete="new-password">
+   <button class="btn dark" style="margin-top:12px" id="codeBtn">حفظ الرمز الجديد</button>
+   <div class="msg" id="codeMsg"></div>
+  </div>
+ </section>
+</div>
+
+<script>
+{
+const SB_URL="https://seoevtzbaiuyyfngygrs.supabase.co", SB_KEY="sb_publishable_NBPWcKdwQekQSvYMoSfk3g_1h9hPDuL";
+const QUESTIONS=["أعرف الفئات العشر من الأطفال الأكثر عرضة للإقصاء من التعليم.","من حق جميع الأطفال أن يتعلّموا معًا في المدرسة نفسها، مهما اختلفت قدراتهم أو ظروفهم.","أتقبّل أن يكون في الصف طالب مختلف في قدرته أو أصله أو ظروفه.","تتعامل مدرستنا مع جميع الطلبة بعدالة واحترام.","أنا مستعد للمشاركة في نشاط يدعم دمج هذه الفئات في المدرسة."];
+const KIND={ticker:"الشريط الإخباري",news:"الأخبار",photo:"الصور"};
+const $=s=>document.querySelector(s);
+const el=(t,a={},x)=>{const e=document.createElement(t);for(const k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;return e;};
+let CODE="", DATA=null, CUR="ticker", IMG="";
+async function rpc(fn,args){const r=await fetch(SB_URL+"/rest/v1/rpc/"+fn,{method:"POST",headers:{"Content-Type":"application/json",apikey:SB_KEY,Authorization:"Bearer "+SB_KEY},body:JSON.stringify(args)});const j=await r.json().catch(()=>null);if(!r.ok)throw new Error((j&&j.message)||"error");return j;}
+function msg(id,t,ok){const m=$(id);m.className="msg "+(ok?"ok":"err");m.textContent=t;}
+
+async function login(code){
+ try{const ok=await rpc("maaan_is_admin",{p_code:code});if(!ok)throw 0;CODE=code;try{sessionStorage.setItem("maaan_admin",code);}catch(e){}
+  $("#loginBox").hidden=true;$("#app").hidden=false;await load();}
+ catch(e){msg("#loginMsg","الرمز غير صحيح.");}
+}
+$("#loginBtn").onclick=()=>login($("#code").value.trim());
+$("#code").addEventListener("keydown",e=>{if(e.key==="Enter")login($("#code").value.trim());});
+try{const s=sessionStorage.getItem("maaan_admin");if(s)login(s);}catch(e){}
+
+async function load(){DATA=await rpc("maaan_admin_data",{p_code:CODE});renderDash();renderReg();if(["ticker","news","photo"].includes(CUR))renderList();}
+
+function renderDash(){
+ const s=DATA.stats,g=$("#statGrid");g.textContent="";
+ [["زوار الموقع",s.visits],["إجابات الاستبانة",s.survey],["المشاركون",s.registrations],["طلاب",s.byRole["طالب"]],["أولياء أمور",s.byRole["ولي أمر"]],["معلمون",s.byRole["معلم"]],["مجتمع محلي",s.byRole["مجتمع محلي"]]].forEach(([t,n])=>{const d=el("div",{class:"stat"});d.append(el("b",{},String(n??0)),el("span",{},t));g.appendChild(d);});
+ const sv=DATA.survey;$("#svN").textContent="عدد المستجيبين: "+sv.n+(sv.n?" · "+Object.entries(sv.byRole||{}).map(([r,c])=>r+": "+c).join(" · "):"");
+ const box=$("#svRes");box.textContent="";
+ QUESTIONS.forEach((q,i)=>{const w=el("div",{style:"margin:12px 0"});w.appendChild(el("div",{style:"font-weight:700"},(i+1)+". "+q));const a=sv.avg[i],p=sv.agree[i];
+  w.appendChild(el("div",{class:"muted"},sv.n?("المتوسط "+a+" من 5 · نسبة الموافقة "+(p??0)+"%"):"لا إجابات بعد"));const b=el("div",{class:"bar"});const fill=el("i");fill.style.width=(p||0)+"%";b.appendChild(fill);w.appendChild(b);box.appendChild(w);});
+}
+function renderReg(){
+ const t=$("#regTable");t.textContent="";const H=["التاريخ","الاسم","الهاتف","الصفة","الصف","طريقة المشاركة","الرسالة"],K=["at","name","phone","role","grade","type","message"];
+ const hr=el("tr");H.forEach(h=>hr.appendChild(el("th",{},h)));t.appendChild(hr);
+ if(!DATA.registrations.length){const r=el("tr");const c=el("td",{colspan:"7"},"لا مشاركين بعد.");r.appendChild(c);t.appendChild(r);return;}
+ DATA.registrations.forEach(x=>{const r=el("tr");K.forEach(k=>r.appendChild(el("td",{},x[k]||"")));t.appendChild(r);});
+}
+$("#csvBtn").onclick=()=>{const K=["at","name","phone","role","grade","type","message"],H=["التاريخ","الاسم","الهاتف","الصفة","الصف","طريقة المشاركة","الرسالة"];
+ const q=v=>'"'+String(v??"").replace(/"/g,'""')+'"';const rows=[H.map(q).join(",")].concat(DATA.registrations.map(x=>K.map(k=>q(k==="phone"?"\t"+x[k]:x[k])).join(",")));
+ const blob=new Blob(["﻿"+rows.join("\r\n")],{type:"text/csv;charset=utf-8"});const a=el("a",{href:URL.createObjectURL(blob),download:"مشاركو_المبادرة.csv"});document.body.appendChild(a);a.click();a.remove();};
+
+// tabs
+$("#tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#tabs button").forEach(x=>x.classList.toggle("on",x===b));const t=b.dataset.tab;
+ document.querySelectorAll("[data-panel]").forEach(p=>p.hidden=true);
+ if(["ticker","news","photo"].includes(t)){CUR=t;$('[data-panel="editor"]').hidden=false;resetEditor();renderList();}else $(`[data-panel="${t}"]`).hidden=false;};
+
+function resetEditor(){
+ $("#edTitle").textContent="إضافة إلى: "+KIND[CUR];$("#e_id").value="";$("#e_title").value="";$("#e_body").value="";$("#e_date").value=new Date().toLocaleDateString("en-CA").replace(/-/g,"/");$("#e_sort").value=0;$("#e_vis").checked=true;$("#e_url").value="";$("#e_file").value="";IMG="";$("#e_prev").style.display="none";$("#edMsg").className="msg";
+ $("#l_title").textContent=CUR==="ticker"?"نص الخبر":CUR==="photo"?"وصف الصورة":"العنوان";
+ $("#w_body").hidden=CUR!=="news";$("#w_date").hidden=CUR!=="news";$("#w_img").hidden=CUR==="ticker";
+}
+$("#newBtn").onclick=resetEditor;
+function renderList(){
+ const L=$("#list");L.textContent="";const items=DATA.posts.filter(p=>p.kind===CUR);
+ if(!items.length){L.appendChild(el("p",{class:"muted"},"لا شيء بعد."));return;}
+ items.forEach(p=>{const it=el("div",{class:"item"+(p.visible?"":" hidden")});if(p.image)it.appendChild(el("img",{src:p.image,alt:""}));
+  const t=el("div",{class:"t"});t.appendChild(el("div",{style:"font-weight:700"},p.title||"(بدون عنوان)"));t.appendChild(el("small",{},[p.date,p.visible?"ظاهر":"مخفي","ترتيب "+p.sort].filter(Boolean).join(" · ")));it.appendChild(t);
+  const a=el("div",{class:"acts"});const ed=el("button",{class:"btn light"},"تعديل");ed.onclick=()=>edit(p);const tg=el("button",{class:"btn light"},p.visible?"إخفاء":"إظهار");tg.onclick=()=>save({...p,visible:!p.visible});
+  const del=el("button",{class:"btn red"},"حذف");del.onclick=()=>askDelete(del,p);a.append(ed,tg,del);it.appendChild(a);L.appendChild(it);});
+}
+function askDelete(btn,p){if(btn.dataset.sure){rpc("maaan_admin_delete",{p_code:CODE,p_table:"post",p_id:p.id}).then(load).catch(()=>msg("#edMsg","تعذّر الحذف."));return;}btn.dataset.sure="1";btn.textContent="اضغط مرة أخرى للتأكيد";setTimeout(()=>{btn.dataset.sure="";btn.textContent="حذف";},4000);}
+function edit(p){resetEditor();$("#edTitle").textContent="تعديل: "+KIND[CUR];$("#e_id").value=p.id;$("#e_title").value=p.title;$("#e_body").value=p.body;$("#e_date").value=p.date;$("#e_sort").value=p.sort;$("#e_vis").checked=p.visible;IMG=p.image||"";if(IMG){$("#e_prev").src=IMG;$("#e_prev").style.display="block";}window.scrollTo({top:0,behavior:"smooth"});}
+
+$("#e_file").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{IMG=await shrink(f);$("#e_url").value="";$("#e_prev").src=IMG;$("#e_prev").style.display="block";}catch(x){msg("#edMsg","تعذّرت قراءة الصورة.");}};
+$("#e_url").oninput=e=>{const u=e.target.value.trim();const m=u.match(/\/d\/([\w-]{10,})/)||u.match(/[?&]id=([\w-]{10,})/);IMG=m?"https://lh3.googleusercontent.com/d/"+m[1]:u;if(/^https:\/\//.test(IMG)){$("#e_prev").src=IMG;$("#e_prev").style.display="block";}};
+function shrink(file){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>{const M=1200,s=Math.min(1,M/Math.max(img.width,img.height));const c=document.createElement("canvas");c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext("2d").drawImage(img,0,0,c.width,c.height);let q=.82,d=c.toDataURL("image/jpeg",q);while(d.length>1000000&&q>.4){q-=.12;d=c.toDataURL("image/jpeg",q);}URL.revokeObjectURL(img.src);res(d);};img.onerror=rej;img.src=URL.createObjectURL(file);});}
+
+$("#saveBtn").onclick=()=>{const t=$("#e_title").value.trim();if(!t)return msg("#edMsg",CUR==="photo"?"اكتب وصفًا للصورة.":"اكتب النص.");if(CUR==="photo"&&!IMG)return msg("#edMsg","اختر صورة.");
+ save({id:$("#e_id").value?Number($("#e_id").value):null,kind:CUR,title:t,body:$("#e_body").value.trim(),image:CUR==="ticker"?"":IMG,date:$("#e_date").value.trim(),visible:$("#e_vis").checked,sort:Number($("#e_sort").value)||0},true);};
+async function save(p,fromEditor){const b=$("#saveBtn");b.disabled=true;try{await rpc("maaan_admin_save_post",{p_code:CODE,p_id:p.id,p_kind:p.kind,p_title:p.title,p_body:p.body||"",p_image:p.image||"",p_date:p.date||"",p_visible:p.visible,p_sort:p.sort||0});await load();if(fromEditor){resetEditor();msg("#edMsg","تم الحفظ، ويظهر في الموقع فورًا.",true);}}catch(e){msg("#edMsg","تعذّر الحفظ: "+(e.message.includes("large")?"الصورة كبيرة جدًا.":"حاول مرة أخرى."));}b.disabled=false;}
+
+$("#codeBtn").onclick=async()=>{const n=$("#newCode").value;if(n.length<8)return msg("#codeMsg","الرمز قصير.");try{await rpc("maaan_admin_change_code",{p_code:CODE,p_new:n});CODE=n;try{sessionStorage.setItem("maaan_admin",n);}catch(e){}$("#newCode").value="";msg("#codeMsg","تم تغيير الرمز. احفظه في مكان آمن.",true);}catch(e){msg("#codeMsg","تعذّر التغيير.");}};
+}
+</script>
+</body>
+</html>
