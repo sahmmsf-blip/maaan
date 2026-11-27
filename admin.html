@@ -66,6 +66,8 @@ th{background:var(--sand);font-family:'Cairo',Tahoma,sans-serif}
   <button class="btn" data-tab="ticker">الشريط الإخباري</button>
   <button class="btn" data-tab="news">الأخبار</button>
   <button class="btn" data-tab="photo">الصور</button>
+  <button class="btn" data-tab="members">فريق المبادرة</button>
+  <button class="btn" data-tab="works">أعمال الطلبة</button>
   <button class="btn" data-tab="settings">الإعدادات</button>
  </div>
 
@@ -95,6 +97,50 @@ th{background:var(--sand);font-family:'Cairo',Tahoma,sans-serif}
    <div class="msg" id="edMsg"></div>
   </div>
   <div class="card"><h3 style="margin-bottom:6px">المنشور حاليًا</h3><div id="list"></div></div>
+ </section>
+
+
+ <section data-panel="members" hidden>
+  <div class="card">
+   <h3 id="mTitle" style="margin-bottom:12px">إضافة عضو</h3>
+   <input type="hidden" id="m_id">
+   <div class="row">
+    <div><label for="m_kind">الصفة في الصفحة</label><select id="m_kind"><option value="student">طالب</option><option value="ambassador">سفير المبادرة</option><option value="principal">مدير المدرسة</option><option value="teacher">معلم</option></select></div>
+    <div><label for="m_team">الفريق</label><select id="m_team"><option value="">—</option><option>سند</option><option>جسور</option><option>بلا حدود</option><option>فرصة</option></select></div>
+    <div class="full"><label for="m_name">الاسم</label><input id="m_name" maxlength="80"></div>
+    <div><label for="m_grade">الصف</label><select id="m_grade"><option value="">—</option><option>السابع</option><option>الثامن</option><option>التاسع</option><option>العاشر</option></select></div>
+    <div><label for="m_section">الشعبة</label><select id="m_section"><option value="">—</option><option>أ</option><option>ب</option><option>ج</option><option>د</option><option>هـ</option></select></div>
+    <div class="full"><label for="m_title">المسمى (للمدير والمعلمين، وافصل بين مسمّيين بـ ·)</label><input id="m_title" maxlength="160"></div>
+    <div class="full"><label for="m_file">الصورة الشخصية</label><input id="m_file" type="file" accept="image/*"><img class="preview" id="m_prev" alt=""><button class="btn light" id="m_rmimg" type="button" style="margin-top:8px;display:none">إزالة الصورة</button></div>
+    <div><label for="m_sort">الترتيب (الأصغر أولًا)</label><input id="m_sort" type="number" value="0"></div>
+    <div><label><input type="checkbox" id="m_vis" checked style="width:auto"> ظاهر في الموقع</label></div>
+   </div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn main" id="mSave">حفظ</button><button class="btn light" id="mNew">جديد</button></div>
+   <div class="msg" id="mMsg"></div>
+  </div>
+  <div class="card"><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px"><h3>الأعضاء</h3><select id="mFilter" style="max-width:220px;margin-inline-start:auto"><option value="">الكل</option><option value="ambassador">السفير</option><option value="student">الطلاب</option><option value="principal">المدير</option><option value="teacher">المعلمون</option></select></div><div id="mList"></div></div>
+ </section>
+
+ <section data-panel="works" hidden>
+  <div class="card">
+   <h3 id="wTitle" style="margin-bottom:12px">إضافة عمل</h3>
+   <input type="hidden" id="w_id">
+   <div class="row">
+    <div class="full"><label for="w_title">عنوان العمل</label><input id="w_title" maxlength="200"></div>
+    <div><label for="w_type">نوع العمل</label><select id="w_type"><option>مشروع</option><option>كتابة</option><option>تصميم</option><option>فيديو</option><option>رابط</option><option>صورة</option><option>أخرى</option></select></div>
+    <div><label for="w_team">الفريق</label><select id="w_team"><option value="">—</option><option>سند</option><option>جسور</option><option>بلا حدود</option><option>فرصة</option></select></div>
+    <div><label for="w_student">اسم الطالب (أو الطلاب)</label><input id="w_student" maxlength="160" list="studentNames"><datalist id="studentNames"></datalist></div>
+    <div><label for="w_date">التاريخ</label><input id="w_date" dir="ltr" style="text-align:right" placeholder="2026/11/27"></div>
+    <div class="full"><label for="w_body">الوصف أو نص الكتابة</label><textarea id="w_body" maxlength="6000"></textarea></div>
+    <div class="full"><label for="w_link">رابط (يوتيوب، Drive، موقع…) اختياري</label><input id="w_link" dir="ltr" placeholder="https://"></div>
+    <div class="full"><label for="w_file">صورة العمل</label><input id="w_file" type="file" accept="image/*"><img class="preview" id="w_prev" alt=""><p class="muted">فيديو يوتيوب بلا صورة: تُؤخذ صورته تلقائيًا.</p></div>
+    <div><label for="w_sort">الترتيب (الأصغر أولًا)</label><input id="w_sort" type="number" value="0"></div>
+    <div><label><input type="checkbox" id="w_vis" checked style="width:auto"> ظاهر في الموقع</label></div>
+   </div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn main" id="wSave">حفظ</button><button class="btn light" id="wNew">جديد</button></div>
+   <div class="msg" id="wMsg"></div>
+  </div>
+  <div class="card"><h3 style="margin-bottom:6px">الأعمال المنشورة</h3><div id="wList"></div></div>
  </section>
 
  <section data-panel="settings" hidden>
@@ -150,7 +196,7 @@ $("#csvBtn").onclick=()=>{const K=["at","name","phone","role","grade","type","me
 // tabs
 $("#tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#tabs button").forEach(x=>x.classList.toggle("on",x===b));const t=b.dataset.tab;
  document.querySelectorAll("[data-panel]").forEach(p=>p.hidden=true);
- if(["ticker","news","photo"].includes(t)){CUR=t;$('[data-panel="editor"]').hidden=false;resetEditor();renderList();}else $(`[data-panel="${t}"]`).hidden=false;};
+ if(["ticker","news","photo"].includes(t)){CUR=t;$('[data-panel="editor"]').hidden=false;resetEditor();renderList();}else{ $(`[data-panel="${t}"]`).hidden=false; if((t==="members"||t==="works")){ if(t==="members")resetMember(); else resetWork(); loadMW().catch(()=>{}); } } };
 
 function resetEditor(){
  $("#edTitle").textContent="إضافة إلى: "+KIND[CUR];$("#e_id").value="";$("#e_title").value="";$("#e_body").value="";$("#e_date").value=new Date().toLocaleDateString("en-CA").replace(/-/g,"/");$("#e_sort").value=0;$("#e_vis").checked=true;$("#e_url").value="";$("#e_file").value="";IMG="";$("#e_prev").style.display="none";$("#edMsg").className="msg";
@@ -171,11 +217,41 @@ function edit(p){resetEditor();$("#edTitle").textContent="تعديل: "+KIND[CUR
 
 $("#e_file").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{IMG=await shrink(f);$("#e_url").value="";$("#e_prev").src=IMG;$("#e_prev").style.display="block";}catch(x){msg("#edMsg","تعذّرت قراءة الصورة.");}};
 $("#e_url").oninput=e=>{const u=e.target.value.trim();const m=u.match(/\/d\/([\w-]{10,})/)||u.match(/[?&]id=([\w-]{10,})/);IMG=m?"https://lh3.googleusercontent.com/d/"+m[1]:u;if(/^https:\/\//.test(IMG)){$("#e_prev").src=IMG;$("#e_prev").style.display="block";}};
-function shrink(file){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>{const M=1200,s=Math.min(1,M/Math.max(img.width,img.height));const c=document.createElement("canvas");c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext("2d").drawImage(img,0,0,c.width,c.height);let q=.82,d=c.toDataURL("image/jpeg",q);while(d.length>1000000&&q>.4){q-=.12;d=c.toDataURL("image/jpeg",q);}URL.revokeObjectURL(img.src);res(d);};img.onerror=rej;img.src=URL.createObjectURL(file);});}
+function shrink(file,MX){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>{const M=MX||1200,s=Math.min(1,M/Math.max(img.width,img.height));const c=document.createElement("canvas");c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext("2d").drawImage(img,0,0,c.width,c.height);let q=.82,d=c.toDataURL("image/jpeg",q);while(d.length>1000000&&q>.4){q-=.12;d=c.toDataURL("image/jpeg",q);}URL.revokeObjectURL(img.src);res(d);};img.onerror=rej;img.src=URL.createObjectURL(file);});}
 
 $("#saveBtn").onclick=()=>{const t=$("#e_title").value.trim();if(!t)return msg("#edMsg",CUR==="photo"?"اكتب وصفًا للصورة.":"اكتب النص.");if(CUR==="photo"&&!IMG)return msg("#edMsg","اختر صورة.");
  save({id:$("#e_id").value?Number($("#e_id").value):null,kind:CUR,title:t,body:$("#e_body").value.trim(),image:CUR==="ticker"?"":IMG,date:$("#e_date").value.trim(),visible:$("#e_vis").checked,sort:Number($("#e_sort").value)||0},true);};
 async function save(p,fromEditor){const b=$("#saveBtn");b.disabled=true;try{await rpc("maaan_admin_save_post",{p_code:CODE,p_id:p.id,p_kind:p.kind,p_title:p.title,p_body:p.body||"",p_image:p.image||"",p_date:p.date||"",p_visible:p.visible,p_sort:p.sort||0});await load();if(fromEditor){resetEditor();msg("#edMsg","تم الحفظ، ويظهر في الموقع فورًا.",true);}}catch(e){msg("#edMsg","تعذّر الحفظ: "+(e.message.includes("large")?"الصورة كبيرة جدًا.":"حاول مرة أخرى."));}b.disabled=false;}
+
+// ===== فريق المبادرة وأعمال الطلبة =====
+let MW=null, MIMG="", WIMG="";
+const KINDN={ambassador:"سفير المبادرة",student:"طالب",principal:"مدير المدرسة",teacher:"معلم"};
+async function loadMW(){MW=await rpc("maaan_admin_members",{p_code:CODE});renderMembers();renderWorksAdmin();const dl=$("#studentNames");dl.textContent="";MW.members.filter(m=>m.kind==="student"||m.kind==="ambassador").forEach(m=>dl.appendChild(el("option",{value:m.name})));}
+function resetMember(){$("#mTitle").textContent="إضافة عضو";["m_id","m_name","m_title"].forEach(i=>$("#"+i).value="");$("#m_kind").value="student";$("#m_team").value="";$("#m_grade").value="";$("#m_section").value="";$("#m_sort").value=0;$("#m_vis").checked=true;$("#m_file").value="";MIMG="";$("#m_prev").style.display="none";$("#m_rmimg").style.display="none";$("#mMsg").className="msg";}
+function editMember(m){resetMember();$("#mTitle").textContent="تعديل: "+m.name;$("#m_id").value=m.id;$("#m_kind").value=m.kind;$("#m_team").value=m.team;$("#m_name").value=m.name;$("#m_grade").value=m.grade;$("#m_section").value=m.section;$("#m_title").value=m.title;$("#m_sort").value=m.sort;$("#m_vis").checked=m.visible;MIMG=m.photo||"";if(MIMG){$("#m_prev").src=MIMG;$("#m_prev").style.display="block";$("#m_rmimg").style.display="inline-block";}window.scrollTo({top:0,behavior:"smooth"});}
+function renderMembers(){const L=$("#mList");L.textContent="";const f=$("#mFilter").value;const items=MW.members.filter(m=>!f||m.kind===f);
+ if(!items.length){L.appendChild(el("p",{class:"muted"},"لا أعضاء."));return;}
+ items.forEach(m=>{const it=el("div",{class:"item"+(m.visible?"":" hidden")});if(m.photo)it.appendChild(el("img",{src:m.photo,alt:"",style:"width:56px;height:56px;border-radius:50%"}));else it.appendChild(el("div",{style:"width:56px;height:56px;border-radius:50%;background:var(--sand);display:grid;place-items:center;font-weight:800;color:var(--navy);flex:none"},m.name.replace(/^الأستاذ\s+/,"").charAt(0)));
+  const t=el("div",{class:"t"});t.appendChild(el("div",{style:"font-weight:700"},m.name));t.appendChild(el("small",{},[KINDN[m.kind],[m.grade,m.section].filter(Boolean).join(" / "),m.team&&("«"+m.team+"»"),m.photo?"":"بلا صورة"].filter(Boolean).join(" · ")));it.appendChild(t);
+  const a=el("div",{class:"acts"});const ed=el("button",{class:"btn light"},"تعديل");ed.onclick=()=>editMember(m);a.appendChild(ed);
+  if(m.kind==="student"){const am=el("button",{class:"btn light"},"اجعله السفير");am.onclick=()=>saveMember({...m,kind:"ambassador"});a.appendChild(am);}
+  const del=el("button",{class:"btn red"},"حذف");del.onclick=()=>{if(del.dataset.sure){rpc("maaan_admin_delete",{p_code:CODE,p_table:"member",p_id:m.id}).then(loadMW).catch(()=>msg("#mMsg","تعذّر الحذف."));return;}del.dataset.sure="1";del.textContent="اضغط مرة أخرى للتأكيد";setTimeout(()=>{del.dataset.sure="";del.textContent="حذف";},4000);};a.appendChild(del);it.appendChild(a);L.appendChild(it);});}
+$("#mFilter").onchange=renderMembers;$("#mNew").onclick=resetMember;
+$("#m_file").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{MIMG=await shrink(f,600);$("#m_prev").src=MIMG;$("#m_prev").style.display="block";$("#m_rmimg").style.display="inline-block";}catch(x){msg("#mMsg","تعذّرت قراءة الصورة.");}};
+$("#m_rmimg").onclick=()=>{MIMG="";$("#m_prev").style.display="none";$("#m_rmimg").style.display="none";$("#m_file").value="";};
+$("#mSave").onclick=()=>{const n=$("#m_name").value.trim();if(n.length<2)return msg("#mMsg","اكتب الاسم.");saveMember({id:$("#m_id").value?Number($("#m_id").value):null,kind:$("#m_kind").value,name:n,grade:$("#m_grade").value,section:$("#m_section").value,title:$("#m_title").value.trim(),team:$("#m_team").value,photo:MIMG,sort:Number($("#m_sort").value)||0,visible:$("#m_vis").checked},true);};
+async function saveMember(m,fromForm){try{await rpc("maaan_admin_save_member",{p_code:CODE,p_id:m.id,p_kind:m.kind,p_name:m.name,p_grade:m.grade||"",p_section:m.section||"",p_title:m.title||"",p_team:m.team||"",p_photo:m.photo||"",p_sort:m.sort||0,p_visible:m.visible});await loadMW();if(fromForm)resetMember();msg("#mMsg","تم الحفظ، ويظهر في صفحة فريق المبادرة فورًا.",true);}catch(e){msg("#mMsg","تعذّر الحفظ: "+(e.message.includes("large")?"الصورة كبيرة جدًا.":"حاول مرة أخرى."));}}
+
+function resetWork(){$("#wTitle").textContent="إضافة عمل";["w_id","w_title","w_body","w_link","w_student"].forEach(i=>$("#"+i).value="");$("#w_type").value="مشروع";$("#w_team").value="";$("#w_date").value=new Date().toLocaleDateString("en-CA").replace(/-/g,"/");$("#w_sort").value=0;$("#w_vis").checked=true;$("#w_file").value="";WIMG="";$("#w_prev").style.display="none";$("#wMsg").className="msg";}
+function editWork(w){resetWork();$("#wTitle").textContent="تعديل: "+w.title;$("#w_id").value=w.id;$("#w_title").value=w.title;$("#w_body").value=w.body;$("#w_type").value=w.type;$("#w_team").value=w.team;$("#w_student").value=w.student;$("#w_link").value=w.link;$("#w_date").value=w.date;$("#w_sort").value=w.sort;$("#w_vis").checked=w.visible;WIMG=w.image||"";if(WIMG){$("#w_prev").src=WIMG;$("#w_prev").style.display="block";}window.scrollTo({top:0,behavior:"smooth"});}
+function renderWorksAdmin(){const L=$("#wList");L.textContent="";if(!MW.works.length){L.appendChild(el("p",{class:"muted"},"لا أعمال بعد."));return;}
+ MW.works.forEach(w=>{const it=el("div",{class:"item"+(w.visible?"":" hidden")});if(w.image)it.appendChild(el("img",{src:w.image,alt:""}));const t=el("div",{class:"t"});t.appendChild(el("div",{style:"font-weight:700"},w.title));t.appendChild(el("small",{},[w.type,w.student,w.team&&("«"+w.team+"»"),w.date,w.visible?"ظاهر":"مخفي"].filter(Boolean).join(" · ")));it.appendChild(t);
+  const a=el("div",{class:"acts"});const ed=el("button",{class:"btn light"},"تعديل");ed.onclick=()=>editWork(w);const tg=el("button",{class:"btn light"},w.visible?"إخفاء":"إظهار");tg.onclick=()=>saveWork({...w,visible:!w.visible});const del=el("button",{class:"btn red"},"حذف");del.onclick=()=>{if(del.dataset.sure){rpc("maaan_admin_delete",{p_code:CODE,p_table:"work",p_id:w.id}).then(loadMW).catch(()=>msg("#wMsg","تعذّر الحذف."));return;}del.dataset.sure="1";del.textContent="اضغط مرة أخرى للتأكيد";setTimeout(()=>{del.dataset.sure="";del.textContent="حذف";},4000);};a.append(ed,tg,del);it.appendChild(a);L.appendChild(it);});}
+$("#wNew").onclick=resetWork;
+$("#w_file").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{WIMG=await shrink(f);$("#w_prev").src=WIMG;$("#w_prev").style.display="block";}catch(x){msg("#wMsg","تعذّرت قراءة الصورة.");}};
+$("#wSave").onclick=()=>{const t=$("#w_title").value.trim();if(t.length<2)return msg("#wMsg","اكتب عنوان العمل.");const l=$("#w_link").value.trim();if(l&&!/^https:\/\//.test(l))return msg("#wMsg","الرابط يجب أن يبدأ بـ https://");
+ saveWork({id:$("#w_id").value?Number($("#w_id").value):null,title:t,body:$("#w_body").value.trim(),type:$("#w_type").value,link:l,image:WIMG,student:$("#w_student").value.trim(),team:$("#w_team").value,date:$("#w_date").value.trim(),sort:Number($("#w_sort").value)||0,visible:$("#w_vis").checked},true);};
+async function saveWork(w,fromForm){try{await rpc("maaan_admin_save_work",{p_code:CODE,p_id:w.id,p_title:w.title,p_body:w.body||"",p_type:w.type,p_link:w.link||"",p_image:w.image||"",p_student:w.student||"",p_team:w.team||"",p_date:w.date||"",p_sort:w.sort||0,p_visible:w.visible});await loadMW();if(fromForm)resetWork();msg("#wMsg","تم الحفظ، ويظهر في مساحة أعمال الطلبة فورًا.",true);}catch(e){msg("#wMsg","تعذّر الحفظ: "+(e.message.includes("large")?"الصورة كبيرة جدًا.":e.message.includes("link")?"الرابط غير صالح.":"حاول مرة أخرى."));}}
 
 $("#codeBtn").onclick=async()=>{const n=$("#newCode").value;if(n.length<8)return msg("#codeMsg","الرمز قصير.");try{await rpc("maaan_admin_change_code",{p_code:CODE,p_new:n});CODE=n;try{sessionStorage.setItem("maaan_admin",n);}catch(e){}$("#newCode").value="";msg("#codeMsg","تم تغيير الرمز. احفظه في مكان آمن.",true);}catch(e){msg("#codeMsg","تعذّر التغيير.");}};
 }
