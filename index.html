@@ -302,7 +302,14 @@ textarea{min-height:96px;resize:vertical}
 .work .cv{height:180px;width:100%;object-fit:cover;background:linear-gradient(135deg,var(--c,#24406E),#14213D);display:grid;place-items:center;color:#fff;font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:22px;position:relative}
 .work .b{padding:14px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
 .work h3{font-size:17px}
-.work .who{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;margin-top:auto}
+.work .who{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:10px}
+.work .who .ini{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#D9601F,#F4A574);color:#fff;font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:17px}
+.work .who .sn{font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:16.5px;color:var(--navy);line-height:1.25}
+.work .who .sg{display:block;font-family:inherit;font-weight:600;font-size:12.5px;color:var(--orange)}
+.wm-student{display:flex;align-items:center;gap:12px;background:#FFF6EE;border:1px solid #F6D8C2;border-radius:14px;padding:10px 14px;margin:6px 0 4px}
+.wm-student .ini{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#D9601F,#F4A574);color:#fff;font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:20px;flex:none}
+.wm-student .sn{font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:19px;color:var(--navy);line-height:1.3}
+.wm-student .sg{display:block;font-weight:600;font-size:13.5px;color:var(--orange)}
 .work .ft{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
 .work .ft .cnt{display:inline-flex;align-items:center;gap:4px;font-family:'Cairo',Tahoma,sans-serif;font-weight:700;direction:ltr}
 .copy-btn{margin-inline-start:auto;display:inline-flex;align-items:center;border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:6px 11px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}.copy-btn:hover{border-color:var(--navy)}
@@ -805,18 +812,20 @@ function renderWorks(){
  list.forEach(w=>{ const card=el("div",{class:"work",role:"button",tabindex:"0"}); card.style.setProperty("--c",teamColor(w.team)); const src=driveImg(w.image)||(ytId(w.link)?"https://i.ytimg.com/vi/"+ytId(w.link)+"/hqdefault.jpg":"");
   card.appendChild(src?el("img",{class:"cv",src,alt:w.title,loading:"lazy"}):el("div",{class:"cv"},w.type));
   const b=el("div",{class:"b"}); b.append(el("span",{class:"type-tag"},w.type),el("h3",{},w.title)); if(w.body) b.appendChild(el("p",{style:"color:var(--muted);font-size:14.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden"},w.body));
-  const who=el("div",{class:"who"}); if(w.student) who.appendChild(el("span",{},w.student)); b.appendChild(who);
+  if(w.student) b.appendChild(stuTag(w.student,"who"));
   card.appendChild(b);
   const ft=el("div",{class:"ft"}); const c1=ic("eye",N(w.views)); c1.className="cnt"; c1.title="الزيارات"; const c2=ic("bulb",N(w.inspires)); c2.className="cnt"; c2.title="ألهمني"; ft.append(c1,c2);
   const cb=el("button",{class:"copy-btn",type:"button"}); cb.appendChild(ic("link","نسخ الرابط")); cb.onclick=e=>{ e.stopPropagation(); copyLink(w,cb); }; ft.appendChild(cb); card.appendChild(ft);
   card.onclick=()=>{ location.hash="work-"+w.id; }; card.onkeydown=e=>{ if(e.key==="Enter") card.onclick(); }; g.appendChild(card); });
 }
+function stuTag(str,cls){ const [nm,...gr]=String(str).split("·").map(x=>x.trim()); const d=el("div",{class:cls}); d.appendChild(el("span",{class:"ini"},nm.charAt(0)));
+ const t=el("div"); t.appendChild(el("span",{class:"sn"},nm)); if(gr.length) t.appendChild(el("span",{class:"sg"},"الصف "+gr.join(" "))); d.appendChild(t); return d; }
 function openWork(w){ hitWork(w,"view"); $("#wmTitle").textContent=w.title; const b=$("#wmBody"); b.textContent=""; const y=ytId(w.link);
  const mp4=/^https:\/\/\S+\.(mp4|webm)(\?|$)/i.test(w.link||"");
  if(y){ const v=el("div",{class:"video-box"}); v.appendChild(el("iframe",{src:"https://www.youtube-nocookie.com/embed/"+y,title:w.title,allow:"accelerometer; encrypted-media; gyroscope; picture-in-picture",allowfullscreen:""})); b.appendChild(v); }
  else if(mp4){ const v=el("video",{src:w.link,controls:"",playsinline:"",preload:"metadata",style:"width:100%;max-height:70vh;border-radius:14px;background:#000;margin-bottom:14px"}); const p=driveImg(w.image); if(p) v.setAttribute("poster",p); b.appendChild(v); }
  else { const src=driveImg(w.image); if(src) b.appendChild(el("img",{class:"ph",src,alt:w.title})); }
- const meta=el("p",{class:"hint"},[w.type,w.student&&("الطالب: "+w.student),w.date].filter(Boolean).join(" · ")); b.appendChild(meta);
+ if(w.student) b.appendChild(stuTag(w.student,"wm-student")); const meta=el("p",{class:"hint"},[w.type,w.date].filter(Boolean).join(" · ")); b.appendChild(meta);
  if(w.body) b.appendChild(el("p",{style:"white-space:pre-line;margin-top:10px"},w.body));
  if(w.link && /^https:\/\//.test(w.link)) { const lbl=y?"مشاهدة على يوتيوب":mp4?"فتح الفيديو في نافذة كاملة":/\.pdf(\?|$)/i.test(w.link)?"قراءة الملف كاملًا":w.type==="لعبة"?"العب الآن 🎲":"فتح العمل"; const a=el("a",{class:"btn btn-main",href:w.link,target:"_blank",rel:"noopener",style:"margin-top:14px"},lbl); b.appendChild(a); }
  const act=el("div",{class:"wm-actions"}); let done=false; try{ done=!!localStorage.getItem("maaan_i_"+w.id); }catch(e){}
