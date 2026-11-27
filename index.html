@@ -242,6 +242,48 @@ textarea{min-height:96px;resize:vertical}
 .person{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
 .ph-av{width:104px;height:104px;border-radius:50%;object-fit:cover;background:var(--c,#24406E);display:grid;place-items:center;color:#fff;font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:34px;box-shadow:0 0 0 4px #fff,0 0 0 6px var(--c,#F4A574);flex:none}
 .person h3{font-size:15.5px;line-height:1.45}
+/* ===== spotlight ===== */
+.spot{display:grid;grid-template-columns:360px minmax(0,1fr);gap:28px;align-items:start;margin-top:8px}
+.spot-stage{position:sticky;top:84px;background:radial-gradient(120% 90% at 50% 0%,#2B4A80 0%,#14213D 70%);color:#fff;border-radius:26px;padding:34px 26px 26px;text-align:center;overflow:hidden;min-height:470px;display:flex;flex-direction:column;align-items:center}
+.spot-stage::before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0 70%,rgba(244,165,116,.18) 80%,transparent 90%);animation:spin 9s linear infinite}
+.spot-stage>*{position:relative}
+.spot-stage .big{width:230px;height:230px;border-radius:50%;padding:7px;background:conic-gradient(from var(--a,0deg),#F4A574,#D9601F,#6D28D9,#2F8F83,#F4A574);animation:ringA 4s linear infinite}
+.spot-stage .big>*{width:100%;height:100%;border-radius:50%;object-fit:cover;border:5px solid #14213D;display:grid;place-items:center;background:#24406E;font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:76px;color:#fff}
+.spot-stage .big.swap>*{animation:popIn .55s cubic-bezier(.2,.9,.3,1.2)}
+.spot-stage h3{color:#fff;font-size:clamp(20px,2vw,25px);margin-top:20px;line-height:1.4;min-height:2.8em;display:flex;align-items:center}
+.spot-stage .role{color:var(--peach);font-family:'Cairo',Tahoma,sans-serif;font-weight:700;font-size:16px;margin-top:4px}
+.spot-stage .meta{color:#B9C4D2;font-size:14.5px;margin-top:4px;line-height:1.7}
+.spot-stage .bar{position:absolute;bottom:0;left:0;right:0;height:4px;background:rgba(255,255,255,.12)}
+.spot-stage .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#F4A574,#D9601F)}
+.spot-stage .bar i.go{animation:barGo var(--dur,3s) linear forwards}
+.spot-stage.paused .bar i{animation-play-state:paused}
+.spot-stage .cnt{position:absolute;top:14px;inset-inline-start:18px;font-family:'Cairo',Tahoma,sans-serif;font-weight:700;font-size:13px;color:#9FB0C6;direction:ltr}
+.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:18px 10px}
+.mem{background:none;border:0;padding:6px 2px;font:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;border-radius:16px;transition:background .2s}
+.mem .rg{width:84px;height:84px;border-radius:50%;padding:3px;position:relative;background:conic-gradient(from var(--a,0deg),#E7DFD2 0 60%,var(--c2,#D9601F) 80%,#E7DFD2 100%);animation:ringA 3.2s linear infinite;animation-delay:var(--d,0s);transition:transform .3s}
+.mem .rg>*{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #fff;display:grid;place-items:center;background:#24406E;color:#fff;font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:28px}
+.mem span.n{font-size:13.5px;font-weight:700;line-height:1.35;color:var(--navy)}
+.mem span.g{font-size:12px;color:var(--muted);margin-top:-6px}
+.mem:hover .rg,.mem.on .rg{transform:scale(1.1)}
+.mem.on .rg{background:conic-gradient(from var(--a,0deg),#F4A574,#D9601F,#6D28D9,#2F8F83,#F4A574);animation-duration:1.6s}
+.mem.on{background:#fff;box-shadow:0 10px 24px rgba(20,33,61,.10)}
+.roster.few{grid-template-columns:repeat(2,1fr);gap:22px;align-content:center;min-height:470px}
+.roster.few .mem{padding:22px 10px;background:#fff;border:1px solid var(--line);border-radius:22px}
+.roster.few .mem .rg{width:150px;height:150px;padding:4px}
+.roster.few .mem .rg>*{font-size:48px;border-width:4px}
+.roster.few .mem span.n{font-size:17px}
+.roster.few .mem span.g{font-size:13.5px;margin-top:-4px}
+.roster.few .mem.on{border-color:var(--orange)}
+@media (max-width:900px){.roster.few{min-height:0}.roster.few .mem .rg{width:110px;height:110px}}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes ringA{to{--a:360deg}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes popIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+@keyframes barGo{from{width:0}to{width:100%}}
+.ambassador .ph-av,.leader .ph-av{animation:haloP 3s ease-in-out infinite}
+@keyframes haloP{0%,100%{box-shadow:0 0 0 6px #fff,0 0 0 10px var(--orange),0 0 0 10px rgba(217,96,31,.0)}50%{box-shadow:0 0 0 6px #fff,0 0 0 10px var(--orange),0 0 0 22px rgba(217,96,31,.18)}}
+@media (max-width:900px){.spot{grid-template-columns:1fr}.spot-stage{position:relative;top:0;min-height:0}.spot-stage .big{width:180px;height:180px}.roster{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}.mem .rg{width:72px;height:72px}}
+@media (prefers-reduced-motion:reduce){.mem .rg,.spot-stage .big,.spot-stage::before{animation:none}}
 .person .gr{color:var(--muted);font-size:14px}
 .badge{display:inline-block;border-radius:999px;padding:1px 10px;font-size:12.5px;font-weight:700;color:#fff;background:var(--c,#24406E)}
 .ambassador{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;max-width:560px;margin-inline:auto;background:linear-gradient(120deg,#FFF3E9,#fff);border:2px solid var(--peach);border-radius:28px;padding:26px 30px;margin-top:8px}
@@ -699,15 +741,33 @@ function avatar(p,cls){ const src=driveImg(p.photo); if(src){ const i=el("img",{
  const d=el("div",{class:"ph-av"},(p.name||"").replace(/^الأستاذ\s+/,"").trim().charAt(0)); d.style.setProperty("--c",teamColor(p.team)); return d; }
 let MEMBERS=null, WORKS=null, WORK_FILTER="الكل";
 async function loadTeam(){ if(MEMBERS) return renderTeam(); try{ MEMBERS=await rpc("maaan_team",{}); }catch(e){ MEMBERS=[]; $("#studentsGrid").textContent=""; $("#studentsGrid").appendChild(el("div",{class:"empty"},"تعذّر تحميل الفريق الآن.")); return; } renderTeam(); }
+function shortName(n){ const p=String(n||"").replace(/^الأستاذ\s+/,"").trim().split(/\s+/); return p.length>2?p[0]+" "+p[p.length-1]:p.join(" "); }
+function avInner(p){ const src=driveImg(p.photo); if(src) return el("img",{src,alt:p.name,loading:"lazy"}); return el("div",{},(p.name||"").replace(/^الأستاذ\s+/,"").trim().charAt(0)); }
+function spotlight(box,list,info,DUR){ DUR=DUR||3000; if(box._t) clearInterval(box._t); box.textContent=""; if(!list.length){ box.appendChild(el("div",{class:"empty"},"لا أعضاء هنا بعد.")); return; }
+ box.className="spot"; const st=el("div",{class:"spot-stage"}); st.style.setProperty("--dur",DUR+"ms");
+ const cnt=el("div",{class:"cnt"}), big=el("div",{class:"big"}), h=el("h3"), role=el("div",{class:"role"}), meta=el("div",{class:"meta"}), bar=el("div",{class:"bar"}), bi=el("i"); bar.appendChild(bi);
+ st.append(cnt,big,h,role,meta,bar); const ro=el("div",{class:"roster"+(list.length<=6?" few":"")}); box.append(st,ro);
+ let cur=0, paused=false; const items=[];
+ list.forEach((p,i)=>{ const b=el("button",{class:"mem",type:"button","aria-label":p.name}); b.style.setProperty("--d",(-(i*0.37)%3.2)+"s");
+  const rg=el("div",{class:"rg"}); rg.appendChild(avInner(p)); b.append(rg,el("span",{class:"n"},shortName(p.name))); const g=info(p).short; if(g) b.appendChild(el("span",{class:"g"},g));
+  b.onmouseenter=()=>{ paused=true; st.classList.add("paused"); show(i); }; b.onfocus=b.onmouseenter; b.onclick=()=>{ show(i); };
+  b.onmouseleave=()=>{ paused=false; st.classList.remove("paused"); restart(); }; b.onblur=b.onmouseleave;
+  ro.appendChild(b); items.push(b); });
+ function show(i){ cur=i; const p=list[i], f=info(p); items.forEach((x,j)=>x.classList.toggle("on",j===i));
+  big.textContent=""; big.classList.remove("swap"); void big.offsetWidth; big.appendChild(avInner(p)); big.classList.add("swap");
+  h.textContent=p.name; role.textContent=f.role||""; meta.textContent=f.meta||""; cnt.textContent=(i+1)+" / "+list.length;
+  bi.classList.remove("go"); void bi.offsetWidth; if(!paused) bi.classList.add("go"); }
+ function restart(){ if(box._t) clearInterval(box._t); bi.classList.remove("go"); void bi.offsetWidth; bi.classList.add("go"); box._t=setInterval(()=>{ if(!paused && !document.hidden && !$("#page-team").hidden) show((cur+1)%list.length); },DUR); }
+ show(0); restart(); }
 function renderTeam(){
  const amb=MEMBERS.find(m=>m.kind==="ambassador"); $("#ambassadorWrap").hidden=!amb;
  if(amb){ const a=$("#ambassador"); a.textContent=""; const d=el("div"); d.append(el("div",{class:"role"},"سفير مبادرة «معًا في كل خطوة»"),el("h2",{},amb.name),el("div",{class:"gr"},[amb.grade,amb.section].filter(Boolean).join(" / "))); a.append(avatar(amb),d); }
  const g=$("#studentsGrid"); g.textContent=""; const st=MEMBERS.filter(m=>m.kind==="student");
  if(!st.length) g.appendChild(el("div",{class:"empty"},"لا طلاب هنا بعد."));
- st.forEach(s=>{ const c=el("div",{class:"person"}); c.append(avatar(s),el("h3",{},s.name),el("div",{class:"gr"},[s.grade,s.section].filter(Boolean).join(" / "))); g.appendChild(c); });
+ if(st.length) spotlight(g,st,s=>{ const gr=[s.grade,s.section].filter(Boolean).join(" "); return {short:gr,role:"عضو فريق مبادرة «معًا في كل خطوة»",meta:gr?("الصف "+gr):""}; });
  const pr=MEMBERS.find(m=>m.kind==="principal"), P=$("#principal"); P.textContent=""; P.hidden=!pr;
  if(pr){ const d=el("div"); d.append(el("h2",{},pr.name)); (pr.title||"").split("·").map(x=>x.trim()).filter(Boolean).forEach(x=>d.appendChild(el("div",{class:"role"},x))); P.append(avatar(pr),d); }
- const tg=$("#teachersGrid"); tg.textContent=""; MEMBERS.filter(m=>m.kind==="teacher").forEach(m=>{ const c=el("div",{class:"person"}); c.append(avatar(m),el("h3",{},m.name)); (m.title||"").split("·").map(x=>x.trim()).filter(Boolean).forEach(x=>c.appendChild(el("div",{class:"t2"},x))); tg.appendChild(c); });
+ const tg=$("#teachersGrid"); spotlight(tg,MEMBERS.filter(m=>m.kind==="teacher"),m=>{ const t=(m.title||"").split("·").map(x=>x.trim()).filter(Boolean); return {short:t[0]||"",role:t[0]||"معلم المبادرة",meta:t.slice(1).join(" · ")}; });
 }
 
 /* ===== أعمال الطلبة ===== */
