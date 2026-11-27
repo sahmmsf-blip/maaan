@@ -250,7 +250,7 @@ textarea{min-height:96px;resize:vertical}
 .spot-stage .big{width:230px;height:230px;border-radius:50%;padding:7px;background:conic-gradient(from var(--a,0deg),#F4A574,#D9601F,#6D28D9,#2F8F83,#F4A574);animation:ringA 4s linear infinite}
 .spot-stage .big>*{width:100%;height:100%;border-radius:50%;object-fit:cover;border:5px solid #14213D;display:grid;place-items:center;background:#24406E;font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:76px;color:#fff}
 .spot-stage .big.swap>*{animation:popIn .55s cubic-bezier(.2,.9,.3,1.2)}
-.spot-stage h3{color:#fff;font-size:clamp(20px,2vw,25px);margin-top:20px;line-height:1.4;min-height:2.8em;display:flex;align-items:center}
+.spot-stage h3{color:#fff;font-size:24px;margin-top:22px;line-height:1.5;width:100%;text-align:center}
 .spot-stage .role{color:var(--peach);font-family:'Cairo',Tahoma,sans-serif;font-weight:700;font-size:16px;margin-top:4px}
 .spot-stage .meta{color:#B9C4D2;font-size:14.5px;margin-top:4px;line-height:1.7}
 .spot-stage .bar{position:absolute;bottom:0;left:0;right:0;height:4px;background:rgba(255,255,255,.12)}
@@ -352,6 +352,8 @@ textarea{min-height:96px;resize:vertical}
 .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media (max-width:900px){.team-cards{grid-template-columns:1fr 1fr}.ambassador,.leader{flex-direction:column;text-align:center}}
 @media (max-width:520px){.people .person{width:calc(50% - 7px)}.ph-av{width:84px;height:84px;font-size:28px}}
+.one{white-space:nowrap;display:block;max-width:100%;min-width:0}
+.work .who>div,.wm-student>div,.honor .nm{min-width:0;flex:1}
 footer{background:#0E1830;color:#9FB0C6;padding:28px 0;font-size:14px}
 footer .in{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer .dev{text-align:center;font-size:11.5px;color:#6F7F96;margin-top:18px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);letter-spacing:.2px}
@@ -759,11 +761,13 @@ function avatar(p,cls){ const src=driveImg(p.photo); if(src){ const i=el("img",{
  const d=el("div",{class:"ph-av"},(p.name||"").replace(/^الأستاذ\s+/,"").trim().charAt(0)); d.style.setProperty("--c",teamColor(p.team)); return d; }
 let MEMBERS=null, WORKS=null, WORK_FILTER="الكل";
 async function loadTeam(){ if(MEMBERS) return renderTeam(); try{ MEMBERS=await rpc("maaan_team",{}); }catch(e){ MEMBERS=[]; $("#studentsGrid").textContent=""; $("#studentsGrid").appendChild(el("div",{class:"empty"},"تعذّر تحميل الفريق الآن.")); return; } renderTeam(); }
+function fitAll(root){ (root||document).querySelectorAll(".fit").forEach(e=>{ if(!e.offsetParent) return; e.style.fontSize=""; let f=parseFloat(getComputedStyle(e).fontSize), g=0; while(e.scrollWidth>e.clientWidth+1 && f>11 && g++<40){ f-=0.5; e.style.fontSize=f+"px"; } }); }
+let _fitT; window.addEventListener("resize",()=>{ clearTimeout(_fitT); _fitT=setTimeout(()=>fitAll(),150); });
 function shortName(n){ const p=String(n||"").replace(/^الأستاذ\s+/,"").trim().split(/\s+/); return p.length>2?p[0]+" "+p[p.length-1]:p.join(" "); }
 function avInner(p){ const src=driveImg(p.photo); if(src) return el("img",{src,alt:p.name,loading:"lazy"}); return el("div",{},(p.name||"").replace(/^الأستاذ\s+/,"").trim().charAt(0)); }
 function spotlight(box,list,info,DUR){ DUR=DUR||3000; if(box._t) clearInterval(box._t); box.textContent=""; if(!list.length){ box.appendChild(el("div",{class:"empty"},"لا أعضاء هنا بعد.")); return; }
  box.className="spot"; const st=el("div",{class:"spot-stage"}); st.style.setProperty("--dur",DUR+"ms");
- const cnt=el("div",{class:"cnt"}), big=el("div",{class:"big"}), h=el("h3"), role=el("div",{class:"role"}), meta=el("div",{class:"meta"}), bar=el("div",{class:"bar"}), bi=el("i"); bar.appendChild(bi);
+ const cnt=el("div",{class:"cnt"}), big=el("div",{class:"big"}), h=el("h3",{class:"one fit"}), role=el("div",{class:"role"}), meta=el("div",{class:"meta"}), bar=el("div",{class:"bar"}), bi=el("i"); bar.appendChild(bi);
  st.append(cnt,big,h,role,meta,bar); const ro=el("div",{class:"roster"+(list.length<=6?" few":"")}); box.append(st,ro);
  let cur=0, paused=false; const items=[];
  list.forEach((p,i)=>{ const b=el("button",{class:"mem",type:"button","aria-label":p.name}); b.style.setProperty("--d",(-(i*0.37)%3.2)+"s");
@@ -773,19 +777,19 @@ function spotlight(box,list,info,DUR){ DUR=DUR||3000; if(box._t) clearInterval(b
   ro.appendChild(b); items.push(b); });
  function show(i){ cur=i; const p=list[i], f=info(p); items.forEach((x,j)=>x.classList.toggle("on",j===i));
   big.textContent=""; big.classList.remove("swap"); void big.offsetWidth; big.appendChild(avInner(p)); big.classList.add("swap");
-  h.textContent=p.name; role.textContent=f.role||""; meta.textContent=f.meta||""; cnt.textContent=(i+1)+" / "+list.length;
+  h.textContent=p.name; h.style.fontSize=""; fitAll(st); role.textContent=f.role||""; meta.textContent=f.meta||""; cnt.textContent=(i+1)+" / "+list.length;
   bi.classList.remove("go"); void bi.offsetWidth; if(!paused) bi.classList.add("go"); }
  function restart(){ if(box._t) clearInterval(box._t); bi.classList.remove("go"); void bi.offsetWidth; bi.classList.add("go"); box._t=setInterval(()=>{ if(!paused && !document.hidden && !$("#page-team").hidden) show((cur+1)%list.length); },DUR); }
  show(0); restart(); }
-function renderTeam(){
+function renderTeam(){ setTimeout(()=>fitAll(),0);
  const amb=MEMBERS.find(m=>m.kind==="ambassador"); $("#ambassadorWrap").hidden=!amb;
  if(amb){ const a=$("#ambassador"); a.textContent=""; const ph=el("div",{class:"amb-ph"}), rg=el("div",{class:"ring"}); rg.appendChild(avInner(amb)); const st=el("div",{class:"star"}); st.innerHTML='<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>'; ph.append(rg,st);
- const d=el("div"); const gr=[amb.grade,amb.section].filter(Boolean).join(" "); d.append(el("span",{class:"pill"},"سفير المبادرة"),el("h2",{},amb.name)); if(gr) d.appendChild(el("div",{class:"gr"},"الصف "+gr)); d.appendChild(el("div",{class:"ini"},"سفير مبادرة «معًا في كل خطوة» للتعليم الدامج")); a.append(ph,d); }
+ const d=el("div"); const gr=[amb.grade,amb.section].filter(Boolean).join(" "); d.style.minWidth="0"; d.append(el("span",{class:"pill"},"سفير المبادرة"),el("h2",{class:"one fit"},amb.name)); if(gr) d.appendChild(el("div",{class:"gr"},"الصف "+gr)); d.appendChild(el("div",{class:"ini"},"سفير مبادرة «معًا في كل خطوة» للتعليم الدامج")); a.append(ph,d); }
  const g=$("#studentsGrid"); g.textContent=""; const st=MEMBERS.filter(m=>m.kind==="student");
  if(!st.length) g.appendChild(el("div",{class:"empty"},"لا طلاب هنا بعد."));
  if(st.length) spotlight(g,st,s=>{ const gr=[s.grade,s.section].filter(Boolean).join(" "); return {short:gr,role:"عضو فريق مبادرة «معًا في كل خطوة»",meta:gr?("الصف "+gr):""}; });
  const pr=MEMBERS.find(m=>m.kind==="principal"), P=$("#principal"); P.textContent=""; P.hidden=!pr;
- if(pr){ const d=el("div"); d.append(el("h2",{},pr.name)); (pr.title||"").split("·").map(x=>x.trim()).filter(Boolean).forEach(x=>d.appendChild(el("div",{class:"role"},x))); P.append(avatar(pr),d); }
+ if(pr){ const d=el("div"); d.append(el("h2",{class:"one fit"},pr.name)); (pr.title||"").split("·").map(x=>x.trim()).filter(Boolean).forEach(x=>d.appendChild(el("div",{class:"role"},x))); P.append(avatar(pr),d); }
  const tg=$("#teachersGrid"); spotlight(tg,MEMBERS.filter(m=>m.kind==="teacher"),m=>{ const t=(m.title||"").split("·").map(x=>x.trim()).filter(Boolean); return {short:t[0]||"",role:t[0]||"معلم المبادرة",meta:t.slice(1).join(" · ")}; });
 }
 
@@ -811,13 +815,13 @@ function renderHonor(){ const h=$("#honor"); h.textContent=""; const by={};
  const hh=el("div",{class:"hh"}); hh.append(el("div",{class:"ey"},"لوحة الشرف"),el("h3",{},"تميّز طلبتنا"));
  const seg=el("div",{class:"seg"}); [["views","الأعلى زيارة"],["impact","الأكثر تأثيرًا"]].forEach(([k,t])=>{ const b=el("button",{type:"button",class:HONOR_TAB===k?"on":""},t); b.onclick=()=>{HONOR_TAB=k;renderHonor();}; seg.appendChild(b); }); hh.appendChild(seg); h.appendChild(hh);
  const isV=HONOR_TAB==="views"; const list=[...arr].sort((a,b)=>isV?(b.views-a.views||pts(b)-pts(a)):(pts(b)-pts(a)||b.views-a.views)).slice(0,5);
- const ol=el("ol"); list.forEach((s,i)=>{ const [nm,...gr]=s.name.split("·"); const li=el("li",{class:i===0?"top":""}); const n=el("div",{class:"nm"},nm.trim()); if(gr.length) n.appendChild(el("span",{class:"gd"},gr.join("·").trim()));
+ const ol=el("ol"); list.forEach((s,i)=>{ const [nm,...gr]=s.name.split("·"); const li=el("li",{class:i===0?"top":""}); const n=el("div",{class:"nm"}); n.appendChild(el("span",{class:"one fit"},nm.trim())); if(gr.length) n.appendChild(el("span",{class:"gd"},gr.join("·").trim()));
   const v=el("div",{class:"pt"},N(isV?s.views:pts(s))); v.appendChild(el("small",{},isV?"زيارة":"نقطة")); li.append(el("span",{class:"rk"},String(i+1)),n,v); ol.appendChild(li); }); h.appendChild(ol);
- h.appendChild(el("div",{class:"rule"},isV?"مجموع زيارات أعمال الطالب، بواقع زيارة واحدة لكل جهاز في اليوم.":"العمل المنشور 15 نقطة، وكل 10 زيارات نقطة، وكل «ألهمني» نقطتان.")); }
+ h.appendChild(el("div",{class:"rule"},isV?"مجموع زيارات أعمال الطالب، بواقع زيارة واحدة لكل جهاز في اليوم.":"العمل المنشور 15 نقطة، وكل 10 زيارات نقطة، وكل «ألهمني» نقطتان.")); setTimeout(()=>fitAll(h),0); }
 async function hitWork(w,kind){ try{ const r=await rpc("maaan_work_hit",{p_id:w.id,p_vid:VID,p_kind:kind}); if(r&&r.ok){ w.views=r.views; w.inspires=r.inspires; renderWorks(); return true; } }catch(e){} return false; }
 async function loadWorks(){ if(!WORKS){ try{ WORKS=await rpc("maaan_works_list",{}); }catch(e){ WORKS=[]; } } renderWorks(); }
 function renderWorks(){
- renderHonor();
+ renderHonor(); setTimeout(()=>fitAll(),0);
  const f=$("#worksFilter"); f.textContent=""; const types=["الكل",...WTYPES.filter(t=>WORKS.some(w=>w.type===t))]; types.forEach(n=>{ const b=el("button",{class:"chip-btn"+(n===WORK_FILTER?" on":""),type:"button"},n==="الكل"?"كل الأعمال":n); b.onclick=()=>{WORK_FILTER=n;renderWorks();}; f.appendChild(b); });
  const g=$("#worksGrid"); g.textContent=""; const list=WORKS.filter(w=>WORK_FILTER==="الكل"||w.type===WORK_FILTER);
  if(!list.length){ g.appendChild(el("div",{class:"empty"},"تظهر هنا أعمال الطلبة فور نشرها.")); return; }
@@ -831,7 +835,7 @@ function renderWorks(){
   card.onclick=()=>{ location.hash="work-"+w.id; }; card.onkeydown=e=>{ if(e.key==="Enter") card.onclick(); }; g.appendChild(card); });
 }
 function stuTag(str,cls){ const [nm,...gr]=String(str).split("·").map(x=>x.trim()); const d=el("div",{class:cls}); d.appendChild(el("span",{class:"ini"},nm.charAt(0)));
- const t=el("div"); t.appendChild(el("span",{class:"sn"},nm)); if(gr.length) t.appendChild(el("span",{class:"sg"},"الصف "+gr.join(" "))); d.appendChild(t); return d; }
+ const t=el("div"); t.appendChild(el("span",{class:"sn one fit"},nm)); if(gr.length) t.appendChild(el("span",{class:"sg"},"الصف "+gr.join(" "))); d.appendChild(t); return d; }
 function openWork(w){ hitWork(w,"view"); $("#wmTitle").textContent=w.title; const b=$("#wmBody"); b.textContent=""; const y=ytId(w.link);
  const mp4=/^https:\/\/\S+\.(mp4|webm)(\?|$)/i.test(w.link||"");
  if(y){ const v=el("div",{class:"video-box"}); v.appendChild(el("iframe",{src:"https://www.youtube-nocookie.com/embed/"+y,title:w.title,allow:"accelerometer; encrypted-media; gyroscope; picture-in-picture",allowfullscreen:""})); b.appendChild(v); }
@@ -844,7 +848,7 @@ function openWork(w){ hitWork(w,"view"); $("#wmTitle").textContent=w.title; cons
  const ib=el("button",{class:"insp-btn"+(done?" on":""),type:"button"}); ib.appendChild(ic("bulb",done?"ألهمني هذا العمل":"ألهمني")); ib.onclick=async()=>{ if(done) return; done=true; ib.classList.add("on"); ib.textContent=""; ib.appendChild(ic("bulb","ألهمني هذا العمل")); try{localStorage.setItem("maaan_i_"+w.id,"1");}catch(e){} hitWork(w,"inspire"); };
  const cb=el("button",{class:"copy-btn",type:"button",style:"margin:0"}); cb.appendChild(ic("link","نسخ رابط العمل")); cb.onclick=()=>copyLink(w,cb);
  act.append(ib,cb); b.appendChild(act);
- openModal("#workModal"); }
+ openModal("#workModal"); setTimeout(()=>fitAll($("#workModal")),30); }
 
 /* ===== التنقل بين الصفحات ===== */
 const PAGES={"#team-page":"#page-team","#works":"#page-works"};
