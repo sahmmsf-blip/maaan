@@ -247,7 +247,7 @@ textarea{min-height:96px;resize:vertical}
 .leader h2{color:#fff;font-size:clamp(22px,2.8vw,30px)}
 .leader .role{color:var(--peach);font-family:'Cairo',Tahoma,sans-serif;font-weight:700}
 .teachers .person .t2{color:var(--muted);font-size:13.5px;line-height:1.6}
-.works-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.works-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
 .work{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;text-align:start;font:inherit;color:inherit;padding:0;transition:transform .15s,box-shadow .15s}
 .work:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(20,33,61,.12)}
 .work .cv{height:180px;width:100%;object-fit:cover;background:linear-gradient(135deg,var(--c,#24406E),#14213D);display:grid;place-items:center;color:#fff;font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:22px;position:relative}
@@ -256,21 +256,31 @@ textarea{min-height:96px;resize:vertical}
 .work .who{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;margin-top:auto}
 .work .ft{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
 .work .ft .cnt{display:inline-flex;align-items:center;gap:4px;font-family:'Cairo',Tahoma,sans-serif;font-weight:700;direction:ltr}
-.copy-btn{margin-inline-start:auto;border:1px solid var(--line);background:var(--sand);color:var(--navy);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
-.copy-btn.ok{background:#E3F4EA;color:#1C7A45;border-color:#BfE3CC}
-.honor{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:26px}
-.honor .hb{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
-.honor h3{font-size:19px;margin-bottom:4px}.honor .rule{color:var(--muted);font-size:13px;margin-bottom:10px}
-.honor ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-.honor li{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:var(--sand)}
-.honor li:first-child{background:linear-gradient(90deg,#FFE9B8,#FFF6E0);box-shadow:inset 0 0 0 1.5px #E8B44A}
-.honor .rk{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-family:'Cairo',Tahoma,sans-serif;font-weight:800;flex:none}
-.honor li:first-child .rk{background:#D99A1E}
-.honor .nm{flex:1;font-weight:700}.honor .pt{font-family:'Cairo',Tahoma,sans-serif;font-weight:800;color:var(--orange);white-space:nowrap}
+.copy-btn{margin-inline-start:auto;display:inline-flex;align-items:center;border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:8px;padding:6px 11px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}.copy-btn:hover{border-color:var(--navy)}
+.copy-btn.ok{background:#EAF5EE;color:#1C7A45;border-color:#B9DEC6}
+.works-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:26px;align-items:start}
+.honor{position:sticky;top:84px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.honor .hh{padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+.honor .ey{font-size:12px;letter-spacing:.3px;color:var(--orange);font-weight:700}
+.honor h3{font-size:18px;margin-top:2px}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:#F3EEE6;border-radius:10px;padding:3px;margin-top:12px}
+.seg button{border:0;background:transparent;font:inherit;font-size:13.5px;font-weight:700;color:var(--muted);padding:7px 0;border-radius:8px;cursor:pointer}
+.seg button.on{background:#fff;color:var(--navy);box-shadow:0 1px 3px rgba(20,33,61,.12)}
+.honor ol{list-style:none;margin:0;padding:6px 0}
+.honor li{display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:10px;padding:10px 18px}
+.honor li+li{border-top:1px solid #F1ECE4}
+.honor .rk{font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:15px;color:#A7B0BE;text-align:center}
+.honor li.top .rk{color:#fff;background:var(--navy);border-radius:7px;line-height:26px;height:26px}
+.honor .nm{font-weight:700;font-size:14.5px;line-height:1.35;color:var(--navy)}
+.honor .gd{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}
+.honor .pt{font-family:'Cairo',Tahoma,sans-serif;font-weight:800;font-size:16px;color:var(--navy);text-align:end;line-height:1.1}
+.honor .pt small{display:block;font-weight:600;font-size:11px;color:var(--muted)}
+.honor .rule{padding:10px 18px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.7;background:#FBF8F3}
+.work .ft svg,.wm-actions svg{width:16px;height:16px;flex:none}
+@media (max-width:960px){.works-layout{grid-template-columns:1fr}.honor{position:static}}
 .wm-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:center}
-.insp-btn{border:2px solid #E8B44A;background:#FFF6E0;color:#8A5A00;border-radius:999px;padding:8px 18px;font:inherit;font-weight:800;cursor:pointer}
-.insp-btn.on{background:#E8B44A;color:#fff}
-@media (max-width:760px){.honor{grid-template-columns:1fr}}
+.insp-btn{display:inline-flex;align-items:center;border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:10px;padding:9px 16px;font:inherit;font-weight:700;cursor:pointer}
+.insp-btn.on{background:var(--navy);color:#fff;border-color:var(--navy)}
 .type-tag{background:var(--sand);color:var(--navy);border-radius:999px;padding:1px 10px;font-size:12.5px;font-weight:700;align-self:flex-start}
 .video-box{position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;background:#000;margin-bottom:14px}
 .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -492,9 +502,11 @@ footer .in{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <main id="page-works" class="page" hidden>
  <section class="page-hero"><div class="wrap"><p class="eyebrow" style="color:var(--peach)">مساحة أعمال الطلبة</p><h1>ما صنعته أيدي طلبتنا</h1><p>مشاريع وكتابات وتصاميم وفيديوهات أنتجها فريق المبادرة وطلبة المدرسة.</p></div></section>
  <section class="cats"><div class="wrap">
-  <div class="honor" id="honor"></div>
-  <div class="chips-row" id="worksFilter"></div>
-  <div class="works-grid" id="worksGrid"><div class="empty">جارٍ التحميل…</div></div>
+  <div class="works-layout">
+   <div><div class="chips-row" id="worksFilter"></div>
+   <div class="works-grid" id="worksGrid"><div class="empty">جارٍ التحميل…</div></div></div>
+   <aside class="honor" id="honor" hidden></aside>
+  </div>
  </div></section>
 </main>
 
@@ -699,14 +711,22 @@ const N=x=>Number(x||0).toLocaleString("en");
 const pts=s=>s.works*15+Math.floor(s.views/10)+s.inspires*2;
 function workLink(w){ return SITE+"#work-"+w.id; }
 async function copyLink(w,btn){ const u=workLink(w); let ok=false; try{ await navigator.clipboard.writeText(u); ok=true; }catch(e){ const t=el("textarea",{style:"position:fixed;opacity:0"}); t.value=u; document.body.appendChild(t); t.select(); try{ ok=document.execCommand("copy"); }catch(x){} t.remove(); }
- if(!ok){ prompt("انسخ رابط العمل:",u); return; } const o=btn.textContent; btn.textContent="✓ تم نسخ الرابط"; btn.classList.add("ok"); setTimeout(()=>{btn.textContent=o;btn.classList.remove("ok");},1800); }
+ if(!ok){ prompt("انسخ رابط العمل:",u); return; } const o=[...btn.childNodes]; btn.textContent=""; btn.appendChild(ic("ok","تم النسخ")); btn.classList.add("ok"); setTimeout(()=>{btn.textContent="";o.forEach(x=>btn.appendChild(x));btn.classList.remove("ok");},1800); }
+const ICO={eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>',
+ bulb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>',
+ link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>',
+ ok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>'};
+function ic(n,t){ const s=el("span",{style:"display:inline-flex;align-items:center;gap:6px"}); s.innerHTML=ICO[n]; if(t!=null) s.appendChild(document.createTextNode(t)); return s; }
+let HONOR_TAB="views";
 function renderHonor(){ const h=$("#honor"); h.textContent=""; const by={};
  WORKS.forEach(w=>{ const k=(w.student||"").trim(); if(!k) return; const s=by[k]||(by[k]={name:k,works:0,views:0,inspires:0}); s.works++; s.views+=+w.views||0; s.inspires+=+w.inspires||0; });
  const arr=Object.values(by); if(!arr.length){ h.hidden=true; return; } h.hidden=false;
- const box=(title,rule,list,val)=>{ const b=el("div",{class:"hb"}); b.append(el("h3",{},title),el("p",{class:"rule"},rule)); const ol=el("ol"); list.slice(0,5).forEach((s,i)=>{ const li=el("li"); li.append(el("span",{class:"rk"},String(i+1)),el("span",{class:"nm"},s.name),el("span",{class:"pt"},val(s))); ol.appendChild(li); }); b.appendChild(ol); return b; };
- h.append(
-  box("🏆 الأعلى زيارة","مجموع زيارات أعمال الطالب. تُحتسب زيارة واحدة لكل جهاز في اليوم.",[...arr].sort((a,b)=>b.views-a.views),s=>N(s.views)+" 👁"),
-  box("⭐ الأكثر تأثيرًا","كل عمل منشور 15 نقطة · كل 10 زيارات نقطة · كل «ألهمني» نقطتان.",[...arr].sort((a,b)=>pts(b)-pts(a)),s=>N(pts(s))+" نقطة")); }
+ const hh=el("div",{class:"hh"}); hh.append(el("div",{class:"ey"},"لوحة الشرف"),el("h3",{},"تميّز طلبتنا"));
+ const seg=el("div",{class:"seg"}); [["views","الأعلى زيارة"],["impact","الأكثر تأثيرًا"]].forEach(([k,t])=>{ const b=el("button",{type:"button",class:HONOR_TAB===k?"on":""},t); b.onclick=()=>{HONOR_TAB=k;renderHonor();}; seg.appendChild(b); }); hh.appendChild(seg); h.appendChild(hh);
+ const isV=HONOR_TAB==="views"; const list=[...arr].sort((a,b)=>isV?(b.views-a.views||pts(b)-pts(a)):(pts(b)-pts(a)||b.views-a.views)).slice(0,5);
+ const ol=el("ol"); list.forEach((s,i)=>{ const [nm,...gr]=s.name.split("·"); const li=el("li",{class:i===0?"top":""}); const n=el("div",{class:"nm"},nm.trim()); if(gr.length) n.appendChild(el("span",{class:"gd"},gr.join("·").trim()));
+  const v=el("div",{class:"pt"},N(isV?s.views:pts(s))); v.appendChild(el("small",{},isV?"زيارة":"نقطة")); li.append(el("span",{class:"rk"},String(i+1)),n,v); ol.appendChild(li); }); h.appendChild(ol);
+ h.appendChild(el("div",{class:"rule"},isV?"مجموع زيارات أعمال الطالب، بواقع زيارة واحدة لكل جهاز في اليوم.":"العمل المنشور 15 نقطة، وكل 10 زيارات نقطة، وكل «ألهمني» نقطتان.")); }
 async function hitWork(w,kind){ try{ const r=await rpc("maaan_work_hit",{p_id:w.id,p_vid:VID,p_kind:kind}); if(r&&r.ok){ w.views=r.views; w.inspires=r.inspires; renderWorks(); return true; } }catch(e){} return false; }
 async function loadWorks(){ if(!WORKS){ try{ WORKS=await rpc("maaan_works_list",{}); }catch(e){ WORKS=[]; } } renderWorks(); }
 function renderWorks(){
@@ -717,10 +737,10 @@ function renderWorks(){
  list.forEach(w=>{ const card=el("div",{class:"work",role:"button",tabindex:"0"}); card.style.setProperty("--c",teamColor(w.team)); const src=driveImg(w.image)||(ytId(w.link)?"https://i.ytimg.com/vi/"+ytId(w.link)+"/hqdefault.jpg":"");
   card.appendChild(src?el("img",{class:"cv",src,alt:w.title,loading:"lazy"}):el("div",{class:"cv"},w.type));
   const b=el("div",{class:"b"}); b.append(el("span",{class:"type-tag"},w.type),el("h3",{},w.title)); if(w.body) b.appendChild(el("p",{style:"color:var(--muted);font-size:14.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden"},w.body));
-  const who=el("div",{class:"who"}); if(w.student) who.appendChild(el("span",{},"✍ "+w.student)); b.appendChild(who);
+  const who=el("div",{class:"who"}); if(w.student) who.appendChild(el("span",{},w.student)); b.appendChild(who);
   card.appendChild(b);
-  const ft=el("div",{class:"ft"}); ft.append(el("span",{class:"cnt",title:"الزيارات"},"👁 "+N(w.views)),el("span",{class:"cnt",title:"ألهمني"},"💡 "+N(w.inspires)));
-  const cb=el("button",{class:"copy-btn",type:"button"},"🔗 انسخ رابط العمل"); cb.onclick=e=>{ e.stopPropagation(); copyLink(w,cb); }; ft.appendChild(cb); card.appendChild(ft);
+  const ft=el("div",{class:"ft"}); const c1=ic("eye",N(w.views)); c1.className="cnt"; c1.title="الزيارات"; const c2=ic("bulb",N(w.inspires)); c2.className="cnt"; c2.title="ألهمني"; ft.append(c1,c2);
+  const cb=el("button",{class:"copy-btn",type:"button"}); cb.appendChild(ic("link","نسخ الرابط")); cb.onclick=e=>{ e.stopPropagation(); copyLink(w,cb); }; ft.appendChild(cb); card.appendChild(ft);
   card.onclick=()=>{ location.hash="work-"+w.id; }; card.onkeydown=e=>{ if(e.key==="Enter") card.onclick(); }; g.appendChild(card); });
 }
 function openWork(w){ hitWork(w,"view"); $("#wmTitle").textContent=w.title; const b=$("#wmBody"); b.textContent=""; const y=ytId(w.link);
@@ -732,8 +752,8 @@ function openWork(w){ hitWork(w,"view"); $("#wmTitle").textContent=w.title; cons
  if(w.body) b.appendChild(el("p",{style:"white-space:pre-line;margin-top:10px"},w.body));
  if(w.link && /^https:\/\//.test(w.link)) { const lbl=y?"مشاهدة على يوتيوب":mp4?"فتح الفيديو في نافذة كاملة":/\.pdf(\?|$)/i.test(w.link)?"قراءة الملف كاملًا":w.type==="لعبة"?"العب الآن 🎲":"فتح العمل"; const a=el("a",{class:"btn btn-main",href:w.link,target:"_blank",rel:"noopener",style:"margin-top:14px"},lbl); b.appendChild(a); }
  const act=el("div",{class:"wm-actions"}); let done=false; try{ done=!!localStorage.getItem("maaan_i_"+w.id); }catch(e){}
- const ib=el("button",{class:"insp-btn"+(done?" on":""),type:"button"},done?"💡 ألهمني هذا العمل":"💡 ألهمني"); ib.onclick=async()=>{ if(done) return; done=true; ib.classList.add("on"); ib.textContent="💡 ألهمني هذا العمل"; try{localStorage.setItem("maaan_i_"+w.id,"1");}catch(e){} hitWork(w,"inspire"); };
- const cb=el("button",{class:"copy-btn",type:"button",style:"margin:0"},"🔗 انسخ رابط العمل"); cb.onclick=()=>copyLink(w,cb);
+ const ib=el("button",{class:"insp-btn"+(done?" on":""),type:"button"}); ib.appendChild(ic("bulb",done?"ألهمني هذا العمل":"ألهمني")); ib.onclick=async()=>{ if(done) return; done=true; ib.classList.add("on"); ib.textContent=""; ib.appendChild(ic("bulb","ألهمني هذا العمل")); try{localStorage.setItem("maaan_i_"+w.id,"1");}catch(e){} hitWork(w,"inspire"); };
+ const cb=el("button",{class:"copy-btn",type:"button",style:"margin:0"}); cb.appendChild(ic("link","نسخ رابط العمل")); cb.onclick=()=>copyLink(w,cb);
  act.append(ib,cb); b.appendChild(act);
  openModal("#workModal"); }
 
