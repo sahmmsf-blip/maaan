@@ -673,7 +673,7 @@ function renderTeam(){
 }
 
 /* ===== أعمال الطلبة ===== */
-const WTYPES=["مشروع","كتابة","تصميم","فيديو","رابط","صورة","أخرى"];
+const WTYPES=["مشروع","لعبة","كتابة","تصميم","فيديو","رابط","صورة","أخرى"];
 function ytId(u){ const m=String(u||"").match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([\w-]{11})/); return m?m[1]:""; }
 async function loadWorks(){ if(WORKS) return renderWorks(); try{ WORKS=await rpc("maaan_works_list",{}); }catch(e){ WORKS=[]; } renderWorks(); }
 function renderWorks(){
@@ -687,11 +687,13 @@ function renderWorks(){
   card.appendChild(b); card.onclick=()=>openWork(w); g.appendChild(card); });
 }
 function openWork(w){ $("#wmTitle").textContent=w.title; const b=$("#wmBody"); b.textContent=""; const y=ytId(w.link);
+ const mp4=/^https:\/\/\S+\.(mp4|webm)(\?|$)/i.test(w.link||"");
  if(y){ const v=el("div",{class:"video-box"}); v.appendChild(el("iframe",{src:"https://www.youtube-nocookie.com/embed/"+y,title:w.title,allow:"accelerometer; encrypted-media; gyroscope; picture-in-picture",allowfullscreen:""})); b.appendChild(v); }
+ else if(mp4){ const v=el("video",{src:w.link,controls:"",playsinline:"",preload:"metadata",style:"width:100%;max-height:70vh;border-radius:14px;background:#000;margin-bottom:14px"}); const p=driveImg(w.image); if(p) v.setAttribute("poster",p); b.appendChild(v); }
  else { const src=driveImg(w.image); if(src) b.appendChild(el("img",{class:"ph",src,alt:w.title})); }
  const meta=el("p",{class:"hint"},[w.type,w.student&&("الطالب: "+w.student),w.date].filter(Boolean).join(" · ")); b.appendChild(meta);
  if(w.body) b.appendChild(el("p",{style:"white-space:pre-line;margin-top:10px"},w.body));
- if(w.link && /^https:\/\//.test(w.link)) { const a=el("a",{class:"btn btn-main",href:w.link,target:"_blank",rel:"noopener",style:"margin-top:14px"},y?"مشاهدة على يوتيوب":"فتح العمل"); b.appendChild(a); }
+ if(w.link && /^https:\/\//.test(w.link)) { const lbl=y?"مشاهدة على يوتيوب":mp4?"فتح الفيديو في نافذة كاملة":/\.pdf(\?|$)/i.test(w.link)?"قراءة الملف كاملًا":w.type==="لعبة"?"العب الآن 🎲":"فتح العمل"; const a=el("a",{class:"btn btn-main",href:w.link,target:"_blank",rel:"noopener",style:"margin-top:14px"},lbl); b.appendChild(a); }
  openModal("#workModal"); }
 
 /* ===== التنقل بين الصفحات ===== */
