@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حقيبتي معي… فأين مقعدي؟</title>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@600;700&family=Readex+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F2FF;--ink:#231747;--mut:#5E5782;--sea:#6A3DE8;--amb:#D6336C;--card:#fff;--ln:#D9D0F2;--ok:#138A5B;--no:#C2352E;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#150F2B;--ink:#F0ECFF;--mut:#B5ABDB;--sea:#A58BFF;--amb:#FF7FA6;--card:#211846;--ln:#3A2E6B;--ok:#4CD6A0;--no:#FF8C84;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#150F2B;--ink:#F0ECFF;--mut:#B5ABDB;--sea:#A58BFF;--amb:#FF7FA6;--card:#211846;--ln:#3A2E6B;--ok:#4CD6A0;--no:#FF8C84;color-scheme:dark}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.85 'Readex Pro',Tahoma,sans-serif}
+.app{display:flex;flex-direction:column;height:100%}
+.route{display:flex;gap:4px;padding:12px 16px 4px}
+.route button{flex:1;height:10px;border:0;border-radius:5px;background:var(--ln);cursor:pointer;padding:0}
+.route .v{background:var(--sea)}.route .on{background:var(--amb)}
+main{flex:1;overflow:auto;padding:8px 20px 24px}
+.s{display:none;max-width:780px;margin:0 auto}.s.on{display:block}
+.stamp{display:inline-block;border:2px solid var(--amb);color:var(--amb);border-radius:6px;padding:0 12px;transform:rotate(-3deg);font:600 14px 'Reem Kufi',Tahoma;margin:14px 0 6px}
+h1,h2{font-family:'Reem Kufi',Tahoma,sans-serif;line-height:1.4;margin:.2em 0 .4em}
+h1{font-size:clamp(34px,9vw,60px)}h2{font-size:clamp(25px,5.5vw,38px)}
+.lead{font-size:20px;color:var(--mut)}
+.g,.op{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:18px 0}
+.c{font:inherit;color:inherit;text-align:right;background:var(--card);border:1.5px solid var(--ln);border-radius:14px;padding:14px 16px;cursor:pointer}
+.c[aria-expanded="true"]{border-color:var(--sea)}
+.c i{font-style:normal;font-size:28px;display:block}.c b{display:block;font-weight:600}.c small{color:var(--mut)}
+.c em{display:none;font-style:normal;margin-top:6px}.c[aria-expanded="true"] em{display:block}.c[aria-expanded="true"] small{display:none}
+.c.ok{border-color:var(--ok);border-width:3px}.c.no{border-color:var(--no);border-width:3px}
+.btn{font:600 16px 'Readex Pro',Tahoma,sans-serif;background:var(--sea);color:var(--bg);border:0;border-radius:999px;padding:10px 26px;cursor:pointer}
+.btn:disabled{opacity:.35;cursor:default}
+.ans,.note{border-right:4px solid var(--amb);padding:8px 14px;background:var(--card);border-radius:8px;margin:14px 0}
+[hidden]{display:none!important}
+.st{padding:0;margin:16px 0;list-style:none;counter-reset:n}
+.st li{counter-increment:n;border-right:3px solid var(--sea);padding:2px 14px;margin:0 0 12px}
+.st li::before{content:counter(n) "• ";color:var(--sea);font-weight:600}
+.qq{font-size:21px;font-weight:600}
+.nv{display:flex;justify-content:space-between;padding:10px 20px 14px;max-width:820px;width:100%;margin:0 auto;box-sizing:border-box}
+a{color:var(--sea)}
+:focus-visible{outline:3px solid var(--amb);outline-offset:2px}
+.fl{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.app{position:relative;z-index:1}
+.fl span{position:absolute;bottom:-60px;opacity:.3;animation:up linear infinite}
+.fl .dn{bottom:auto;top:-60px;animation-name:dn}
+@keyframes up{0%{transform:translate(0,0) rotate(-15deg)}50%{transform:translate(var(--x),-60vh) rotate(15deg)}100%{transform:translate(0,-120vh) rotate(-15deg)}}
+@keyframes dn{0%{transform:translate(0,0) rotate(15deg)}50%{transform:translate(var(--x),60vh) rotate(-15deg)}100%{transform:translate(0,120vh) rotate(15deg)}}
+@media(prefers-reduced-motion:reduce){.fl{display:none}}
+</style></head><body><div class="fl" id="F" aria-hidden="true"></div><div class="app">
+<div class="route" id="R"></div><main id="M"></main>
+<nav class="nv"><button class="btn" id="pv">السابق</button><button class="btn" id="nx">التالي</button></nav></div>
+<script>
+const D=[
+{t:'h',h:'حقيبتي معي… فأين مقعدي؟',p:'رحلة تفاعلية من 20 محطة عن الأطفال اللاجئين والعائدين وغير المسجلين، وعن حقهم في أن يتعلموا.'},
+{h:'من هم الأطفال الذين نتحدث عنهم؟',p:'ثلاث فئات، وقد تجتمع أكثر من واحدة في طفل واحد.',i:[['🧳','اللاجئون','أطفال اضطروا إلى مغادرة بلدهم بسبب الحرب أو الخطر، ويعيشون في بلد آخر.'],['🏠','العائدون','أطفال رجعوا إلى بلدهم أو مدينتهم بعد سنوات من النزوح أو اللجوء، ويجدون الحياة والمدرسة مختلفتين.'],['📄','غير المسجلين','أطفال بلا شهادة ميلاد أو وثائق رسمية، فيصعب إثبات هويتهم وعمرهم.']]},
+{h:'كلمات قريبة، ومعانٍ مختلفة',i:[['🚸','النازح داخلياً','ترك بيته لكنه ما زال داخل حدود بلده.'],['⏳','طالب اللجوء','قدّم طلب حماية في بلد آخر ولم يُبتّ فيه بعد.'],['🌐','عديم الجنسية','لا تعترف به أي دولة مواطناً لها.'],['🫂','طفل غير مصحوب','طفل منفصل عن والديه أو عمّن يرعاه.']]},
+{h:'لماذا يتركون بيوتهم؟',i:[['💥','الحروب والنزاعات','حين يصبح البيت والطريق غير آمنين.'],['🌊','الكوارث','فيضانات وزلازل وجفاف تهدم البيوت ومصادر الرزق.'],['😨','الخوف والتهديد','الاضطهاد أو العنف يدفع الأسرة إلى المغادرة سريعاً.'],['💼','فقدان الرزق','حين يضيع العمل لا تبقى للأسرة قدرة على البقاء.']],n:'لا أحد منهم اختار الرحيل. هذا ما يجعل التعليم أهم ما نحميه لهم.'},
+{t:'s',h:'حكاية ليلى',s:['ليلى في الصف الخامس، وتحب الرسم والألوان.','اضطرت أسرتها إلى مغادرة بلدها في ليلة واحدة.','في البلد الجديد قيل لها إن المدرسة بعيدة، وإن العام الدراسي فاتها، وإن أوراقها ناقصة.'],q:'هل ليلى لا تحب التعلّم؟',a:'لا. تغيّر كل شيء حولها، والعوائق هي التي وقفت في طريقها. حين نفهم السبب نستطيع أن نبحث عن الحل.'},
+{h:'ما الذي يقف بين الطفل ومدرسته؟',p:'اضغط على كل بطاقة.',i:[['📄','أوراق ناقصة','شهادات مفقودة أو بلا ختم، أو وثائق لم تصدر أصلاً.'],['🌍','لغة ومنهج جديدان','دروس بلهجة أو لغة غير مألوفة تجعل الطفل يشعر أنه متأخر.'],['💸','تكاليف','مواصلات وكتب وزي مدرسي قد لا تتحمّلها الأسرة.'],['😔','خوف وصدمة','طفل عاش الخطر قد يحتاج إلى وقت ودعم قبل أن يرتاح في الصف.'],['🚪','إجراءات معقدة','شروط التسجيل وتعدد الجهات قد يتعبان أسرة تحاول فقط أن تستقر.']]},
+{h:'ورقة صغيرة وأبواب كثيرة',p:'شهادة الميلاد تثبت أن الطفل موجود. ماذا تفتح له؟',i:[['🏫','التسجيل المدرسي','كثير من المدارس تطلب إثبات العمر والهوية.'],['🩺','الخدمات الصحية','التطعيمات والعلاج تصبح أسهل بوثيقة.'],['🛡️','الحماية','إثبات العمر يساعد على حماية الطفل من الزواج المبكر وعمل الأطفال.'],['🪪','الاسم والانتماء','الحق في اسم وجنسية يبدأ من التسجيل.']]},
+{t:'s',h:'حكاية يوسف',s:['وُلد يوسف في ظروف صعبة، ولم تُسجَّل ولادته.','عند سن المدرسة طُلبت منه ورقة لا يملكها.','بقي في البيت يتعلم ما يستطيع من أخيه الأكبر.'],q:'هل هذا ذنب يوسف؟',a:'لا. الطفل لا يتحمل مسؤولية ورقة لم يستطع أحد توفيرها. الحل أن نساعد أسرته على استخراجها، وأن نجد له طريقاً للتعليم في الوقت نفسه.'},
+{h:'العودة ليست نهاية الرحلة',p:'العائد قد يرجع إلى بيته لكنه لا يرجع تلقائياً إلى مقعده.',i:[['📚','منهج مختلف','ما درسه في بلد اللجوء قد لا يشبه ما يدرّسه صفه الجديد.'],['🗂️','شهادات مفقودة','ضياع الوثائق الدراسية يصعّب تحديد الصف المناسب.'],['🏚️','مدارس متضررة','قد تعود الأسرة إلى حي مدارسه مدمرة أو مزدحمة.'],['🎒','سنوات ضائعة','انقطاع طويل يترك فجوات تحتاج إلى تعويض لطيف.']]},
+{t:'s',h:'حكاية رنا',s:['عادت رنا مع أسرتها إلى مدينتها بعد سنوات بعيدة عنها.','شهادتها من بلد آخر، فوُضعت في صف أصغر من عمرها.','شعرت بالخجل، وبدأت تتساءل إن كان لها مكان هنا.'],q:'ما الذي تحتاجه رنا فعلاً؟',a:'اختبار لتحديد مستواها، ودروس تقوية تسد الفجوات، ومعلمون وزملاء يرحّبون بها. الصف الأصغر وحده لا يكفي.'},
+{h:'ماذا يخسر الطفل؟',p:'المدرسة ليست مبنى فقط.',i:[['🌟','المعرفة والمهارات','القراءة والكتابة والحساب، وما يبني مستقبلاً.'],['🛡️','مكاناً آمناً','الصف قد يكون أكثر مكان مستقراً في أيام الطفل.'],['🧑‍🤝‍🧑','الأصدقاء','من يلعب معه ويشاركه ويشعره أنه واحد منهم.'],['💛','الأمل','حين يتعلم الطفل يرى أمامه طريقاً.']]},
+{h:'آثار قد تمتد سنوات',i:[['🧠','تعليمية','فجوات يصعب تعويضها كلما تأخرنا.'],['💼','اقتصادية','فرص أقل في التدريب والعمل والدخل المستقر.'],['💔','نفسية','شعور بالعزلة أو بأنه متأخر عن غيره.'],['⚠️','حماية','قد تزداد مخاطر الاستغلال وعمل الأطفال والزواج المبكر.']],n:'التعليم لا يغيّر مستقبل طفل واحد فقط، بل يقوّي المجتمع كله.'},
+{h:'خرافات وحقائق',p:'اضغط على الخرافة لتعرف الحقيقة.',i:[['❌','«الأطفال اللاجئون لا يريدون التعلّم»','الحقيقة: كثير منهم يتمسك بالمدرسة لأنها تعيد إليهم حياة طبيعية.'],['❌','«التعليم ترف في الأزمات»','الحقيقة: التعليم يحمي الطفل ويعيد إليه الاستقرار حتى في الأزمات.'],['❌','«الطفل بلا أوراق لا حق له في المدرسة»','الحقيقة: حق التعليم لكل طفل. والمطلوب إزالة الحاجز لا إغلاق الباب.'],['❌','«العائد يعرف كل شيء فلا يحتاج دعماً»','الحقيقة: يحتاج إلى وقت ودعم ليتأقلم مع صف ومنهج جديدين.']]},
+{h:'ماذا يقول الحق؟',p:'اتفاقية حقوق الطفل تنص على ما يلي:',i:[['⚖️','المادة 2: عدم التمييز','لكل طفل حقوقه مهما كان أصله أو وضعه أو وضع أسرته.'],['📝','المادة 7: التسجيل','يُسجَّل الطفل فور ولادته، وله الحق في اسم وجنسية.'],['🎓','المادة 28: التعليم','لكل طفل الحق في التعليم على أساس تكافؤ الفرص.'],['🧳','المادة 22: الطفل اللاجئ','تُقدَّم الحماية والمساعدة للطفل اللاجئ كما لغيره.']],n:'واتفاقية اللاجئين لعام 1951 تنص على أن يلقى اللاجئون في التعليم الابتدائي المعاملة نفسها التي يلقاها المواطنون. المصدر للمزيد: <a href="https://www.unicef.org/education" target="_blank" rel="noopener">اليونيسف</a> و<a href="https://www.unhcr.org" target="_blank" rel="noopener">المفوضية</a>.'},
+{t:'c',h:'ماذا تفعل أنت؟',p:'زميل جديد في صفك لا يتحدث بلهجتنا، ويجلس وحده في الاستراحة.',o:[['أتجاهله، فهو سيتأقلم وحده','التجاهل يترك الطفل وحيداً. كلمة صغيرة منك قد تغيّر يومه.',0],['أدعوه ليجلس ويلعب معنا','أحسنت! الترحيب أول خطوة ليبقى في المدرسة ويشعر بالانتماء.',1],['أقلّد لهجته وأضحك','السخرية تؤذي وقد تجعله يكره المدرسة. الاحترام هو الطريق.',0]]},
+{t:'q',h:'اختبروا معلوماتكم',q:[['الطفل اللاجئ لا يستطيع العودة إلى التعلّم أبداً.',0,'بل يستطيع، بالدعم والتعليم المرن ودروس التقوية.'],['غياب شهادة الميلاد قد يمنع طفلاً من التسجيل المدرسي.',1,'نعم، ولهذا نطالب بتسهيل استخراج الوثائق.'],['كل طفل عائد يبدأ من الصفر.',0,'لديه معرفة وخبرة، ويحتاج فقط إلى جسر يوصله إلى مستوى صفه.'],['حق التعليم مرتبط بجنسية الطفل.',0,'حق التعليم لكل طفل دون تمييز.'],['كلمة طيبة وصديق قد يساعدان طفلاً على البقاء في المدرسة.',1,'فعلاً، فالانتماء من أقوى أسباب الاستمرار.']]},
+{h:'كيف نفتح الطريق؟',i:[['📝','نسجّل','نساعد الأسر على استخراج الوثائق وتبسيط الإجراءات.'],['📏','نقيّم','اختبار تحديد المستوى بدل قرار يعتمد على ورقة فقط.'],['📖','ندعم','دروس تقوية ولغة تسد الفجوات تدريجياً.'],['💬','نحتوي','دعم نفسي وبيئة صف آمنة بلا تنمّر.'],['🛤️','نفتح طرقاً مرنة','تعليم مسرّع أو بديل حتى يلحق الطفل بزملائه.']]},
+{h:'من يستطيع أن يساعد؟',p:'لا تحل جهة واحدة المشكلة وحدها.',i:[['👨‍👩‍👧','الأسرة','تسجّل الطفل وتتابع حضوره وتطلب المساعدة مبكراً.'],['🏫','المدرسة','تستقبل الطفل دون تمييز وتلاحظ الغياب وتتواصل مع الأسرة.'],['🏘️','المجتمع والجمعيات','يدعمون الأسر ويقدّمون تعليماً وخدمات قريبة.'],['🏛️','الجهات الرسمية والمنظمات','تسهّل الوثائق والقبول وتوفر التمويل والمدارس.']]},
+{t:'p',h:'خطوتي هذا الأسبوع',p:'اختر خطوة واحدة والتزم بها:',o:['أرحّب بزميل جديد','أرفض السخرية من اللهجة أو الأصل','أشارك معلومة صحيحة عن حق التعليم','أخبر معلماً إذا عرفت أن طفلاً يحتاج دعماً','أستمع دون حكم']},
+{t:'e',h:'لا طفل بلا مقعد، ولا مقعد بلا ترحيب',p:'قد تكون فرصة تعليم واحدة بداية حياة مختلفة تماماً.'}];
+const $=s=>document.querySelector(s),M=$('#M'),R=$('#R'),N=D.length;let cur=0,vis=new Set([0]);
+const card=a=>`<button class="c" aria-expanded="false"><i>${a[0]}</i><b>${a[1]}</b><small>اضغط لتعرف المزيد</small><em>${a[2]}</em></button>`;
+const ops=(o,c)=>`<div class="op">${o.map((x,j)=>`<button class="c ${c}" data-j="${j}">${c=='ch'?x[0]:x}</button>`).join('')}</div><p class="ans" hidden></p>`;
+M.innerHTML=D.map((d,i)=>{let b=`<section class="s"><span class="stamp">محطة ${i+1} من ${N}</span>`;
+ if(d.t=='h')b+=`<h1>${d.h}</h1><p class="lead">${d.p}</p><button class="btn" data-go="1">ابدأ الرحلة</button>`;
+ else if(d.t=='e')b+=`<h1>${d.h}</h1><p class="lead">${d.p}</p><button class="btn" data-go="0">ابدأ من جديد</button>`;
+ else if(d.t=='s')b+=`<h2>${d.h}</h2><ol class="st">${d.s.map(x=>`<li>${x}</li>`).join('')}</ol><p><b>${d.q}</b></p><button class="btn rv">اكشف الإجابة</button><p class="ans" hidden>${d.a}</p>`;
+ else if(d.t=='c')b+=`<h2>${d.h}</h2><p>${d.p}</p>${ops(d.o,'ch')}`;
+ else if(d.t=='p')b+=`<h2>${d.h}</h2><p>${d.p}</p>${ops(d.o,'pl')}`;
+ else if(d.t=='q')b+=`<h2>${d.h}</h2><div class="qz"></div>`;
+ else b+=`<h2>${d.h}</h2>${d.p?`<p>${d.p}</p>`:''}<div class="g">${d.i.map(card).join('')}</div>${d.n?`<p class="note">${d.n}</p>`:''}`;
+ return b+'</section>'}).join('');
+const S=[...M.children];
+function Q(el,d){const q=el.querySelector('.qz');let n=0,s=0;(function r(){
+ if(n>=d.q.length){q.innerHTML=`<p class="ans">نتيجتك: ${s} من ${d.q.length}. ${s>=4?'ممتاز، أنت سفير للوعي!':'أحسنت! راجع المحطات وأعد المحاولة.'}</p><button class="btn">أعد الاختبار</button>`;q.querySelector('.btn').onclick=()=>{n=s=0;r()};return}
+ const x=d.q[n];q.innerHTML=`<p><b>سؤال ${n+1} من ${d.q.length}</b></p><p class="qq">${x[0]}</p><div class="op"><button class="c" data-a="1">صح</button><button class="c" data-a="0">خطأ</button></div><p class="ans" hidden></p><button class="btn" hidden>التالي</button>`;
+ const b=q.querySelectorAll('.op .c'),a=q.querySelector('.ans'),nx=q.querySelector('.btn');
+ b.forEach(k=>k.onclick=()=>{const ok=(k.dataset.a==1)==!!x[1];if(ok)s++;b.forEach(y=>y.disabled=true);k.classList.add(ok?'ok':'no');a.hidden=false;a.textContent=(ok?'إجابة صحيحة. ':'ليس تماماً. ')+x[2];nx.hidden=false;nx.onclick=()=>{n++;r()}})})()}
+D.forEach((d,i)=>d.t=='q'&&Q(S[i],d));
+function go(n){cur=Math.max(0,Math.min(N-1,n));S.forEach((s,i)=>s.classList.toggle('on',i==cur));vis.add(cur);
+ R.innerHTML=D.map((_,i)=>`<button aria-label="المحطة ${i+1}" class="${i==cur?'on':vis.has(i)?'v':''}"></button>`).join('');
+ $('#pv').disabled=cur==0;$('#nx').disabled=cur==N-1;M.scrollTop=0}
+R.onclick=e=>{const b=e.target.closest('button');if(b)go([...R.children].indexOf(b))};
+$('#pv').onclick=()=>go(cur-1);$('#nx').onclick=()=>go(cur+1);
+M.onclick=e=>{const t=e.target.closest('button');if(!t)return;const sec=t.closest('.s'),d=D[S.indexOf(sec)];
+ if(t.dataset.go)go(+t.dataset.go?1:0);
+ else if(t.classList.contains('rv')){sec.querySelector('.ans').hidden=false;t.hidden=true}
+ else if(t.hasAttribute('aria-expanded'))t.setAttribute('aria-expanded',t.getAttribute('aria-expanded')!='true');
+ else if(t.classList.contains('ch')){const o=d.o[+t.dataset.j],a=sec.querySelector('.ans');sec.querySelectorAll('.ch').forEach(x=>x.classList.remove('ok','no'));t.classList.add(o[2]?'ok':'no');a.hidden=false;a.textContent=o[1]}
+ else if(t.classList.contains('pl')){sec.querySelectorAll('.pl').forEach(x=>x.classList.remove('ok'));t.classList.add('ok');const a=sec.querySelector('.ans');a.hidden=false;a.textContent='التزامك: «'+t.textContent+'». شاركه مع صفك، وابدأ به هذا الأسبوع.'}};
+document.onkeydown=e=>{if(e.key=='ArrowLeft')go(cur+1);if(e.key=='ArrowRight')go(cur-1)};
+let x0=0;M.ontouchstart=e=>x0=e.touches[0].clientX;M.ontouchend=e=>{const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>90)go(cur+(d<0?1:-1))};
+const em=['🎒','📚','✏️','⭐','🏫','🌍','💛','🧳','🎓','🌈','📝','🤝'];
+$('#F').innerHTML=Array.from({length:16},(_,i)=>`<span class="${i%2?'dn':''}" style="left:${(i*6.4+Math.random()*4)%96}%;font-size:${22+Math.random()*22}px;animation-duration:${14+Math.random()*14}s;animation-delay:-${Math.random()*20}s;--x:${(Math.random()-.5)*80}px">${em[i%em.length]}</span>`).join('');
+go(0);
+</script></body></html>
