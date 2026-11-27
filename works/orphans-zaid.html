@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>سند — رعاية الأيتام وفاقدي السند الأسري</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#EEF3F8; --surface:#FFFFFF; --ink:#14324A; --muted:#51677A;
+  --lamp:#F2B134; --lamp-ink:#14324A; --green:#2F6F62; --line:#CFDBE6; --dim:#C9D6E2;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0F1D2B; --surface:#17293B; --ink:#E8EEF4; --muted:#A3B4C3;
+    --lamp:#F2B134; --lamp-ink:#14324A; --green:#6FC2AF; --line:#2A3F54; --dim:#27394C;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F1D2B; --surface:#17293B; --ink:#E8EEF4; --muted:#A3B4C3;
+  --lamp:#F2B134; --lamp-ink:#14324A; --green:#6FC2AF; --line:#2A3F54; --dim:#27394C;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Tajawal",system-ui,"Segoe UI",Tahoma,sans-serif;font-size:1.3rem;line-height:1.95}
+h1,h2,h3{font-family:"Reem Kufi","Tajawal",system-ui,sans-serif;line-height:1.35;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--lamp);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+section{padding:3.5rem 0}
+h2{font-size:clamp(2rem,5.5vw,2.9rem);margin-bottom:1.25rem}
+h2::after{content:"";display:block;width:84px;height:6px;border-radius:3px;margin-top:.6rem;background:linear-gradient(90deg,var(--lamp),var(--rose),var(--violet))}
+p{margin:0 0 1rem;max-width:62ch}
+.muted{color:var(--muted)}
+
+/* hero */
+.hero{padding:2.5rem 0 3rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:"Reem Kufi",sans-serif;font-weight:700;font-size:1.3rem;margin-bottom:2.5rem}
+.brand i{width:14px;height:18px;background:var(--lamp);border-radius:2px;display:inline-block}
+.hero h1{font-size:clamp(2.9rem,10vw,5.2rem);max-width:15ch;margin-bottom:1.25rem}
+.hero p{font-size:1.45rem;color:var(--muted)}
+.windows{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;max-width:420px;margin:2.5rem 0 .75rem;padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px 14px 4px 4px}
+.win{aspect-ratio:3/4;border:0;border-radius:3px 3px 0 0;background:var(--dim);cursor:pointer;padding:0;transition:background .25s,box-shadow .25s}
+.win[aria-pressed="true"]{background:var(--lamp);box-shadow:0 0 18px 2px color-mix(in srgb,var(--lamp) 55%,transparent)}
+.counter{font-weight:500;min-height:1.9em}
+@media (prefers-reduced-motion:reduce){.win{transition:none}html{scroll-behavior:auto}}
+
+/* scene */
+.scene-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;max-width:760px}
+.scene-card svg{display:block;width:100%;height:auto}
+.scene-card figcaption{padding:1rem 1.5rem 1.25rem;color:var(--muted)}
+figure{margin:0}
+.verse{margin:2rem 0 0;border-inline-start:4px solid var(--lamp);padding:.5rem 1.5rem;font-family:"Reem Kufi",sans-serif;font-size:1.6rem;line-height:1.7}
+.verse small{display:block;font-family:"Tajawal",sans-serif;font-size:1rem;color:var(--muted);margin-top:.4rem}
+
+/* definitions */
+.two{display:grid;gap:1.25rem;grid-template-columns:1fr}
+@media (min-width:760px){.two{grid-template-columns:1fr 1fr}}
+.def{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:1.5rem}
+.def h3{font-size:1.35rem;margin-bottom:.5rem;color:var(--green)}
+.def p{margin:0}
+
+/* needs */
+.needs{margin:0;padding:0;list-style:none;display:grid;gap:0;border-inline-start:4px solid var(--lamp)}
+.needs li{padding:1.1rem 1.5rem;border-bottom:1px solid var(--line)}
+.needs li:last-child{border-bottom:0}
+.needs strong{display:block;font-family:"Reem Kufi",sans-serif;font-size:1.6rem;font-weight:700}
+.needs span{color:var(--muted)}
+
+/* help */
+.help{background:var(--ink);color:var(--bg);border-radius:10px;padding:2.5rem 1.5rem}
+:root[data-theme="dark"] .help{background:var(--surface);color:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .help{background:var(--surface);color:var(--ink)}}
+.help h2{margin-bottom:1.5rem}
+.ways{display:grid;gap:1.25rem;grid-template-columns:1fr;margin:0;padding:0;list-style:none}
+@media (min-width:760px){.ways{grid-template-columns:1fr 1fr}}
+.ways h3{font-size:1.2rem;color:var(--lamp);margin-bottom:.25rem}
+.ways p{margin:0;opacity:.9}
+
+/* quote */
+.quote{border-inline-start:4px solid var(--green);padding:.5rem 1.5rem;font-size:1.4rem;font-family:"Reem Kufi",sans-serif;line-height:1.7;max-width:34ch}
+.quote small{display:block;font-family:"Tajawal",sans-serif;font-size:1rem;color:var(--muted);margin-top:.5rem}
+
+.note{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:1.25rem 1.5rem}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem}
+.credit{font-family:"Reem Kufi",sans-serif;font-size:1.15rem;color:var(--ink);margin-bottom:.75rem}
+.visits{display:inline-block;margin-bottom:.75rem;padding:.35rem .9rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font-weight:500}
+:root{--rose:#D94F6B;--sky:#2F8FD8;--violet:#7A5BD0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--rose:#FF8DA3;--sky:#6DB8F2;--violet:#B3A0FF}}
+:root[data-theme="dark"]{--rose:#FF8DA3;--sky:#6DB8F2;--violet:#B3A0FF}
+.bar{position:fixed;top:env(safe-area-inset-top,0px);right:0;height:5px;width:0;z-index:20;background:linear-gradient(90deg,var(--lamp),var(--rose),var(--violet),var(--sky))}
+.hero{background:radial-gradient(circle at 88% 8%,color-mix(in srgb,var(--lamp) 38%,transparent),transparent 45%),radial-gradient(circle at 8% 85%,color-mix(in srgb,var(--sky) 28%,transparent),transparent 50%)}
+.hero h1{background:linear-gradient(100deg,var(--ink) 30%,var(--rose) 62%,var(--violet));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s ease-in-out infinite alternate}
+@keyframes shine{to{background-position:100% 0}}
+.def{transition:transform .2s,box-shadow .2s}.def:hover{transform:translateY(-4px);box-shadow:0 10px 24px color-mix(in srgb,var(--ink) 14%,transparent)}
+.def:nth-child(1){border-top:6px solid var(--sky)}.def:nth-child(1) h3{color:var(--sky)}
+.def:nth-child(2){border-top:6px solid var(--rose)}.def:nth-child(2) h3{color:var(--rose)}
+.def h3{font-size:1.65rem}
+.needs li{transition:transform .2s,background .2s}.needs li:hover{background:var(--surface);transform:translateX(-6px)}
+.needs li:nth-child(1) strong{color:var(--sky)}.needs li:nth-child(2) strong{color:var(--violet)}.needs li:nth-child(3) strong{color:var(--rose)}.needs li:nth-child(4) strong{color:var(--green)}.needs li:nth-child(5) strong{color:#D58A00}
+.ways h3{font-size:1.5rem}.ways li{border-top:5px solid var(--lamp);padding-top:.75rem}
+.ways li:nth-child(2){border-top-color:var(--sky)}.ways li:nth-child(3){border-top-color:var(--rose)}.ways li:nth-child(4){border-top-color:var(--green)}.ways li:nth-child(5){border-top-color:var(--violet)}
+.quote{font-size:1.8rem}.verse{font-size:2rem}footer{font-size:1.1rem}.credit{font-size:1.4rem}
+.rights{display:grid;gap:1rem;grid-template-columns:1fr}@media (min-width:760px){.rights{grid-template-columns:1fr 1fr}}
+.tile{padding:1.4rem;border-radius:12px;border:1px solid var(--line);transition:transform .2s}.tile:hover{transform:translateY(-4px)}
+.tile h3{font-size:1.5rem;margin-bottom:.3rem}.tile p{margin:0}
+.tile:nth-child(1){background:color-mix(in srgb,var(--sky) 16%,var(--surface))}.tile:nth-child(2){background:color-mix(in srgb,var(--rose) 14%,var(--surface))}.tile:nth-child(3){background:color-mix(in srgb,var(--lamp) 22%,var(--surface))}.tile:nth-child(4){background:color-mix(in srgb,var(--green) 16%,var(--surface))}
+.dd{display:grid;gap:1.25rem;grid-template-columns:1fr}@media (min-width:760px){.dd{grid-template-columns:1fr 1fr}}
+.do,.dont{border-radius:12px;padding:1.5rem}
+.do{background:color-mix(in srgb,var(--green) 16%,var(--surface));border-inline-start:6px solid var(--green)}
+.dont{background:color-mix(in srgb,var(--rose) 14%,var(--surface));border-inline-start:6px solid var(--rose)}
+.do h3,.dont h3{font-size:1.55rem;margin-bottom:.6rem}.do ul,.dont ul{margin:0;padding-inline-start:1.3rem}.do li,.dont li{margin-bottom:.4rem}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:.8rem;padding:.2rem 1.2rem}
+summary{cursor:pointer;font-family:"Reem Kufi",sans-serif;font-size:1.4rem;padding:.8rem 0;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--rose);font-size:1.9rem;line-height:1;transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}details[open]{border-color:var(--lamp)}details p{margin:0 0 1rem}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero h1{animation:none}}
+</style>
+</head>
+<body>
+<div class="bar" id="bar" aria-hidden="true"></div>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><i aria-hidden="true"></i> سند</div>
+    <h1>لا يُترك طفلٌ بلا سند</h1>
+    <p>ملايين الأطفال في العالم فقدوا أحد والديهم أو كليهما، أو لا يجدون من يرعاهم. هذه الصفحة تعرّفك بهم، وبما يحتاجونه، وبما يمكنك فعله.</p>
+    <div class="windows" id="windows" role="group" aria-label="نوافذ البيوت"></div>
+    <div class="counter" id="counter" aria-live="polite">اضغط على نافذة لتضيئها.</div>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <h2>وحيدٌ حتى تمتدّ إليه يد</h2>
+    <figure class="scene-card">
+      <svg viewBox="0 0 640 340" role="img" aria-label="رسم لطفل يبكي وحيدًا، ويقترب منه رجل يرتدي شماغًا وثوبًا وامرأة مخمَّرة تمدّ إليه يد العون">
+        <defs>
+          <pattern id="chk" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#fff"/><path d="M0 0H4V4H0zM4 4H8V8H4z" fill="#C8262E"/></pattern>
+        </defs>
+        <rect width="640" height="340" fill="#E6EEF6"/>
+        <rect y="300" width="640" height="40" fill="#C7D5C9"/>
+        <!-- boy -->
+        <ellipse cx="250" cy="302" rx="42" ry="6" fill="#000" opacity=".12"/>
+        <rect x="236" y="262" width="13" height="38" fill="#3B4A5C"/>
+        <rect x="252" y="262" width="13" height="38" fill="#3B4A5C"/>
+        <path d="M222 218 Q250 206 278 218 L282 266 L218 266 Z" fill="#3C7A6B"/>
+        <path d="M228 224 L240 194" stroke="#3C7A6B" stroke-width="11" stroke-linecap="round"/>
+        <path d="M272 224 L260 194" stroke="#3C7A6B" stroke-width="11" stroke-linecap="round"/>
+        <circle cx="250" cy="187" r="19" fill="#D9A982"/>
+        <path d="M231 185 Q232 164 250 164 Q268 164 269 185 Q250 174 231 185Z" fill="#2A2118"/>
+        <circle cx="241" cy="192" r="6" fill="#D9A982"/>
+        <circle cx="259" cy="192" r="6" fill="#D9A982"/>
+        <path d="M233 203q-4 8 0 10q4-2 0-10z" fill="#6EA8D8"/>
+        <path d="M267 205q-4 8 0 10q4-2 0-10z" fill="#6EA8D8"/>
+        <path d="M246 214q-3 7 0 9q3-2 0-9z" fill="#6EA8D8"/>
+        <!-- man: shemagh and thobe -->
+        <path d="M440 166 Q470 150 500 166 L514 300 L426 300 Z" fill="#fff" stroke="#B9C4CE" stroke-width="2"/>
+        <path d="M446 128 Q446 98 470 98 Q494 98 494 128 L496 160 Q470 150 444 160 Z" fill="url(#chk)" stroke="#B9C4CE" stroke-width="1.5"/>
+        <ellipse cx="470" cy="132" rx="14" ry="17" fill="#C99A72"/>
+        <path d="M448 110 Q470 100 492 110" stroke="#222" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M446 178 L388 214" stroke="#B9C4CE" stroke-width="20" stroke-linecap="round"/>
+        <path d="M446 178 L388 214" stroke="#fff" stroke-width="17" stroke-linecap="round"/>
+        <circle cx="382" cy="217" r="8" fill="#C99A72"/>
+        <!-- woman: khimar -->
+        <path d="M536 166 Q562 150 588 166 L604 300 L520 300 Z" fill="#2B3340"/>
+        <path d="M534 130 Q534 96 561 96 Q588 96 588 130 L594 208 Q561 218 528 208 Z" fill="#3A4656"/>
+        <ellipse cx="561" cy="131" rx="12" ry="15" fill="#D9A982"/>
+        <circle cx="561" cy="190" r="6" fill="#D9A982"/>
+      </svg>
+      <figcaption>طفلٌ فقد من يحتضنه، وحوله من يستطيع أن يكون له أسرةً وسندًا.</figcaption>
+    </figure>
+    <blockquote class="verse">
+      «فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ»
+      <small>سورة الضحى، الآية ٩</small>
+    </blockquote>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>من هم؟</h2>
+    <div class="two">
+      <div class="def">
+        <h3>اليتيم</h3>
+        <p>هو الطفل الذي فقد أباه قبل بلوغه، وفي الاستخدام العام يشمل من فقد أمه أو والديه معًا. قد يعيش مع أمه أو أقاربه، لكنه يحتاج إلى من يسانده في الإنفاق والتعليم والرعاية.</p>
+      </div>
+      <div class="def">
+        <h3>فاقد السند الأسري</h3>
+        <p>طفل أو شاب لا يعيش في كنف أسرة تحميه، بسبب وفاة الوالدين أو التفكك الأسري أو الإهمال أو النزاعات والهجرة القسرية. بعضهم يعيش في دور رعاية، وبعضهم في ظروف غير آمنة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>ماذا يحتاجون؟</h2>
+    <p class="muted">المال وحده لا يكفي. الطفل يحتاج إلى بيئة تعوّضه ما فقده قدر الإمكان.</p>
+    <ul class="needs">
+      <li><strong>الأمان والاستقرار</strong><span>مكان آمن ودافئ، وشخص بالغ ثابت في حياته.</span></li>
+      <li><strong>التعليم</strong><span>مدرسة منتظمة، ودعم دراسي، وفرصة لتعلّم مهنة أو مهارة.</span></li>
+      <li><strong>الصحة الجسدية والنفسية</strong><span>رعاية طبية، ومساحة للتعبير عن الحزن والخوف مع من يحسن الاستماع.</span></li>
+      <li><strong>الانتماء</strong><span>أن يشعر أنه جزء من مجتمعه، لا ضيفًا عليه.</span></li>
+      <li><strong>التهيئة للاستقلال</strong><span>من يتخرج من دار الرعاية يحتاج إلى سكن وعمل ومن يرشده في البداية.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="help">
+      <h2>كيف تساهم؟</h2>
+      <ul class="ways">
+        <li><h3>الكفالة</h3><p>تكفّل يتيمًا بدعم شهري منتظم عبر جهة موثوقة، يغطي تعليمه ومعيشته.</p></li>
+        <li><h3>التعليم والتدريب</h3><p>ادعم منحة دراسية، أو قدّم دروسًا تقوية، أو دُلّ شابًا على فرصة تدريب.</p></li>
+        <li><h3>الوقت والحضور</h3><p>تطوّع في دار رعاية، أو شارك في نشاط أسبوعي. الحضور المنتظم يصنع فرقًا لا يصنعه المال.</p></li>
+        <li><h3>الاحتضان والأسرة البديلة</h3><p>إن كانت الأنظمة في بلدك تسمح، فالأسر الحاضنة المؤهلة من أفضل ما يُقدَّم لطفل بلا أسرة.</p></li>
+        <li><h3>نشر الوعي</h3><p>شارك المعلومة الصحيحة، وتعامل مع الأيتام باحترام دون شفقة تجرح كرامتهم.</p></li>
+        <li><h3>الدعم المهني</h3><p>الأطباء والمعلمون والمحامون والمرشدون النفسيون يستطيعون التطوع بخبراتهم.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>حقوق اليتيم</h2>
+    <p class="muted">للطفل اليتيم ما لكل طفل من حقوق، وله عناية خاصة لأنه فقد من يدافع عنها.</p>
+    <div class="rights">
+      <div class="tile"><h3>🪪 الاسم والهوية</h3><p>أن يُحفظ نسبه واسمه ووثائقه، وأن يعرف من هو وأين جذوره.</p></div>
+      <div class="tile"><h3>📚 الرعاية والتعليم</h3><p>أن يجد غذاءً وعلاجًا ومدرسةً كغيره من الأطفال.</p></div>
+      <div class="tile"><h3>🛡️ الحماية</h3><p>أن يُصان من الاستغلال والعمل المبكر والإهمال والعنف.</p></div>
+      <div class="tile"><h3>💰 حفظ ماله</h3><p>أن يُحفظ ما ورثه ويُدار بأمانة حتى يكبر ويتسلّمه.</p></div>
+    </div>
+    <blockquote class="verse">
+      «وَلَا تَقْرَبُوا مَالَ الْيَتِيمِ إِلَّا بِالَّتِي هِيَ أَحْسَنُ حَتَّىٰ يَبْلُغَ أَشُدَّهُ»
+      <small>سورة الأنعام، الآية ١٥٢</small>
+    </blockquote>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>كيف نتعامل معهم؟</h2>
+    <div class="dd">
+      <div class="do"><h3>✅ افعل</h3><ul><li>ناده باسمه وخاطبه باحترام.</li><li>اسمعه دون استعجال أو وعظ.</li><li>أشركه في الأنشطة مثل غيره.</li><li>احفظ خصوصيته وقصته.</li><li>وفِ بوعودك له مهما كانت صغيرة.</li></ul></div>
+      <div class="dont"><h3>⛔ تجنّب</h3><ul><li>السؤال المتكرر عن والديه.</li><li>الشفقة الظاهرة أمام الناس.</li><li>مقارنته بغيره من الأطفال.</li><li>تصويره أو نشر قصته دون إذن الجهة المسؤولة.</li><li>وعده بما لا تنوي الوفاء به.</li></ul></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>أسئلة شائعة</h2>
+    <details><summary>هل أستطيع المساعدة دون مال؟</summary><p>نعم. الوقت والخبرة والتوعية كلها مساهمات حقيقية: درس تقوية، أو تدريب مهني، أو نشر معلومة صحيحة، أو ربط شاب بفرصة عمل.</p></details>
+    <details><summary>كيف أتأكد أن الجهة موثوقة؟</summary><p>اسأل عن الترخيص الرسمي، والتقارير المالية المنشورة، وإيصالات التبرع، وسمعة الجهة لدى الجهات الحكومية والناس الذين تثق بهم.</p></details>
+    <details><summary>ما الفرق بين الكفالة والتبني؟</summary><p>الكفالة رعاية ونفقة وتربية دون نسبة الطفل إلى الكافل، فيبقى نسبه محفوظًا لأهله. وتختلف الأنظمة من بلد لآخر، فاسأل جهة مختصة في بلدك قبل أي خطوة.</p></details>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <blockquote class="quote" style="margin:0 0 2rem">
+      «أنا وكافل اليتيم في الجنة هكذا» وأشار بالسبابة والوسطى.
+      <small>حديث نبوي صحيح، رواه البخاري</small>
+    </blockquote>
+    <div class="note">
+      <strong>قبل أن تتبرع:</strong> اختر جمعية مرخّصة في بلدك، واسأل عن آلية صرف الكفالة وتقاريرها، وتجنّب نشر صور الأطفال أو بياناتهم دون إذن الجهة المسؤولة عنهم.
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="credit">عمل الطالب: زيد الدعجة</div>
+    <div class="visits" id="visits" aria-live="polite">عدد الزوار: <span id="visitCount">…</span></div>
+    <div>صفحة توعوية عامة، وليست تابعة لجهة محددة. تحقّق دائمًا من الجهات الرسمية في بلدك قبل المشاركة أو التبرع.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var box=document.getElementById('windows'),out=document.getElementById('counter');
+  var lit=[2,9,14,21],total=24,count=0;
+  function update(){
+    count=box.querySelectorAll('[aria-pressed="true"]').length;
+    out.textContent=count+' من '+total+' نافذة مضاءة. كل نافذة مضاءة طفلٌ وجد من يسأل عنه.';
+  }
+  for(var i=0;i<total;i++){
+    var b=document.createElement('button');
+    b.className='win';b.type='button';
+    b.setAttribute('aria-label','نافذة '+(i+1));
+    b.setAttribute('aria-pressed',lit.indexOf(i)>-1?'true':'false');
+    b.addEventListener('click',function(){
+      this.setAttribute('aria-pressed',this.getAttribute('aria-pressed')==='true'?'false':'true');
+      update();
+    });
+    box.appendChild(b);
+  }
+  update();
+})();
+
+(function(){
+  var el=document.getElementById('visitCount');
+  async function init(){
+    try{
+      var db=await claude.use('db'),user=await claude.use('user');
+      if(!db||!user){el.textContent='غير متاح';return;}
+      var col=db.collection('visitors'),id=await user.id();
+      var timer=setTimeout(function(){el.textContent='تعذّر التحميل';},10000);
+      col.onSnapshot(function(snap){clearTimeout(timer);el.textContent=String(snap.size);},function(){clearTimeout(timer);el.textContent='غير متاح';});
+      try{await col.doc(id).set({t:Date.now()});}catch(e){}
+    }catch(e){el.textContent='غير متاح';}
+  }
+  if(window.claude&&claude.use){init();}else{document.getElementById('visits').hidden=true;}
+})();
+
+(function(){
+  var d=document,secs=d.querySelectorAll('main section');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+    secs.forEach(function(s){s.classList.add('rv');io.observe(s);});
+  }
+  var bar=d.getElementById('bar');
+  function p(){var h=d.documentElement.scrollHeight-innerHeight;bar.style.width=(h>0?scrollY/h*100:0)+'%';}
+  addEventListener('scroll',p,{passive:true});p();
+})();
+</script>
+</body>
+</html>
