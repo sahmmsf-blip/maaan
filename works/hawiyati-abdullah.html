@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>هويتي معي… فهل لها مكان؟</title>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@600;700&family=Readex+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F2FF;--ink:#231747;--mut:#5E5782;--sea:#6A3DE8;--amb:#D6336C;--card:#fff;--ln:#D9D0F2;--ok:#138A5B;--no:#C2352E;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#150F2B;--ink:#F0ECFF;--mut:#B5ABDB;--sea:#A58BFF;--amb:#FF7FA6;--card:#211846;--ln:#3A2E6B;--ok:#4CD6A0;--no:#FF8C84;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#150F2B;--ink:#F0ECFF;--mut:#B5ABDB;--sea:#A58BFF;--amb:#FF7FA6;--card:#211846;--ln:#3A2E6B;--ok:#4CD6A0;--no:#FF8C84;color-scheme:dark}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.85 'Readex Pro',Tahoma,sans-serif}
+.app{display:flex;flex-direction:column;height:100%}
+.route{display:flex;gap:4px;padding:12px 16px 4px}
+.route button{flex:1;height:10px;border:0;border-radius:5px;background:var(--ln);cursor:pointer;padding:0}
+.route .v{background:var(--sea)}.route .on{background:var(--amb)}
+main{flex:1;overflow:auto;padding:8px 20px 24px}
+.s{display:none;max-width:780px;margin:0 auto}.s.on{display:block}
+.stamp{display:inline-block;border:2px solid var(--amb);color:var(--amb);border-radius:6px;padding:0 12px;transform:rotate(-3deg);font:600 14px 'Reem Kufi',Tahoma;margin:14px 0 6px}
+h1,h2{font-family:'Reem Kufi',Tahoma,sans-serif;line-height:1.4;margin:.2em 0 .4em}
+h1{font-size:clamp(34px,9vw,60px)}h2{font-size:clamp(25px,5.5vw,38px)}
+.lead{font-size:20px;color:var(--mut)}
+.g,.op{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:18px 0}
+.c{font:inherit;color:inherit;text-align:right;background:var(--card);border:1.5px solid var(--ln);border-radius:14px;padding:14px 16px;cursor:pointer}
+.c[aria-expanded="true"]{border-color:var(--sea)}
+.c i{font-style:normal;font-size:28px;display:block}.c b{display:block;font-weight:600}.c small{color:var(--mut)}
+.c em{display:none;font-style:normal;margin-top:6px}.c[aria-expanded="true"] em{display:block}.c[aria-expanded="true"] small{display:none}
+.c.ok{border-color:var(--ok);border-width:3px}.c.no{border-color:var(--no);border-width:3px}
+.btn{font:600 16px 'Readex Pro',Tahoma,sans-serif;background:var(--sea);color:var(--bg);border:0;border-radius:999px;padding:10px 26px;cursor:pointer}
+.btn:disabled{opacity:.35;cursor:default}
+.ans,.note{border-right:4px solid var(--amb);padding:8px 14px;background:var(--card);border-radius:8px;margin:14px 0}
+[hidden]{display:none!important}
+.st{padding:0;margin:16px 0;list-style:none;counter-reset:n}
+.st li{counter-increment:n;border-right:3px solid var(--sea);padding:2px 14px;margin:0 0 12px}
+.st li::before{content:counter(n) "• ";color:var(--sea);font-weight:600}
+.qq{font-size:21px;font-weight:600}
+.nv{display:flex;justify-content:space-between;padding:10px 20px 14px;max-width:820px;width:100%;margin:0 auto;box-sizing:border-box}
+a{color:var(--sea)}
+:focus-visible{outline:3px solid var(--amb);outline-offset:2px}
+.fl{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.app{position:relative;z-index:1}
+.fl span{position:absolute;bottom:-60px;opacity:.3;animation:up linear infinite}
+.fl .dn{bottom:auto;top:-60px;animation-name:dn}
+@keyframes up{0%{transform:translate(0,0) rotate(-15deg)}50%{transform:translate(var(--x),-60vh) rotate(15deg)}100%{transform:translate(0,-120vh) rotate(-15deg)}}
+@keyframes dn{0%{transform:translate(0,0) rotate(15deg)}50%{transform:translate(var(--x),60vh) rotate(-15deg)}100%{transform:translate(0,120vh) rotate(15deg)}}
+body{background-image:radial-gradient(circle at 90% -10%,color-mix(in srgb,var(--sea) 20%,transparent),transparent 45%),radial-gradient(circle at 5% 105%,color-mix(in srgb,var(--amb) 16%,transparent),transparent 40%)}
+h1{background:linear-gradient(90deg,var(--sea),var(--amb));-webkit-background-clip:text;background-clip:text;color:transparent}
+.s.on{animation:fi .5s both}@keyframes fi{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.c{transition:transform .2s,box-shadow .2s,border-color .2s}.c:hover{transform:translateY(-3px);box-shadow:0 8px 22px color-mix(in srgb,var(--sea) 22%,transparent)}.c i{font-size:36px}
+.c[aria-expanded="true"]{background:color-mix(in srgb,var(--sea) 8%,var(--card))}
+.stamp{background:color-mix(in srgb,var(--amb) 10%,transparent)}
+.in{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:calc(22px + env(safe-area-inset-top,0px)) 20px calc(26px + env(safe-area-inset-bottom,0px));background:linear-gradient(160deg,#2a1670,#6A3DE8 55%,#D6336C);color:#fff;transition:opacity .7s,visibility .7s;overflow:hidden}
+.in.off{opacity:0;visibility:hidden}.in .tp{font-size:14px;opacity:.9}
+.in h1,.in h2{background:none;color:#fff;-webkit-text-fill-color:#fff;margin:0;animation:rs 1s both}.in h1{font-size:clamp(46px,13vw,90px)}.in h2{font-size:clamp(28px,8vw,48px);animation-delay:.25s}
+.in p{max-width:480px;margin:10px auto 0;font-size:19px;animation:rs 1s .5s both}
+.dt{display:flex;justify-content:center;gap:10px;margin-bottom:20px}.dt i{width:22px;height:22px;border-radius:50%;animation:pp 1.2s infinite alternate}
+.dt i:nth-child(1){background:#FFB703}.dt i:nth-child(2){background:#4CD6A0;animation-delay:.2s}.dt i:nth-child(3){background:#8ECAFF;animation-delay:.4s}.dt i:nth-child(4){background:#FF9ECF;animation-delay:.6s}
+.br{width:min(260px,70%);height:4px;background:#fff3;border-radius:9px;overflow:hidden;margin:26px auto 0}.br b{display:block;width:0;height:100%;background:#fff;animation:fl6 6.5s linear forwards}
+.sk{background:#fff2;color:#fff;border:1px solid #fff7;border-radius:99px;padding:9px 28px;font:600 17px 'Readex Pro',Tahoma,sans-serif;cursor:pointer}
+@keyframes rs{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}@keyframes pp{to{transform:translateY(-12px)}}@keyframes fl6{to{width:100%}}
+.cf{margin:18px 0;display:flex;gap:8px;flex-wrap:wrap}.cf input{flex:1;min-width:180px;font:inherit;padding:9px 14px;border-radius:999px;border:1.5px solid var(--ln);background:var(--card);color:var(--ink)}
+.cert{margin:18px auto;max-width:520px;text-align:center;padding:28px 20px;border:3px double var(--amb);border-radius:16px;background:var(--card)}.cert h2{color:var(--sea);margin:0}.cert b{display:block;font:700 34px 'Reem Kufi',Tahoma;color:var(--amb);margin:8px 0}
+@media print{body *{visibility:hidden}.cert,.cert *{visibility:visible}.cert{position:fixed;inset:0;margin:auto;height:fit-content}}
+@media(prefers-reduced-motion:reduce){.fl{display:none}.in *{animation:none!important}.br b{width:100%}}
+</style></head><body><div class="in" id="in"><div class="tp">مديرية التربية والتعليم لمنطقة لواء وادي السير · مدرسة جميل شاكر الثانوية للبنين</div><div><div class="dt"><i></i><i></i><i></i><i></i></div><h1>هويتي معي…</h1><h2>فهل لها مكان؟</h2><p>رحلة تفاعلية عن التنوّع العرقي واللغوي والاجتماعي</p><div class="br"><b></b></div></div><button class="sk" id="sk">تخطٍّ ←</button></div><div class="fl" id="F" aria-hidden="true"></div><div class="app">
+<div class="route" id="R"></div><main id="M"></main>
+<nav class="nv"><button class="btn" id="pv">السابق</button><button class="btn" id="nx">التالي</button></nav></div>
+<script>
+const D=[
+{t:'h',h:'هويتي معي… فهل لها مكان؟',p:'رحلة تفاعلية من 20 محطة عن الأقليات العرقية واللغوية والاجتماعية، وعن حق كل طالب في أن يتعلم ويشارك دون أن يخفي من هو.'},
+{h:'عن أي أقليات نتحدث؟',p:'ثلاثة محاور، وقد تجتمع أكثر من واحدة في إنسان واحد.',i:[['🌿','عرقية','جماعات لها أصل وتاريخ وتراث مشترك يميّزها داخل المجتمع الأوسع.'],['🗣️','لغوية','أناس لغة بيتهم أو لغتهم الأولى مختلفة عن لغة الأغلبية، ومنهم مستخدمو لغة الإشارة.'],['🤝','اجتماعية','فئات تحدّ ظروفها من حضورها وفرصها، كالفقر واللجوء والنزوح وفقدان السند الأسري.']]},
+{h:'كلمات قريبة، ومعانٍ مختلفة',i:[['👥','الأقلية','مجموعة أقل عددًا أو أقل حضورًا في القرار، وليست أقل قيمة.'],['🌈','التنوّع','اختلاف الأصول واللغات والتقاليد داخل المجتمع الواحد.'],['🪪','الهوية','ما نعتز به عن أنفسنا: اسمنا ولغتنا وحكايات أهلنا.'],['🚫','التمييز','معاملة شخص بشكل أسوأ لمجرد أصله أو لغته أو ظرفه.']]},
+{h:'التنوّع العرقي: وجوه من نسيجنا',p:'اضغط على كل بطاقة. نتحدث عن جماعات لا عن أفراد بأعينهم.',i:[['🏔️','الشركس والشيشان','استقرت جماعاتهم في الأردن منذ أواخر القرن التاسع عشر، وحفظوا لغتهم وتراثهم وأسهموا في بناء الدولة.'],['⛪','الأرمن','جالية ذات تاريخ طويل في المنطقة، ولها لغتها وكنيستها ومدارسها ومؤسساتها.'],['🏕️','الأكراد والتركمان','جماعات لها لغاتها وتقاليدها وحضورها في بلدان عدة من المنطقة.'],['🧵','الدوم','من أكثر المجتمعات تهميشًا، وكثيرًا ما تُوصَم بألقاب مهينة تُبعد أطفالها عن المدرسة.']]},
+{h:'التنوّع اللغوي: لغات تستحق أن تبقى',p:'اللغة ليست كلمات فقط، بل ذاكرة وطريقة نظر إلى العالم.',i:[['🏜️','الأمازيغية','لغة عريقة في شمال إفريقيا، وكثير من أهلها يناضلون للحفاظ عليها في التعليم والإعلام.'],['📜','السريانية والآرامية','من أقدم اللغات الحية في المنطقة، وما زالت تُستخدم في الصلاة والتراث.'],['🌊','النوبية','لغات أهل النيل في جنوب مصر وشمال السودان، وتتناقلها الأسر شفاهةً أكثر مما تُكتب.'],['🤟','لغة الإشارة','لغة كاملة لها قواعدها وثقافتها، وليست إشارات عشوائية.']]},
+{h:'التنوّع الاجتماعي: ظروف تصنع الحواجز',p:'حين تجتمع الظروف الصعبة مع قلة الحضور، يصبح الصوت أبعد.',i:[['💸','أسر محدودة الدخل','تكاليف القرطاسية والرحلات والمواصلات قد تقف بين الطالب وزملائه.'],['🧳','اللاجئون والنازحون','أطفال تركوا بيوتهم قسرًا ويبدؤون من جديد في بيئة غير مألوفة.'],['🕊️','الأيتام وأبناء دور الرعاية','يحتاجون إلى سند ومعاملة كريمة بلا شفقة مؤذية.'],['🏜️','أبناء البادية والأطراف','مسافات طويلة، وخدمات أقل، ونظرة نمطية إلى لهجتهم وأسلوب عيشهم.']]},
+{h:'ماذا يضيف التنوّع إلينا؟',p:'المجتمع المتنوع أغنى وأقدر.',i:[['🍲','طعام وتراث','أطباق وأعياد وحِرَف تجعل المدينة أجمل.'],['🧠','أفكار جديدة','كلما اختلفت الخلفيات، تعددت الحلول.'],['🗣️','لغات وكلمات','من تعلّم كلمة من لغة زميله فتح بابًا للصداقة.'],['🏛️','ذاكرة وتاريخ','كل جماعة تحمل جزءًا من حكاية الوطن.']]},
+{h:'ما الذي يقف بين الطالب ومكانه؟',p:'اضغط على كل بطاقة.',i:[['🏠','لغة البيت غير لغة الصف','الطالب قد يفهم أبطأ لا لأنه أقل ذكاءً، بل لأن لغته الأولى مختلفة.'],['🎭','صور نمطية','أحكام جاهزة تُبنى على الأصل أو اللهجة أو المظهر.'],['🗯️','ألقاب مهينة','كلمة جارحة تتكرر فتكسر ثقة الطالب وتبعده عن المدرسة.'],['📚','غياب التمثيل','حين لا يرى الطالب لغته وتاريخه في الكتب والإذاعة والجدران.'],['💸','تكاليف وبُعد','فقر ومسافة وخدمات ناقصة تجعل المشاركة أصعب.']]},
+{t:'s',h:'حكاية ليلى',s:['في بيت ليلى تتحدث الجدة لغة غير العربية، وتحبّها ليلى.','في المدرسة ضحكت زميلة من طريقتها في نطق بعض الكلمات.','صارت ليلى تتحدث بصوت منخفض، وتتجنب لغة جدتها حتى في البيت.'],q:'هل لغة البيت عيب؟',a:'لا. لغة الجدة كنز وليست عيبًا. تحتاج ليلى إلى مدرسة تحترم لغتها وتحميها من السخرية، وإلى زملاء يتعلمون منها بدل أن يضحكوا عليها.'},
+{h:'اللغة الأولى والتعلّم',p:'ما يقوله الباحثون والمنظمات الدولية:',i:[['🌱','أساس التعلّم','يفهم الطفل المفاهيم الجديدة أسرع حين يتصل بلغته الأولى.'],['🌉','جسر لا حاجز','اللغة الأولى تساعد الطفل على تعلم لغة الصف لا أن تعيقه.'],['🌍','فجوة عالمية','تقدّر اليونسكو أن نحو 40% من سكان العالم لا يتعلمون بلغة يتحدثونها أو يفهمونها جيدًا.'],['💛','ثقة وانتماء','الطفل الذي تُحترم لغته يشعر أن مكانه محفوظ.']],n:'لا يعني هذا أن نتخلى عن العربية، بل أن نبني من لغة البيت جسرًا إليها.'},
+{t:'s',h:'حكاية عمر',s:['عمر من أسرة محدودة الدخل، ويتفوق في الرياضيات.','أعلنت المدرسة عن رحلة جماعية بتكلفة لا تقدر عليها أسرته.','قال لزملائه إنه مريض ذلك اليوم، ولم يخبر أحدًا.'],q:'ما الذي يحتاجه عمر فعلًا؟',a:'يحتاج إلى دعم كريم وخفي لا يعرفه الآخرون، وإلى مدرسة تخطط لأنشطة تناسب الجميع. عمر لا يحتاج إلى شفقة، بل إلى أن لا يضطر إلى الكذب.'},
+{h:'ماذا يخسر الطالب حين لا يجد مكانه؟',p:'المدرسة ليست مبنى فقط.',i:[['🎤','الصوت','يتردد في الكلام فيضيع رأيه وموهبته.'],['🛡️','الأمان','يشعر أن الصف مكان ينتقده لا مكان يحتضنه.'],['🧑‍🤝‍🧑','الأصدقاء','يبقى على الهامش بدل أن يكون جزءًا من المجموعة.'],['💛','الأمل','حين لا يرى نفسه في الصورة، يصعب أن يتخيل مستقبله فيها.']]},
+{h:'آثار قد تمتد سنوات',i:[['🧠','تعليمية','تراجع في التحصيل أو تسرّب مبكر من المدرسة.'],['💼','اقتصادية','فرص أقل في العمل والدخل المستقر.'],['💔','نفسية','عزلة وخجل من الأصل أو اللغة أو الظرف.'],['🧱','اجتماعية','تتسع الفجوات بين الجماعات ويزداد الشك المتبادل.']],n:'التعليم الذي يتسع للجميع يقوّي المجتمع كله ويجعله أكثر تماسكًا.'},
+{h:'خرافات وحقائق',p:'اضغط على الخرافة لتعرف الحقيقة.',i:[['❌','«الأقليات تهدد وحدة المجتمع»','الحقيقة: الوحدة تقوى حين يشعر الجميع أنهم متساوون في الكرامة والفرص.'],['❌','«من يتحدث لغة أخرى لا يحب وطنه»','الحقيقة: يمكن أن يحب الإنسان وطنه ويحافظ على لغة أهله معًا.'],['❌','«الفقر دليل كسل»','الحقيقة: الفقر ظرف تصنعه عوامل كثيرة، وكثير من الفقراء يعملون بجد.'],['❌','«المعاملة المتساوية تعني أن نتجاهل الاختلاف»','الحقيقة: العدل أن نعطي كل طالب ما يحتاجه ليصل، لا أن نعطي الجميع الشيء نفسه.']]},
+{h:'ماذا يقول الحق؟',p:'اتفاقية حقوق الطفل تنص على ما يلي:',i:[['⚖️','المادة 2: عدم التمييز','لكل طفل حقوقه مهما كان أصله أو لغته أو وضعه أو وضع أسرته.'],['🎓','المادة 28: التعليم','لكل طفل الحق في التعليم على أساس تكافؤ الفرص.'],['🤲','المادة 29: احترام الهوية','يُعدّ التعليم الطفل للتسامح، مع احترام ثقافته وقيمه ولغته.'],['🗣️','المادة 30: الأقليات','لا يُحرم طفل ينتمي إلى أقلية من التمتع بثقافته واستخدام لغته مع جماعته.']],n:'وهناك إعلان للأمم المتحدة (1992) بشأن حقوق الأشخاص المنتمين إلى أقليات قومية أو إثنية ودينية ولغوية. للمزيد: <a href="https://www.ohchr.org" target="_blank" rel="noopener">المفوضية السامية لحقوق الإنسان</a> و<a href="https://www.unicef.org" target="_blank" rel="noopener">اليونيسف</a>.'},
+{t:'c',h:'ماذا تفعل أنت؟',p:'في الاستراحة، زميل يتحدث مع أخيه بلغة أهله، وبعض الطلبة يقلدونه ويضحكون.',o:[['أضحك معهم كي لا أبدو مختلفًا','الضحك يمنح السخرية قوة ويؤذي زميلك. الصمت أحيانًا مشاركة.',0],['أقول لهم إن هذا لا يضحك، وأسأله عن معنى كلمة','أحسنت! وقفتك تحميه، وسؤالك يحوّل الاختلاف إلى معرفة.',1],['أتجاهل، فالأمر لا يعنيني','التجاهل يترك زميلك وحيدًا. كلمة واحدة منك قد تغيّر الموقف.',0]]},
+{t:'q',h:'اختبروا معلوماتكم',q:[['اللغة الأولى للطالب تعيق تعلّمه ولا تفيده.',0,'بل تساعده على فهم المفاهيم وتعلم لغة الصف.'],['الأقلية مجموعة أقل قيمة من غيرها.',0,'الأقلية تعني الأقل عددًا أو حضورًا، وليس الأقل قيمة.'],['لكل طفل حق في استخدام لغته وثقافته مع جماعته.',1,'نعم، هذا ما تنص عليه المادة 30 من اتفاقية حقوق الطفل.'],['الفقر قد يمنع طالبًا من المشاركة في أنشطة المدرسة.',1,'نعم، ولهذا نحتاج إلى دعم كريم وأنشطة تناسب الجميع.'],['الاستهزاء باللهجة أو الأصل مجرد مزاح.',0,'قد يكسر ثقة الطالب ويبعده عن المدرسة. الاحترام هو الطريق.']]},
+{h:'كيف نفتح الطريق؟ ومن يساعد؟',p:'لا تحل جهة واحدة المشكلة وحدها.',i:[['👂','نصغي','نتيح للطلبة أن يحكوا قصصهم بأنفسهم دون أن نتحدث نيابةً عنهم.'],['🖼️','نمثّل','نضع لغاتهم وتاريخهم وتراثهم في الإذاعة والجدران والمناهج.'],['🛡️','نحمي','ننهي السخرية والألقاب المهينة، ونضع آليات واضحة للشكوى.'],['🤝','ندعم','دعم مالي كريم، ودروس تقوية للغة، وأنشطة تناسب الجميع.'],['🏘️','نشارك','الأسرة والمدرسة والمجتمع المحلي والجمعيات، كلٌّ بدوره.']]},
+{t:'p',h:'خطوتي هذا الأسبوع',p:'اختر خطوة واحدة والتزم بها:',o:['أتعلم كلمة من لغة زميل وأستخدمها','أرفض النكتة التي تسخر من أصل أو لهجة','أنادي زملائي بأسمائهم الصحيحة وأنطقها جيدًا','أدعو زميلًا يجلس وحده إلى مجموعتنا','أشارك معلومة صحيحة عن حقوق الأقليات']},
+{t:'e',h:'تنوّعنا قوّتنا… ولكل صوت مكان',p:'حين يجد كل طالب مكانه، تصبح المدرسة وطنًا صغيرًا يتسع للجميع.'}];
+const $=s=>document.querySelector(s),M=$('#M'),R=$('#R'),N=D.length;let cur=0,vis=new Set([0]);
+const card=a=>`<button class="c" aria-expanded="false"><i>${a[0]}</i><b>${a[1]}</b><small>اضغط لتعرف المزيد</small><em>${a[2]}</em></button>`;
+const ops=(o,c)=>`<div class="op">${o.map((x,j)=>`<button class="c ${c}" data-j="${j}">${c=='ch'?x[0]:x}</button>`).join('')}</div><p class="ans" hidden></p>`;
+M.innerHTML=D.map((d,i)=>{let b=`<section class="s"><span class="stamp">محطة ${i+1} من ${N}</span>`;
+ if(d.t=='h')b+=`<h1>${d.h}</h1><p class="lead">${d.p}</p><button class="btn" data-go="1">ابدأ الرحلة</button>`;
+ else if(d.t=='e')b+=`<h1>${d.h}</h1><p class="lead">${d.p}</p><div class="cf"><input class="nm" maxlength="40" placeholder="اكتب اسمك لشهادتك" aria-label="اسمك"><button class="btn" data-cert="1">🏅 اصنع شهادتي</button></div><div class="cert" hidden><h2>شهادة سفير التنوّع</h2><p>تُمنح إلى</p><b></b><p>تقديرًا لالتزامه باحترام كل هوية ولغة وظرف اجتماعي في مدرسته.</p></div><button class="btn pr" data-pr="1" hidden>🖨️ اطبع الشهادة</button> <button class="btn" data-go="0">ابدأ من جديد</button>`;
+ else if(d.t=='s')b+=`<h2>${d.h}</h2><ol class="st">${d.s.map(x=>`<li>${x}</li>`).join('')}</ol><p><b>${d.q}</b></p><button class="btn rv">اكشف الإجابة</button><p class="ans" hidden>${d.a}</p>`;
+ else if(d.t=='c')b+=`<h2>${d.h}</h2><p>${d.p}</p>${ops(d.o,'ch')}`;
+ else if(d.t=='p')b+=`<h2>${d.h}</h2><p>${d.p}</p>${ops(d.o,'pl')}`;
+ else if(d.t=='q')b+=`<h2>${d.h}</h2><div class="qz"></div>`;
+ else b+=`<h2>${d.h}</h2>${d.p?`<p>${d.p}</p>`:''}<div class="g">${d.i.map(card).join('')}</div>${d.n?`<p class="note">${d.n}</p>`:''}`;
+ return b+'</section>'}).join('');
+const S=[...M.children];
+function Q(el,d){const q=el.querySelector('.qz');let n=0,s=0;(function r(){
+ if(n>=d.q.length){q.innerHTML=`<p class="ans">نتيجتك: ${s} من ${d.q.length}. ${s>=4?'ممتاز، أنت سفير للوعي!':'أحسنت! راجع المحطات وأعد المحاولة.'}</p><button class="btn">أعد الاختبار</button>`;q.querySelector('.btn').onclick=()=>{n=s=0;r()};return}
+ const x=d.q[n];q.innerHTML=`<p><b>سؤال ${n+1} من ${d.q.length}</b></p><p class="qq">${x[0]}</p><div class="op"><button class="c" data-a="1">صح</button><button class="c" data-a="0">خطأ</button></div><p class="ans" hidden></p><button class="btn" hidden>التالي</button>`;
+ const b=q.querySelectorAll('.op .c'),a=q.querySelector('.ans'),nx=q.querySelector('.btn');
+ b.forEach(k=>k.onclick=()=>{const ok=(k.dataset.a==1)==!!x[1];if(ok)s++;b.forEach(y=>y.disabled=true);k.classList.add(ok?'ok':'no');a.hidden=false;a.textContent=(ok?'إجابة صحيحة. ':'ليس تماماً. ')+x[2];nx.hidden=false;nx.onclick=()=>{n++;r()}})})()}
+D.forEach((d,i)=>d.t=='q'&&Q(S[i],d));
+function go(n){cur=Math.max(0,Math.min(N-1,n));S.forEach((s,i)=>s.classList.toggle('on',i==cur));vis.add(cur);
+ R.innerHTML=D.map((_,i)=>`<button aria-label="المحطة ${i+1}" class="${i==cur?'on':vis.has(i)?'v':''}"></button>`).join('');
+ $('#pv').disabled=cur==0;$('#nx').disabled=cur==N-1;M.scrollTop=0}
+R.onclick=e=>{const b=e.target.closest('button');if(b)go([...R.children].indexOf(b))};
+$('#pv').onclick=()=>go(cur-1);$('#nx').onclick=()=>go(cur+1);
+M.onclick=e=>{const t=e.target.closest('button');if(!t)return;const sec=t.closest('.s'),d=D[S.indexOf(sec)];
+ if(t.dataset.go)go(+t.dataset.go?1:0);
+ else if(t.dataset.cert){const c=sec.querySelector('.cert');c.querySelector('b').textContent=sec.querySelector('.nm').value.trim()||'سفير التنوّع';c.hidden=false;sec.querySelector('.pr').hidden=false;c.scrollIntoView({behavior:'smooth',block:'center'})}
+ else if(t.dataset.pr)window.print();
+ else if(t.classList.contains('rv')){sec.querySelector('.ans').hidden=false;t.hidden=true}
+ else if(t.hasAttribute('aria-expanded'))t.setAttribute('aria-expanded',t.getAttribute('aria-expanded')!='true');
+ else if(t.classList.contains('ch')){const o=d.o[+t.dataset.j],a=sec.querySelector('.ans');sec.querySelectorAll('.ch').forEach(x=>x.classList.remove('ok','no'));t.classList.add(o[2]?'ok':'no');a.hidden=false;a.textContent=o[1]}
+ else if(t.classList.contains('pl')){sec.querySelectorAll('.pl').forEach(x=>x.classList.remove('ok'));t.classList.add('ok');const a=sec.querySelector('.ans');a.hidden=false;a.textContent='التزامك: «'+t.textContent+'». شاركه مع صفك، وابدأ به هذا الأسبوع.'}};
+document.onkeydown=e=>{if(e.target.tagName=='INPUT')return;if(e.key=='ArrowLeft')go(cur+1);if(e.key=='ArrowRight')go(cur-1)};
+let x0=0;M.ontouchstart=e=>x0=e.touches[0].clientX;M.ontouchend=e=>{const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>90)go(cur+(d<0?1:-1))};
+const em=['🌈','🗣️','🤝','📚','🏫','🌍','💛','🎨','🧩','🌱','🎶','✏️'];
+$('#F').innerHTML=Array.from({length:16},(_,i)=>`<span class="${i%2?'dn':''}" style="left:${(i*6.4+Math.random()*4)%96}%;font-size:${22+Math.random()*22}px;animation-duration:${14+Math.random()*14}s;animation-delay:-${Math.random()*20}s;--x:${(Math.random()-.5)*80}px">${em[i%em.length]}</span>`).join('');
+function ci(){document.getElementById('in').classList.add('off');clearTimeout(window.it)}window.it=setTimeout(ci,6500);document.getElementById('sk').onclick=ci;
+go(0);
+</script></body></html>

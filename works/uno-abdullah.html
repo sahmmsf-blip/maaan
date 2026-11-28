@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أونو العباقرة</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg1:#fff;--bg2:#e9e7ff;--card:#fff;--ink:#1e1b4b;--mut:#6b6b99;--line:#c7d2fe;--r:#e11d48;--b:#2563eb;--g:#16a34a;--y:#f59e0b;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#15122e;--bg2:#241b4d;--card:#2a2457;--ink:#eef0ff;--mut:#a9a9d6;--line:#4b4690;color-scheme:dark}}
+:root[data-theme="dark"]{--bg1:#15122e;--bg2:#241b4d;--card:#2a2457;--ink:#eef0ff;--mut:#a9a9d6;--line:#4b4690;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Cairo,Tahoma,sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,rgba(124,58,237,.18) 0 120px,transparent 121px) fixed,radial-gradient(circle at 90% 35%,rgba(225,29,72,.14) 0 100px,transparent 101px) fixed,radial-gradient(circle at 10% 85%,rgba(37,99,235,.16) 0 140px,transparent 141px) fixed,linear-gradient(180deg,var(--bg1),var(--bg2)) fixed}
+.wrap{max-width:560px;margin:auto;padding:12px}
+h1{font-size:30px;margin:12px 0 6px;text-align:center;color:#fff;background:linear-gradient(135deg,#2563eb,#7c3aed);border:3px solid #fff;box-shadow:0 4px 14px rgba(124,58,237,.35);border-radius:14px;padding:8px}
+.sub{text-align:center;color:var(--mut);margin:0 0 14px}
+button{font:inherit;cursor:pointer;border:0;border-radius:14px;padding:12px 16px;background:linear-gradient(180deg,#3b82f6,#2748c9);color:#fff;font-weight:700;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+button:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35)}
+button.alt{background:var(--card);color:var(--ink);border:2px solid var(--line)}
+button.sel{border-color:#7c3aed;background:color-mix(in srgb,#7c3aed 20%,var(--card))}
+button:disabled{opacity:.45;cursor:default}
+button.big{display:block;width:100%;margin:10px 0;padding:16px;font-size:18px}
+small{display:block;font-weight:400;opacity:.8;font-size:12px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px;margin:10px 0;box-shadow:0 6px 18px rgba(49,46,129,.15)}
+.c{text-align:center}.row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+input{font:inherit;width:100%;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--ink);text-align:center}
+.lvs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.code{font-size:44px;font-weight:800;letter-spacing:6px;direction:ltr;color:#7c3aed}
+.top{display:flex;justify-content:space-between;align-items:center;font-weight:700}
+button.sm{padding:6px 12px}
+.pl{display:flex;justify-content:space-between;padding:7px 10px;border-radius:10px;border:2px solid transparent;margin:3px 0;background:color-mix(in srgb,var(--card) 80%,transparent)}
+.pl.on{border-color:#7c3aed;background:color-mix(in srgb,#7c3aed 18%,var(--card))}
+.table{display:flex;align-items:center;justify-content:center;gap:22px;margin:14px 0}
+.pile{width:70px;height:100px;font-size:34px;background:linear-gradient(135deg,#312e81,#7c3aed);border:3px solid #fff}
+.dir{font-size:34px;text-align:center}
+.cd{width:58px;height:86px;border-radius:12px;color:#fff;font-weight:800;font-size:28px;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 4px 10px rgba(0,0,0,.3);flex:none;text-shadow:0 2px 3px rgba(0,0,0,.4);padding:0}
+.cd.r{background:var(--r)}.cd.b{background:var(--b)}.cd.g{background:var(--g)}.cd.y{background:var(--y)}
+.cd.k{background:conic-gradient(var(--r) 0 25%,var(--b) 0 50%,var(--g) 0 75%,var(--y) 0)}
+.cd.no{opacity:.45;filter:grayscale(.5)}.cd.ok{transform:translateY(-10px);animation:pop .8s infinite alternate}
+@keyframes pop{to{transform:translateY(-16px)}}
+#hand{display:flex;gap:7px;overflow-x:auto;padding:22px 4px 10px}
+.log{text-align:center;font-weight:700;padding:8px;border-radius:12px;background:var(--card);border:2px solid var(--line)}
+.log.my{border-color:#7c3aed;animation:glow 1s infinite alternate}
+@keyframes glow{to{box-shadow:0 0 14px #7c3aed}}
+#ov:empty{display:none}
+#ov{position:fixed;inset:0;background:rgba(30,27,75,.75);display:flex;align-items:center;justify-content:center;z-index:5;padding:16px}
+.box{background:var(--card);border-radius:18px;padding:16px;max-width:420px;width:100%;border:3px solid #7c3aed}
+.tm{height:9px;background:var(--line);border-radius:6px;overflow:hidden}.tm i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#e11d48,#7c3aed)}
+.cdw{display:flex;justify-content:center;margin:12px 0}
+.q{font-size:34px;font-weight:800;direction:ltr;text-align:center;margin:6px 0 12px}
+.ans{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ans button{font-size:24px;direction:ltr}
+.ans button.good{background:#16a34a;color:#fff}.ans button.bad{background:#e11d48;color:#fff}
+.big2{font-size:64px;text-align:center}
+.cf{position:fixed;top:-40px;z-index:9;animation:fall 2.6s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+#ts{position:fixed;bottom:20px;inset-inline:0;text-align:center;z-index:9;pointer-events:none}
+#ts span{background:#1e1b4b;color:#fff;padding:8px 16px;border-radius:20px}
+#bg{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1}
+#bg span{position:absolute;bottom:-90px;opacity:0;animation:fly linear infinite;will-change:transform}
+#bg .m{font-weight:800;color:var(--ink);direction:ltr;white-space:nowrap}
+#bg .bk{width:44px;height:64px;border-radius:9px;border:2px solid #fff;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:22px}
+@keyframes fly{0%{transform:translateY(0) rotate(var(--r0));opacity:0}10%{opacity:var(--o)}90%{opacity:var(--o)}100%{transform:translateY(-115vh) rotate(var(--r1));opacity:0}}
+@media (prefers-reduced-motion:reduce){#bg{display:none}}
+.table .cd{animation:drop .35s}@keyframes drop{from{transform:scale(1.7) rotate(-14deg);opacity:0}}.box{animation:rise .25s}@keyframes rise{from{transform:translateY(30px);opacity:0}}.ans button.bad{animation:shake .4s}@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+</head>
+<body>
+<div id="bg"></div><div class="wrap" id="app"></div><div id="ov"></div><div id="ts"></div>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';'),rnd=n=>Math.floor(Math.random()*n);
+const COL={r:'أحمر',b:'أزرق',g:'أخضر',y:'أصفر'},AV=['🦊','🐼','🦁','🐸','🐙','🦄'],BN=['سوسو','أبو سمرة','لونا','نمر','ريما','زيزو','دانة','بطوط','فلة','ميمي','كنزي','ثعلوب','روبوت ⚙️','نيون','أبو الشباب','لولو'];
+const bots=n=>{const a=[...BN].sort(()=>Math.random()-.5),v=AV.filter(x=>x!=av).sort(()=>Math.random()-.5);return Array.from({length:n},(_,i)=>({n:a[i],av:v[i%v.length],bot:true}))};
+const LVN=['🌱 سهل','⭐ متوسط','🔥 صعب','🚀 خارق'],LVD=['ضرب','ضرب وقسمة','ضرب وقسمة وجمع وطرح','معادلات صف 8–10'],TM=[35,45,70,100];
+let bAt=0,S=null,mode='solo',sub='m',lvl=0,nb=2,room=null,isHost=false,myId='',myIdx=0,tm=null,bt=null,name='',av=AV[rnd(6)],streak=0,AC=null,Q=null,ST={w:0,s:0,b:0},sc=0,ll=1,t0=0,rn=4,rdy=0,hostSeen=0,tz=[2,2];
+try{name=localStorage.getItem('un')||'';ST=JSON.parse(localStorage.getItem('us'))||ST}catch(e){}
+const sv=()=>{try{localStorage.setItem('us',JSON.stringify(ST))}catch(e){}};
+const tmo=()=>(S.sub!='m'?[20,20,25,30]:TM)[S.lv];const RK=[[0,'مبتدئ 🌱'],[100,'برونزي 🥉'],[300,'فضي 🥈'],[700,'ذهبي 🥇'],[1500,'بلاتيني 💎'],[3000,'ماسي 💠'],[6000,'أسطورة 👑']];
+const rk=s=>{let i=0;RK.forEach((r,k)=>{if(s>=r[0])i=k});return i};
+const rkBar=()=>{const i=rk(ST.s),n=RK[i+1];return`<b style="font-size:20px">${RK[i][1]}</b>${n?`<div class="tm" style="margin:6px 0"><i style="width:${Math.round((ST.s-RK[i][0])/(n[0]-RK[i][0])*100)}%;background:linear-gradient(90deg,#7c3aed,#2563eb)"></i></div><small>${n[0]-ST.s} ⭐ للرتبة ${n[1]}</small>`:''}`};
+function beep(f,d,t){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;o.type=t||'sine';g.gain.value=.12;o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d)}catch(e){}}
+function toast(t){$('#ts').innerHTML='<span>'+esc(t)+'</span>';setTimeout(()=>$('#ts').innerHTML='',2500)}
+function modal(h){$('#ov').innerHTML=h}function closeModal(){clearTimeout(tm);$('#ov').innerHTML=''}
+/* ---------- المسائل ---------- */
+const r=(a,b)=>a+rnd(b-a+1);
+const cf=c=>c==1?'x':c+'x',pick=(...a)=>a[rnd(a.length)];
+const G=[
+/* سهل: ضرب فقط (بس صعب) */
+[()=>{const a=r(12,22),b=r(5,15);return[`${a} × ${b}`,a*b]},()=>{const a=r(101,300),b=r(3,8);return[`${a} × ${b}`,a*b]},()=>{const a=r(11,17),b=r(11,17);return[`${a} × ${b}`,a*b]},()=>{const a=r(3,8),b=r(3,10),c=r(3,8);return[`${a} × ${b} × ${c}`,a*b*c]}],
+/* متوسط: ضرب وقسمة */
+[()=>{const a=r(20,80),b=r(12,24);return[`${a} × ${b}`,a*b]},()=>{const b=r(7,20),x=r(15,50);return[`${b*x} ÷ ${b}`,x]},()=>{const b=r(6,16),x=r(25,80);return[`${b*x} ÷ ${b}`,x]},()=>{const a=r(7,17),x=r(12,30);return[`${a} × ? = ${a*x}`,x]},()=>{const a=r(12,30),b=r(3,9),d=r(3,12);return[`${a} × ${b} × ${d} ÷ ${d}`,a*b]}],
+/* صعب: ضرب وقسمة وجمع وطرح */
+[()=>{const a=r(180,800),b=r(180,800);return[`${a} + ${b}`,a+b]},()=>{const a=r(400,950),b=r(120,a-100);return[`${a} − ${b}`,a-b]},()=>{const a=r(12,24),b=r(5,15),c=r(12,24),d=r(5,15);return[`${a} × ${b} + ${c} × ${d}`,a*b+c*d]},()=>{const a=r(14,35),b=r(5,14),d=r(3,12),x=r(8,35);return[`${a} × ${b} − ${d*x} ÷ ${d}`,a*b-x]},()=>{const b=r(3,12),x=r(8,30),c=r(5,14),d=r(5,14),e=r(1,25);return[`${b*x} ÷ ${b} + ${c} × ${d} − ${e}`,x+c*d-e]}],
+/* خارق: معادلات صف 8 إلى 10 */
+[()=>{const x=r(2,12),a=r(4,8),c=r(1,3),b=r(1,18),d=(a-c)*x+b;return[`${cf(a)} + ${b} = ${cf(c)} + ${d} → x = ?`,x]},
+()=>{const p=r(2,12),q=r(1,p-1);return[`x² − ${p+q}x + ${p*q} = 0 → الجذر الأكبر = ?`,p]},
+()=>{let x,y,a1,b1,a2,b2;do{x=r(1,6);y=r(1,6);a1=r(2,5);b1=r(2,5);a2=r(2,5);b2=r(1,4)}while(a1*b2-a2*b1==0);return[`${cf(a1)} + ${b1==1?'':b1}y = ${a1*x+b1*y} | ${cf(a2)} + ${b2==1?'':b2}y = ${a2*x+b2*y} → x + y = ?`,x+y]},
+()=>{const x=r(2,12),a=r(1,6),b=r(1,6),v=(2*a+2*b)*x+a*a-b*b;return[`(x + ${a})² − (x − ${b})² = ${v} → x = ?`,x]},
+()=>{const b=r(3,12),a=r(1,8);return[`√(x + ${a}) = ${b} → x = ?`,b*b-a]},
+()=>{const B=pick(2,3,5),m=r(2,4),k=r(1,5);return[`${B}^(x − ${k}) = ${B**m} → x = ?`,m+k]},
+()=>{let a,b;do{a=r(2,7);b=r(2,7)}while(a==b);const k=r(1,6);return[`x/${a} + x/${b} = ${k*(a+b)} → x = ?`,a*b*k]},
+()=>{const a=r(2,9),b=r(1,10),x0=r(5,15),c=a*x0-b+r(1,a-1);return[`${a}x − ${b} < ${c} → أكبر عدد صحيح x = ?`,x0]},
+()=>{const a=r(2,4),b=r(1,9),c=r(1,12),k=r(3,8);return[`f(x) = ${a}x² + ${cf(b)} − ${c} → f(${k}) = ?`,a*k*k+b*k-c]},
+()=>{const a1=r(2,20),d=r(2,9),n=r(10,30);return[`متتالية حسابية: الحد الأول ${a1} والأساس ${d} → الحد رقم ${n} = ?`,a1+(n-1)*d]}]];
+const GQ=[
+[['كم عدد أيام الأسبوع؟','7','5','6','8'],['ما لون السماء في يوم صافٍ؟','أزرق','أخضر','أحمر','أصفر'],['أي حيوان يُلقّب بملك الغابة؟','الأسد','النمر','الفيل','الذئب'],['كم عدد أصابع اليد الواحدة؟','5','4','6','10'],['ما الكوكب الذي نعيش عليه؟','الأرض','المريخ','الزهرة','زحل'],['من أين تشرق الشمس؟','الشرق','الغرب','الشمال','الجنوب'],['ما عاصمة مصر؟','القاهرة','الإسكندرية','الجيزة','أسوان'],['ما أكبر حيوان في العالم؟','الحوت الأزرق','الفيل','الزرافة','القرش'],['كم عدد أشهر السنة؟','12','10','11','13'],['أي غاز في الهواء يحتاجه الإنسان ليعيش؟','الأكسجين','الهيليوم','الهيدروجين','الأرغون'],['ما عاصمة السعودية؟','الرياض','جدة','مكة المكرمة','الدمام'],['كم عدد ألوان قوس قزح؟','7','5','6','8']],
+[['ما عاصمة فرنسا؟','باريس','لندن','روما','مدريد'],['ما أكبر قارة في العالم مساحةً؟','آسيا','أفريقيا','أوروبا','أمريكا الشمالية'],['كم عدد كواكب المجموعة الشمسية؟','8','7','9','10'],['ما أكبر محيط في العالم؟','المحيط الهادئ','المحيط الأطلسي','المحيط الهندي','المحيط المتجمد الشمالي'],['ما لغة البرازيل الرسمية؟','البرتغالية','الإسبانية','الإنجليزية','الفرنسية'],['ما العملة المستخدمة في اليابان؟','الين','اليوان','الوون','الدولار'],['كم عدد لاعبي فريق كرة القدم داخل الملعب؟','11','9','10','12'],['ما أكبر دولة في العالم مساحةً؟','روسيا','كندا','الصين','الولايات المتحدة'],['أي عضو في الجسم يضخ الدم؟','القلب','الكبد','الرئتان','المعدة'],['ما عاصمة اليابان؟','طوكيو','كيوتو','أوساكا','سيول'],['ما الكوكب المعروف بالكوكب الأحمر؟','المريخ','الزهرة','عطارد','المشتري'],['ما أسرع حيوان بري؟','الفهد','الأسد','الحصان','الغزال']],
+[['من رسم لوحة الموناليزا؟','ليوناردو دا فينشي','مايكل أنجلو','بيكاسو','فان غوخ'],['ما عاصمة أستراليا؟','كانبرا','سيدني','ملبورن','بيرث'],['ما أصغر كوكب في المجموعة الشمسية؟','عطارد','المريخ','الزهرة','نبتون'],['كم عدد قارات العالم حسب التقسيم الشائع؟','7','5','6','8'],['ما الرمز الكيميائي للذهب؟','Au','Ag','Go','Fe'],['ما أعلى جبل في العالم؟','إفرست','كيه 2','كليمنجارو','مونت بلانك'],['في أي عام انتهت الحرب العالمية الثانية؟','1945','1939','1918','1950'],['ما أكبر عضو في جسم الإنسان؟','الجلد','الكبد','الدماغ','الرئتان'],['من مؤلف مسرحية «روميو وجولييت»؟','شكسبير','ديكنز','تولستوي','همنغواي'],['كم عدد عظام جسم الإنسان البالغ تقريبًا؟','206','150','300','106'],['ما عاصمة كندا؟','أوتاوا','تورونتو','فانكوفر','مونتريال'],['أي غاز تمتصه النباتات من الهواء؟','ثاني أكسيد الكربون','الأكسجين','الهيليوم','النيتروجين'],['ما أكبر صحراء حارة في العالم؟','الصحراء الكبرى','صحراء الربع الخالي','صحراء كالاهاري','صحراء النفود'],['من هو أول خليفة في الإسلام؟','أبو بكر الصديق','عمر بن الخطاب','عثمان بن عفان','علي بن أبي طالب'],['ما أطول نهر في أفريقيا؟','النيل','الكونغو','النيجر','الزمبيزي']],
+[['ما أصغر دولة في العالم مساحةً؟','الفاتيكان','موناكو','سان مارينو','ليختنشتاين'],['من أول إنسان وصل إلى سطح القمر؟','نيل أرمسترونغ','يوري غاغارين','باز ألدرين','جون غلين'],['ما أكبر كوكب في المجموعة الشمسية؟','المشتري','زحل','نبتون','الأرض'],['في أي عام هبط الإنسان على القمر لأول مرة؟','1969','1961','1975','1957'],['من أول إنسان سافر إلى الفضاء؟','يوري غاغارين','نيل أرمسترونغ','باز ألدرين','جون غلين'],['ما عاصمة تركيا؟','أنقرة','إسطنبول','إزمير','أنطاليا'],['ما عاصمة البرازيل؟','برازيليا','ريو دي جانيرو','ساو باولو','سالفادور'],['ما عاصمة سويسرا؟','برن','زيورخ','جنيف','بازل'],['من صاحب قانون الجاذبية الشهير؟','إسحاق نيوتن','ألبرت أينشتاين','غاليليو','داروين'],['من اخترع الهاتف المشهور؟','ألكسندر غراهام بيل','توماس إديسون','نيكولا تيسلا','ماركوني'],['ما أعمق محيط في العالم؟','المحيط الهادئ','المحيط الأطلسي','المحيط الهندي','المحيط المتجمد الجنوبي'],['ما أطول سور في العالم؟','سور الصين العظيم','سور برلين','سور هادريان','سور القدس'],['من مكتشف البنسلين؟','ألكسندر فليمنغ','لويس باستور','ماري كوري','إدوارد جينر'],['في أي مدينة يقع برج بيزا المائل؟','بيزا','روما','ميلانو','فلورنسا'],['ما اسم أكبر جزيرة في العالم؟','غرينلاند','مدغشقر','بورنيو','سومطرة']]
+];
+const GD=[
+[['أين يقع برج إيفل؟','فرنسا','إيطاليا','ألمانيا','إسبانيا'],['أي دولة عاصمتها الرياض؟','السعودية','مصر','الأردن','الكويت'],['أهرامات الجيزة في أي دولة؟','مصر','السودان','المغرب','العراق'],['ما عاصمة الإمارات؟','أبوظبي','دبي','الشارقة','عجمان'],['أي دولة يوجد فيها تمثال الحرية؟','الولايات المتحدة','بريطانيا','كندا','أستراليا'],['ما عاصمة الأردن؟','عمّان','إربد','الزرقاء','العقبة']],
+[['ما عاصمة إيطاليا؟','روما','ميلانو','نابولي','البندقية'],['في أي دولة يقع برج خليفة؟','الإمارات','قطر','السعودية','الكويت'],['ما عاصمة ألمانيا؟','برلين','ميونخ','هامبورغ','فرانكفورت'],['ما عاصمة إسبانيا؟','مدريد','برشلونة','إشبيلية','فالنسيا'],['ما عاصمة الجزائر؟','الجزائر العاصمة','وهران','قسنطينة','عنابة'],['ما عاصمة المغرب؟','الرباط','الدار البيضاء','مراكش','فاس']],
+[['ما عاصمة الأرجنتين؟','بوينس آيرس','سانتياغو','ليما','مونتيفيديو'],['ما عاصمة كوريا الجنوبية؟','سيول','بوسان','بيونغيانغ','طوكيو'],['ما عاصمة روسيا؟','موسكو','سانت بطرسبرغ','كييف','مينسك'],['ما عاصمة نيجيريا؟','أبوجا','لاغوس','كانو','إبادان'],['ما عاصمة سوريا؟','دمشق','حلب','حمص','اللاذقية'],['ما عاصمة فيتنام؟','هانوي','هو تشي منه','دانانغ','هوي']],
+[['ما عاصمة كازاخستان؟','أستانا','ألماتي','بيشكيك','طشقند'],['ما عاصمة نيوزيلندا؟','ويلنغتون','أوكلاند','كرايستشيرش','هاميلتون'],['ما أكبر دولة عربية مساحةً؟','الجزائر','السعودية','السودان','ليبيا'],['في أي دولة يقع جبل كليمنجارو؟','تنزانيا','كينيا','أوغندا','إثيوبيا'],['ما عاصمة تايلاند؟','بانكوك','هانوي','مانيلا','كوالالمبور'],['ما أكبر دولة في العالم من حيث عدد السكان حاليًا؟','الهند','الصين','الولايات المتحدة','إندونيسيا']]
+];
+const GF=[
+[['ما اسم الأكلة الإيطالية المدورة بالجبن والصلصة؟','بيتزا','سوشي','فلافل','تاكو'],['ما الأكلة اليابانية المشهورة بالأرز والسمك؟','سوشي','بيتزا','برغر','تاكو'],['أي مطعم شعاره حرف M الذهبي؟','ماكدونالدز','برغر كنغ','كنتاكي','سوبواي'],['ما المشروب الغازي الأسود المشهور؟','كوكاكولا','سبرايت','فانتا','ميرندا'],['من أي حيوان نحصل على البيض؟','الدجاجة','البقرة','الخروف','الحصان'],['ما المكوّن الأساسي للحمص؟','حبوب الحمص','العدس','الفول','الأرز']],
+[['ما الدولة الأصلية للبيتزا؟','إيطاليا','فرنسا','الولايات المتحدة','اليونان'],['ما الدولة الأصلية للسوشي؟','اليابان','الصين','كوريا','تايلاند'],['أي مطعم مشهور بالدجاج المقلي وصورة «الكولونيل»؟','كنتاكي','ماكدونالدز','هارديز','دومينوز'],['أي مطعم مشهور بسندويشات «الساب» الطويلة؟','سوبواي','كنتاكي','دومينوز','هارديز'],['أي مقهى شعاره حورية خضراء؟','ستاربكس','كوستا','دانكن','تيم هورتنز'],['ما الأكلة المكسيكية المشهورة بالتورتيلا؟','تاكو','باستا','سوشي','كباب']],
+[['مما يُصنع الجبن؟','الحليب','البيض','الأرز','القمح'],['من أي منطقة أصل أكلة الكسكس؟','شمال أفريقيا','اليابان','المكسيك','الهند'],['ما الدولة الأصلية لأكلة الباييلا؟','إسبانيا','إيطاليا','فرنسا','البرتغال'],['ما المكوّن الرئيسي في التبولة؟','البقدونس','الخس','الجرجير','النعناع'],['أي مطعم يظهر في شعاره رجل بلحية بيضاء ونظارة؟','كنتاكي','ماكدونالدز','بوبايز','وينديز'],['من أي نبتة تُصنع الشوكولاتة؟','الكاكاو','البن','الشاي','قصب السكر']],
+[['أي دولة مشهورة بصناعة الشوكولاتة والساعات؟','سويسرا','هولندا','الدنمارك','النرويج'],['ما أغلى توابل في العالم سعرًا؟','الزعفران','الفلفل الأسود','القرفة','الكمون'],['ما الدولة الأصلية لأكلة الكيمتشي؟','كوريا','اليابان','الصين','فيتنام'],['أي أكلة تُقلب من القدر على الصحن بالأرز واللحم والخضار؟','المقلوبة','الكبسة','المنسف','المندي'],['ما اسم الحلوى الفرنسية المشهورة على شكل هلال؟','الكرواسون','الدونات','الكعك','البيغل'],['ما الجبنة البيضاء الشهيرة التي تُنسب لليونان؟','فيتا','موزاريلا','بارميزان','شيدر']]
+];
+const GV=[
+[['ما اسم السباك الشهير ذو القبعة الحمراء؟','ماريو','سونيك','باك مان','كراش'],['أي لعبة كل شيء فيها مكعبات للبناء والتعدين؟','ماينكرافت','فورتنايت','روبلوكس','تتريس'],['أي لعبة تتساقط فيها قطع ملونة لتكوين صفوف؟','تتريس','باك مان','ماريو','سونيك'],['ما اسم القنفذ الأزرق السريع؟','سونيك','ماريو','زيلدا','كراش'],['أي شركة تصنع جهاز بلايستيشن؟','سوني','مايكروسوفت','نينتندو','أبل'],['أي لعبة تُلعب بمضرب وكرة بيضاء صغيرة على طاولة؟','تنس الطاولة','الجولف','البولينج','البلياردو']],
+[['أي شركة صنعت لعبة ماريو؟','نينتندو','سوني','سيغا','مايكروسوفت'],['أي لعبة معروفة بالمعركة الأخيرة (باتل رويال) والبناء السريع؟','فورتنايت','ماينكرافت','سيمز','روبلوكس'],['أي لعبة تبحث فيها عن الخائن داخل سفينة فضائية؟','أمونغ أس','فورتنايت','روبلوكس','ماينكرافت'],['كم عدد لاعبي فريق كرة السلة داخل الملعب؟','5','6','7','11'],['أي لعبة هدفها جمع الوحوش الصغيرة بالكرات الحمراء والبيضاء؟','بوكيمون','ماريو','زيلدا','سونيك'],['ما لون شخصية باك مان؟','أصفر','أحمر','أزرق','أخضر']],
+[['كم عدد مربعات رقعة الشطرنج؟','64','36','81','100'],['ما أقوى قطعة في الشطرنج؟','الوزير','الملك','القلعة','الفيل'],['من الأميرة التي ينقذها ماريو في الغالب؟','بيتش','زيلدا','ميدوسا','روزالينا'],['أي شركة تصنع جهاز إكس بوكس؟','مايكروسوفت','سوني','نينتندو','أبل'],['في أي لعبة يوجد وحش اسمه «كريبر»؟','ماينكرافت','فورتنايت','روبلوكس','تتريس'],['من بطل سلسلة ألعاب زيلدا؟','لينك','زيلدا','غانون','ماريو']],
+[['أي شركة صنعت لعبة باك مان؟','نامكو','سيغا','أتاري','كونامي'],['ما اسم جهاز نينتندو المحمول الذي صدر عام 2017؟','سويتش','وي','دي إس','غيم كيوب'],['من عدو ماريو الأشهر؟','باوزر','غانون','إيغمان','سونيك'],['كم عدد قطع الدومينو المعتادة؟','28','24','32','36'],['في أي عام صدرت النسخة الكاملة من ماينكرافت؟','2011','2009','2013','2015'],['ما اسم رفيق ماريو الأخضر؟','لويجي','لينك','واريو','يوشي']]
+];
+GF[0].push(['ما الفاكهة الصفراء المنحنية التي يحبها القرود؟','الموز','التفاح','العنب','البرتقال'],['ما الخضار البرتقالية التي يحبها الأرنب؟','الجزر','الخيار','البطاطس','الباذنجان'],['ما المشروب الساخن المصنوع من أوراق نبات؟','الشاي','العصير','الحليب البارد','الكولا']);
+GF[1].push(['ما الأكلة المصرية الشهيرة من الأرز والعدس والمعكرونة؟','الكشري','الملوخية','الفتة','المحشي'],['ما الأكلة السعودية الشهيرة بالأرز واللحم أو الدجاج؟','الكبسة','المنسف','الكشري','المقلوبة'],['ما الأكلة الأردنية الوطنية المصنوعة بالجميد والأرز؟','المنسف','الكبسة','المقلوبة','الكشري']);
+GF[2].push(['ما الأكلة اليابانية المقلية بالخضار والروبيان؟','تمبورا','رامن','سوشي','أودون'],['ما المكوّن الأساسي لمعجون الطحينة؟','السمسم','الفول السوداني','الحمص','اللوز'],['ما الأكلة الإيطالية الطبقية باللحم والصلصة والمعكرونة؟','لازانيا','ريزوتو','رافيولي','تيراميسو']);
+GF[3].push(['ما الدولة الأصلية للباستا كاربونارا؟','إيطاليا','فرنسا','إسبانيا','اليونان'],['ما اسم الجبن الأزرق الفرنسي المشهور؟','روكفور','موزاريلا','فيتا','شيدر'],['ما الحلوى المصنوعة من الجبنة والقطر والكنافة الخشنة؟','الكنافة','البقلاوة','القطايف','المهلبية']);
+GV[0].push(['ما لون الطائر الغاضب الأشهر في لعبة أنغري بيردز؟','أحمر','أزرق','أخضر','أسود'],['كم عدد القطع لكل لاعب في بداية الشطرنج؟','16','12','10','20'],['في أي لعبة ترمي الكرة لإسقاط الأوتاد؟','البولينج','الجولف','التنس','البلياردو']);
+GV[1].push(['كم مدة مباراة كرة القدم الرسمية؟','90 دقيقة','60 دقيقة','45 دقيقة','120 دقيقة'],['كم عدد أشواط مباراة كرة القدم؟','شوطان','ثلاثة','أربعة','خمسة'],['أي دولة نظّمت كأس العالم 2022؟','قطر','روسيا','البرازيل','ألمانيا']);
+GV[2].push(['كم مرة فازت البرازيل بكأس العالم؟','5 مرات','3 مرات','4 مرات','6 مرات'],['أي دولة فازت بكأس العالم 2022؟','الأرجنتين','فرنسا','البرازيل','كرواتيا'],['من أي دولة نشأت رياضة الجودو؟','اليابان','الصين','كوريا','تايلاند']);
+GV[3].push(['في أي دولة أُقيمت أول دورة أولمبية حديثة عام 1896؟','اليونان','فرنسا','بريطانيا','إيطاليا'],['كم لاعبًا في فريق الكرة الطائرة داخل الملعب؟','6','5','7','8'],['أي دولة فازت بأول كأس عالم لكرة القدم عام 1930؟','الأوروغواي','البرازيل','الأرجنتين','إيطاليا']);
+const CT=[['مصر','القاهرة','🇪🇬',0],['السعودية','الرياض','🇸🇦',0],['فرنسا','باريس','🇫🇷',0],['إيطاليا','روما','🇮🇹',0],['اليابان','طوكيو','🇯🇵',0],['ألمانيا','برلين','🇩🇪',0],['بريطانيا','لندن','🇬🇧',0],['إسبانيا','مدريد','🇪🇸',0],['الصين','بكين','🇨🇳',0],['روسيا','موسكو','🇷🇺',0],['تركيا','أنقرة','🇹🇷',0],['الأردن','عمّان','🇯🇴',0],['الإمارات','أبوظبي','🇦🇪',0],['الولايات المتحدة','واشنطن العاصمة','🇺🇸',0],['الهند','نيودلهي','🇮🇳',0],['البرازيل','برازيليا','🇧🇷',0],
+['العراق','بغداد','🇮🇶',1],['سوريا','دمشق','🇸🇾',1],['لبنان','بيروت','🇱🇧',1],['الكويت','مدينة الكويت','🇰🇼',1],['قطر','الدوحة','🇶🇦',1],['سلطنة عُمان','مسقط','🇴🇲',1],['اليمن','صنعاء','🇾🇪',1],['ليبيا','طرابلس','🇱🇾',1],['تونس','تونس العاصمة','🇹🇳',1],['الجزائر','الجزائر العاصمة','🇩🇿',1],['المغرب','الرباط','🇲🇦',1],['السودان','الخرطوم','🇸🇩',1],['البحرين','المنامة','🇧🇭',1],['كندا','أوتاوا','🇨🇦',1],['أستراليا','كانبرا','🇦🇺',1],['المكسيك','مكسيكو سيتي','🇲🇽',1],['الأرجنتين','بوينس آيرس','🇦🇷',1],['كوريا الجنوبية','سيول','🇰🇷',1],['اليونان','أثينا','🇬🇷',1],['البرتغال','لشبونة','🇵🇹',1],['هولندا','أمستردام','🇳🇱',1],
+['السويد','ستوكهولم','🇸🇪',2],['النرويج','أوسلو','🇳🇴',2],['الدنمارك','كوبنهاغن','🇩🇰',2],['فنلندا','هلسنكي','🇫🇮',2],['بولندا','وارسو','🇵🇱',2],['النمسا','فيينا','🇦🇹',2],['سويسرا','برن','🇨🇭',2],['بلجيكا','بروكسل','🇧🇪',2],['إيران','طهران','🇮🇷',2],['باكستان','إسلام آباد','🇵🇰',2],['ماليزيا','كوالالمبور','🇲🇾',2],['تايلاند','بانكوك','🇹🇭',2],['فيتنام','هانوي','🇻🇳',2],['الفلبين','مانيلا','🇵🇭',2],['كوبا','هافانا','🇨🇺',2],['تشيلي','سانتياغو','🇨🇱',2],['بيرو','ليما','🇵🇪',2],['كولومبيا','بوغوتا','🇨🇴',2],['كينيا','نيروبي','🇰🇪',2],['إثيوبيا','أديس أبابا','🇪🇹',2],['نيجيريا','أبوجا','🇳🇬',2],['أوكرانيا','كييف','🇺🇦',2],['أيرلندا','دبلن','🇮🇪',2],
+['كازاخستان','أستانا','🇰🇿',3],['نيوزيلندا','ويلنغتون','🇳🇿',3],['بنغلاديش','دكا','🇧🇩',3],['نيبال','كاتماندو','🇳🇵',3],['أفغانستان','كابول','🇦🇫',3],['منغوليا','أولان باتور','🇲🇳',3],['كوريا الشمالية','بيونغيانغ','🇰🇵',3],['السنغال','داكار','🇸🇳',3],['غانا','أكرا','🇬🇭',3],['تنزانيا','دودوما','🇹🇿',3],['أوغندا','كمبالا','🇺🇬',3],['الإكوادور','كيتو','🇪🇨',3],['فنزويلا','كاراكاس','🇻🇪',3],['الأوروغواي','مونتيفيديو','🇺🇾',3],['رومانيا','بوخارست','🇷🇴',3],['المجر','بودابست','🇭🇺',3],['التشيك','براغ','🇨🇿',3],['صربيا','بلغراد','🇷🇸',3],['كرواتيا','زغرب','🇭🇷',3],['آيسلندا','ريكيافيك','🇮🇸',3],['الصومال','مقديشو','🇸🇴',3],['موريتانيا','نواكشوط','🇲🇷',3]];
+const LM=[['برج إيفل','فرنسا',0,0],['الأهرامات','مصر',0,0],['سور الصين العظيم','الصين',0,0],['تمثال الحرية','الولايات المتحدة',0,0],['برج خليفة','الإمارات',0,0],['الكعبة المشرفة','السعودية',0,0],['برج بيزا المائل','إيطاليا',0,0],['الكولوسيوم','إيطاليا',0,0],['دبي','الإمارات',0,1],['إسطنبول','تركيا',0,1],['الإسكندرية','مصر',0,1],['جدة','السعودية',0,1],['نيويورك','الولايات المتحدة',0,1],
+['تاج محل','الهند',1,0],['البتراء','الأردن',1,0],['ساعة بيغ بن','بريطانيا',1,0],['آيا صوفيا','تركيا',1,0],['بوابة براندنبورغ','ألمانيا',1,0],['الساحة الحمراء','روسيا',1,0],['جبل فوجي','اليابان',1,0],['دار أوبرا سيدني','أستراليا',1,0],['ساغرادا فاميليا','إسبانيا',1,0],['تمثال المسيح المخلص','البرازيل',1,0],['مرسيليا','فرنسا',1,1],['ميلانو','إيطاليا',1,1],['مومباي','الهند',1,1],['الدار البيضاء','المغرب',1,1],['ميونخ','ألمانيا',1,1],['سيدني','أستراليا',1,1],['برشلونة','إسبانيا',1,1],
+['ماتشو بيتشو','بيرو',2,0],['أنغكور وات','كمبوديا',2,0],['الأكروبوليس','اليونان',2,0],['قصر الحمراء','إسبانيا',2,0],['ستونهنج','بريطانيا',2,0],['برجا بتروناس','ماليزيا',2,0],['متحف اللوفر','فرنسا',2,0],['حلب','سوريا',2,1],['البصرة','العراق',2,1],['بنغازي','ليبيا',2,1],['وهران','الجزائر',2,1],['أوساكا','اليابان',2,1],['زيورخ','سويسرا',2,1],['فانكوفر','كندا',2,1],
+['جبل كليمنجارو','تنزانيا',3,0],['معبد أبو سمبل','مصر',3,0],['قلعة حلب','سوريا',3,0],['المسجد الأزرق','تركيا',3,0],['المسجد الأموي','سوريا',3,0],['تيوتيهواكان','المكسيك',3,0],['ساو باولو','البرازيل',3,1],['لاغوس','نيجيريا',3,1],['بوسان','كوريا الجنوبية',3,1],['كراتشي','باكستان',3,1],['كيب تاون','جنوب أفريقيا',3,1],['مونتريال','كندا',3,1],['أنطاليا','تركيا',3,1]];
+function mkC(l){const T=[[0],[0,1],[1,2],[2,3]][l],P=CT.filter(c=>T.includes(c[3])),c=P[rnd(P.length)],t=rnd(4);
+const dist=(k,ex)=>{const o=new Set();while(o.size<3){const v=CT[rnd(CT.length)][k];if(v!=ex)o.add(v)}return[...o]};
+if(t==0)return[`ما عاصمة ${c[0]}؟`,0,[c[1],...dist(1,c[1])]];
+if(t==1)return[`${c[1]} هي عاصمة أي دولة؟`,0,[c[0],...dist(0,c[0])]];
+if(t==2)return[`أي دولة يمثلها هذا العلم؟ ${c[2]}`,0,[c[0],...dist(0,c[0])]];
+const M=LM.filter(x=>l==0?x[2]==0:x[2]==l||x[2]==l-1),m=M[rnd(M.length)];
+return[m[3]?`مدينة ${m[0]} تقع في أي دولة؟`:`«${m[0]}» موجود في أي دولة؟`,0,[m[1],...dist(0,m[1])]]}
+const seen=new Set();
+function pickQ(l){const k0=S.sub,K=k0=='g'?['q','d','c','f','v']:k0=='d'?['d','c','c']:k0=='f'?['f']:['v'],k=K[rnd(K.length)];
+if(k=='c')return mkC(l);const X={q:GQ,d:GD,f:GF,v:GV}[k],B=[l-1,l,l,l+1].filter(i=>i>=0&&i<4).flatMap(i=>X[i]),e=B[rnd(B.length)];return[e[0],0,e.slice(1)]}
+let lastQ='';const gq=l=>{let x,n=0;do{x=pickQ(l)}while(seen.has(x[0])&&++n<80);if(seen.has(x[0])){seen.clear();n=0;do{x=pickQ(l)}while(x[0]==lastQ&&++n<20)}seen.add(x[0]);lastQ=x[0];return x};
+function opts(a){const s=new Set([a]);while(s.size<4){const v=a+[1,2,3,10,-1,-2,-3,-10,5,-5][rnd(10)];if(v>=0)s.add(v)}return[...s].sort(()=>Math.random()-.5)}
+/* ---------- منطق اللعبة ---------- */
+function mk(){let d=[];'rbgy'.split('').forEach(c=>{for(let v=0;v<10;v++){d.push(c+v);if(v)d.push(c+v)}['S','R','D'].forEach(x=>d.push(c+x,c+x))});for(let i=0;i<4;i++)d.push('W','F');for(let i=d.length-1;i>0;i--){const j=rnd(i+1);[d[i],d[j]]=[d[j],d[i]]}return d}
+const lab=c=>c=='W'?'🌈':c=='F'?'+4':({S:'⛔',R:'⇄',D:'+2'})[c[1]]||c[1];
+const nmc=c=>c=='W'?'جوكر 🌈':c=='F'?'جوكر +4 🌈':lab(c)+' '+COL[c[0]];
+const can=c=>c=='W'||c=='F'||c[0]==S.col||c[1]==S.tv;
+function newGame(ps){seen.clear();ll=1;sc=0;const d=mk();ps.forEach(p=>{p.h=d.splice(0,7).sort();p.hp={d2:1,r2:1,f:2}});let t=null;while(!t){t=d.shift();if(t=='W'||t=='F'||'SRD'.includes(t[1])){d.push(t);t=null}}S={ps,d,top:t,col:t[0],tv:t[1],dir:1,turn:0,win:-1,log:'ابدأ اللعب!',lv:lvl,sub:sub,drew:-1,ph:'play'}}
+const nx=(i,k=1)=>{const n=S.ps.length;let j=i;while(k--){do{j=((j+S.dir)%n+n)%n}while(S.ps[j].dn&&j!=i)}return j};
+function draw(i,k){const h=S.ps[i].h;while(k--){if(!S.d.length)S.d=mk();h.push(S.d.shift())}h.sort()}
+function playC(i,ci,col){const p=S.ps[i],c=p.h.splice(ci,1)[0],w=c=='W'||c=='F';S.top=c;S.tv=c[1]||'';S.col=w?col:c[0];let t=nx(i),m=p.n+' لعب '+nmc(c)+(w?' ← '+COL[col]:'');
+if(c[1]=='S'){t=nx(t);m+=' ⛔'}
+if(c[1]=='R'){S.dir*=-1;t=S.ps.length==2?i:nx(i)}
+if(c[1]=='D'||c=='F'){const v=nx(i);draw(v,c=='F'?4:2);m+=' ← سحب '+S.ps[v].n+(c=='F'?' 4':' 2');t=nx(v)}
+if(!p.h.length){if(S.tm){p.dn=1;m+=' ✅ خلّص أوراقه!';if(S.ps.filter(x=>x.t==p.t).every(x=>x.dn)){S.win=p.t;S.ph='over'}else S.turn=S.ps[t].dn?nx(t):t}else{S.win=i;S.ph='over'}}else{S.turn=t;if(p.h.length==1)m+=' — أونو! 🔔'}
+S.log=m}
+function act(i,a){if(!S||S.ph!='play'||S.turn!=i||!a)return;S.th=null;const p=S.ps[i],dr=S.drew==i;S.drew=-1;
+if(a.t=='g'){p.hp=p.hp||{d2:0,r2:0};p.hp[a.h]=(p.hp[a.h]||0)+1;S.log=p.n+' كسب مساعدة 🎁 '+({d2:'اسحب 2',r2:'شيل 2',f:'احذف خيارين'})[a.h];S.drew=dr?i:-1;return after()}
+if(a.t=='h'){if(!p.hp||!(p.hp[a.h]>0)){S.drew=dr?i:-1;return}
+if(a.h=='f'){p.hp.f--;S.drew=dr?i:-1;return after()}
+if(a.h=='d2'){const v=nx(i);draw(v,2);S.log=p.n+' استخدم اسحب 2 🎯 ← سحب '+S.ps[v].n+' ورقتين'}
+else{if(p.h.length<3){S.drew=dr?i:-1;return}const ix=p.h.map((c,k)=>k).sort((x,y)=>can(p.h[x])-can(p.h[y]));ix.slice(0,2).sort((x,y)=>y-x).forEach(k=>p.h.splice(k,1));S.log=p.n+' شال ورقتين 🗑️'}
+p.hp[a.h]--;S.drew=dr?i:-1;return after()}
+if(a.t=='n'){if(!dr)return;S.log=p.n+' مرّر ⏭️';S.turn=nx(i)}
+else if(a.t=='p'){const c=p.h[a.c];if(!c||!can(c)){S.drew=dr?i:-1;return}playC(i,a.c,'rbgy'.includes(a.col)&&a.col?a.col:'r')}
+else{const f=a.t=='f';if(!f&&dr){S.drew=i;return}draw(i,1);if(!f&&!p.bot&&p.h.some(can)){S.drew=i;S.log=p.n+' سحب ورقة — العب أو مرّر'}else{S.log=p.n+(f?' غلط وسحب ورقة ❌':' سحب ورقة');S.turn=nx(i)}}
+after()}
+function after(){render();if(room&&isHost&&S)sync();botTick()}
+function sync(){room.emit('sync',JSON.parse(JSON.stringify(S,(k,v)=>k=='d'?undefined:v))).catch(()=>{})}
+function botTick(){clearTimeout(bt);if(S&&S.ph=='play'&&(mode=='solo'||isHost)&&S.ps[S.turn].bot)bt=setTimeout(bot,700);bAt=Date.now()}
+function bot(){bAt=Date.now();if(!S||S.ph!='play')return;const i=S.turn,p=S.ps[i];if(!p.bot)return;if(p.hp){if(p.h.length>=7&&p.hp.r2>0)return act(i,{t:'h',h:'r2'});if(p.hp.d2>0&&Math.random()<.3)return act(i,{t:'h',h:'d2'})}const ok=p.h.map((c,k)=>can(c)?k:-1).filter(k=>k>=0);
+if(!ok.length)return act(i,{t:'d'});const q=S.sub!='m'?'❓':G[S.lv][rnd(G[S.lv].length)]()[0],win=Math.random()<[.9,.8,.7,.6][S.lv];S.th={i,q};render();if(room&&isHost)sync();bt=setTimeout(()=>{if(!S||S.ph!='play'||S.turn!=i)return;if(!win)return act(i,{t:'f'});
+const ok2=p.h.map((c,k)=>can(c)?k:-1).filter(k=>k>=0);if(!ok2.length)return act(i,{t:'d'});const k=ok2.find(k=>p.h[k]!='W'&&p.h[k]!='F');const kk=k===undefined?ok2[0]:k;
+const col=['r','b','g','y'].sort((a,b)=>p.h.filter(x=>x[0]==b).length-p.h.filter(x=>x[0]==a).length)[0];act(i,{t:'p',c:kk,col})},[1600,2000,2500,3000][S.lv]+rnd(800))}
+function send(a){if(mode=='solo'||isHost)act(myIdx,a);else room.emit('act',a).catch(()=>{})}
+/* ---------- الواجهات ---------- */
+function getName(){const v=($('#nm')?.value||'').trim().slice(0,14);name=v||name||'لاعب';try{localStorage.setItem('un',name)}catch(e){}}
+function menu(){seen.clear();clearTimeout(bt);closeModal();S=null;if(room){room.leave();room=null}isHost=false;
+$('#app').innerHTML=`<h1>🎴 أونو العباقرة</h1><p class="sub">أونو بس لازم تحل المسألة قبل ما تلعب الورقة!</p><div class="card c" style="font-weight:800">${rkBar()}<br>⭐ ${ST.s} نجمة &nbsp;·&nbsp; 🏆 ${ST.w} فوز &nbsp;·&nbsp; 🔥 ${ST.b} أفضل سلسلة</div>
+<div class="card"><input id="nm" maxlength="14" placeholder="اكتب اسمك" value="${esc(name)}"></div>
+<div class="card"><b>النوع</b><div class="lvs">${[['m','🔢 رياضيات'],['g','🌍 عامة (خليط)'],['d','🗺️ دول'],['f','🍔 مطاعم وأكل'],['v','🎮 ألعاب']].map(([k,n])=>`<button class="alt ${sub==k?'sel':''}" data-a="sub" data-v="${k}">${n}</button>`).join('')}</div></div>
+<div class="card"><b>المستوى</b><div class="lvs">${LVN.map((n,i)=>`<button class="alt ${i==lvl?'sel':''}" data-a="lv" data-v="${i}">${n}</button>`).join('')}</div></div>
+<div class="card"><b>عدد الخصوم</b><div class="row" style="margin-top:8px">${[1,2,3,4].map(n=>`<button class="alt ${n==nb?'sel':''}" data-a="nb" data-v="${n}">${n}</button>`).join('')}</div></div>
+<button class="big" data-a="solo">🤖 العب ضد الكمبيوتر</button>
+<button class="big" data-a="friends" style="background:linear-gradient(180deg,#f97316,#e11d48)">👥 العب مع أصحابي</button>
+<button class="big" data-a="online" style="background:linear-gradient(180deg,#a855f7,#6d28d9)">🌐 لعب أونلاين (غرف)</button>
+<div class="card"><small style="opacity:1">📖 اختار ورقة تناسب اللون أو الرقم، حل المسألة بسرعة، وإذا صح بتنلعب. غلطت أو خلص الوقت؟ بتسحب ورقة. ⛔ تخطي، ⇄ عكس، +2 و🌈 جوكر. أول واحد يخلص أوراقه يفوز!</small></div>`}
+function online(){getName();$('#app').innerHTML=`<h1>🌐 أونلاين</h1><div class="card"><input id="nm" maxlength="14" placeholder="اسمك" value="${esc(name)}"></div><div class="card c"><b>عدد اللاعبين</b><div class="row" style="margin:8px 0">${[1,2,3,4,5,6].map(n=>`<button class="alt ${n==rn?'sel':''}" data-a="rn" data-v="${n}">${n}</button>`).join('')}</div><small>المقاعد الفاضية بتتعبى بالكمبيوتر 🤖</small></div><button class="big" data-a="create">➕ سوّي غرفة جديدة</button><div class="card c"><b>أو ادخل غرفة</b><input id="cd" maxlength="4" placeholder="رمز الغرفة" style="margin:8px 0;direction:ltr;text-transform:uppercase"><button data-a="join">🚪 ادخل</button></div><p class="sub">اللاعبين لازم يفتحوا نفس الصفحة وهم مسجلين دخول.</p><button class="alt big" data-a="back">رجوع</button>`}
+const plist=()=>room.peers().filter(p=>p.kind=='viewer').sort((a,b)=>(b.presence.h||0)-(a.presence.h||0)||(a.peer<b.peer?-1:1));
+const hl=()=>{const h=room.peers().find(p=>p.presence.h),l=h?+h.presence.l:0;return l>=0&&l<4?l:0};
+const cap=()=>{const h=room.peers().find(p=>p.presence.h);return Math.min(8,Math.max(1,+(h&&h.presence.m)||4))};
+function lobby(){if(S&&S.ph!='lobby')return;const N=cap(),ps=plist(),m=ps.find(p=>p.isMe&&p.sameTab);if(m)myId=m.peer;if(tr())return tlobby(ps);
+$('#app').innerHTML=`<h1>🚪 الغرفة</h1><div class="card c"><small>رمز الغرفة</small><div class="code">${esc(room.name.slice(4).toUpperCase())}</div><div class="row" style="margin-top:8px"><button class="alt sm" data-a="cp">📋 انسخ</button><button class="alt sm" data-a="sh">📤 شارك</button></div></div><div class="card c"><b>المستوى</b>${isHost?`<div class="lvs">${LVN.map((n,i)=>`<button class="alt sm ${i==lvl?'sel':''}" data-a="llv" data-v="${i}">${n}</button>`).join('')}</div>`:`<div>${LVN[hl()]}</div>`}</div><div class="card">${ps.slice(0,N).map(p=>`<div class="pl"><span>${esc(String(p.presence.av||'🙂').slice(0,4))} ${esc(String(p.presence.n||'لاعب').slice(0,14))}${p.presence.h?' 👑':p.presence.r?' ✅':''}</span></div>`).join('')}${Array.from({length:Math.max(N,2)-Math.min(ps.length,N)},()=>'<div class="pl" style="opacity:.55"><span>🤖 كمبيوتر</span></div>').join('')}${ps.length>N?'<small>⚠️ الغرفة ممتلئة، بعض اللاعبين برا</small>':''}</div>${isHost?`<button class="big" data-a="start">▶️ ابدأ (${Math.min(ps.length,N)}/${N})</button>`:`<button class="big" data-a="rdy" style="${rdy?'background:#16a34a':''}">${rdy?'✅ جاهز':'🙋 أنا جاهز'}</button><p class="sub">${ps.some(p=>p.presence.h)?'⏳ بانتظار المضيف يبدأ اللعبة…':'⚠️ ما لقيت مضيف، تأكد من الرمز'}</p>`}<button class="alt big" data-a="back">خروج</button>`}
+async function go(code,host,tmf){try{const R=window.claude?await claude.use('room'):null;if(!R)return toast('الأونلاين مو متوفر هون');
+room=await R.join('uno-'+code);isHost=host;mode='online';S=null;rdy=0;hostSeen=0;room.presence({n:name,av,h:host?1:0,m:host?(tmf?tz[0]+tz[1]:rn):0,l:lvl,r:0,t:-1,tm:host&&tmf?1:0,ta:tz[0],tb:tz[1]});
+room.onPeers(ch=>{if(!isHost){if(room.peers().some(p=>p.presence.h))hostSeen=1;else if(hostSeen){toast('المضيف طلع من الغرفة 👋');menu();return}}lobby();if(S&&S.ph!='lobby'){let l=0;ch.left.forEach(x=>S.ps.forEach(p=>{if(p.id==x.peer){p.bot=true;l=1}}));if(isHost){if(l)after();else if(ch.joined.length)sync()}}});
+room.on('sync',m=>{const hp=room.peers().find(p=>p.presence.h);if(m.isMe||isHost||!hp||hp.peer!=m.peer||!m.data||!m.data.ps)return;if(S&&S.ph=='over'&&m.data.ph=='play')closeModal();S=m.data;myIdx=S.ps.findIndex(p=>p.id==myId);render()});
+room.on('act',m=>{if(!isHost||!S||m.isMe)return;const i=S.ps.findIndex(p=>p.id==m.peer);if(i>=0)act(i,m.data)});
+room.on('react',m=>{const q=S&&S.ps&&S.ps.find(p=>p.id==m.peer);if(q&&m.data&&['😂','👏','🔥','😡'].includes(m.data.e)){toast(q.n+' '+m.data.e);beep(500,.08)}});
+lobby()}catch(e){toast('ما قدرت أفتح الغرفة')}}
+function start(){if(tr())return startT();const N=cap(),ps=plist().slice(0,N).map(p=>({id:p.peer,n:String(p.presence.n||'لاعب').slice(0,14),av:String(p.presence.av||'🙂').slice(0,4)})),bn=[...BN].sort(()=>Math.random()-.5);while(ps.length<Math.max(N,2))ps.push({n:bn[ps.length%bn.length],av:AV[(ps.length+2)%6],bot:true});newGame(ps);myIdx=ps.findIndex(p=>p.id==myId);after()}
+const tr=()=>{const h=room.peers().find(p=>p.presence.h);return !!h&&h.presence.tm==1};
+const tsz=()=>{const h=room.peers().find(p=>p.presence.h)||{presence:{}},f=v=>Math.min(4,Math.max(1,+v||2));return[f(h.presence.ta),f(h.presence.tb)]};
+function tlobby(ps){const sz=tsz(),T=[[],[]],ok=p=>p.presence.t===0||p.presence.t===1;ps.forEach(p=>{if(ok(p))T[p.presence.t].push(p)});const un=ps.filter(p=>!ok(p));
+const col=t=>`<div class="card" style="border-color:var(--${t?'b':'r'})"><b>${t?'🔵 الفريق الأزرق':'🔴 الفريق الأحمر'} (${Math.min(T[t].length,sz[t])}/${sz[t]})</b>${T[t].slice(0,sz[t]).map(p=>`<div class="pl"><span>${esc(String(p.presence.av||'🙂').slice(0,4))} ${esc(String(p.presence.n||'لاعب').slice(0,14))}${p.presence.h?' 👑':''}</span></div>`).join('')}${Array.from({length:Math.max(0,sz[t]-T[t].length)},()=>'<div class="pl" style="opacity:.5"><span>🤖 كمبيوتر</span></div>').join('')}<button class="alt sm" data-a="jt" data-v="${t}" style="margin-top:6px">انضم لهذا الفريق</button></div>`;
+$('#app').innerHTML=`<h1>🚪 غرفة الفرق</h1><div class="card c"><small>رمز الغرفة</small><div class="code">${esc(room.name.slice(4).toUpperCase())}</div><div class="row" style="margin-top:8px"><button class="alt sm" data-a="cp">📋 انسخ</button><button class="alt sm" data-a="sh">📤 شارك</button></div></div><div class="card c"><b>المستوى</b>${isHost?`<div class="lvs">${LVN.map((n,i)=>`<button class="alt sm ${i==lvl?'sel':''}" data-a="llv" data-v="${i}">${n}</button>`).join('')}</div>`:`<div>${LVN[hl()]}</div>`}</div><div class="c" style="font-size:26px;font-weight:800">${sz[0]} ضد ${sz[1]}</div>${col(0)}${col(1)}${un.length?`<small>بدون فريق: ${un.map(p=>esc(String(p.presence.n||'لاعب').slice(0,14))).join('، ')}</small>`:''}${isHost?`<button class="big" data-a="start">▶️ ابدأ ${sz[0]} ضد ${sz[1]}</button>`:'<p class="sub">⏳ اختار فريقك وبانتظار المضيف…</p>'}<button class="alt big" data-a="back">خروج</button>`}
+function startT(){const sz=tsz(),T=[[],[]],hs=plist(),mkp=p=>({id:p.peer,n:String(p.presence.n||'لاعب').slice(0,14),av:String(p.presence.av||'🙂').slice(0,4)});
+hs.forEach(p=>{const t=p.presence.t;if((t===0||t===1)&&T[t].length<sz[t])T[t].push(mkp(p))});
+hs.forEach(p=>{const t=p.presence.t;if(t!==0&&t!==1){const x=T[0].length<sz[0]?0:T[1].length<sz[1]?1:-1;if(x>=0)T[x].push(mkp(p))}});
+const bn=[...BN].sort(()=>Math.random()-.5);let k=0;[0,1].forEach(t=>{while(T[t].length<sz[t])T[t].push({n:bn[k++%bn.length],av:AV[(k+2)%6],bot:true});T[t].forEach(p=>p.t=t)});
+const ps=[];for(let j=0;j<4;j++){if(T[0][j])ps.push(T[0][j]);if(T[1][j])ps.push(T[1][j])}
+newGame(ps);S.tm=1;myIdx=ps.findIndex(p=>p.id==myId);after()}
+function friends(){getName();$('#app').innerHTML=`<h1>👥 مع أصحابي</h1><div class="card"><input id="nm" maxlength="14" placeholder="اسمك" value="${esc(name)}"></div><div class="card c"><div style="font-size:28px;font-weight:800">🔴 ${tz[0]} ضد ${tz[1]} 🔵</div>${[0,1].map(t=>`<b style="color:var(--${t?'b':'r'})">${t?'الفريق الأزرق':'الفريق الأحمر'}</b><div class="row" style="margin:6px 0 10px">${[1,2,3,4].map(n=>`<button class="alt ${n==tz[t]?'sel':''}" data-a="tz" data-t="${t}" data-v="${n}">${n}</button>`).join('')}</div>`).join('')}<small>المقاعد الفاضية يعبيها الكمبيوتر 🤖 · الفريق يفوز لما كل لاعبيه يخلصوا أوراقهم</small></div><button class="big" data-a="tcreate">➕ سوّي غرفة</button><div class="card c"><b>أو ادخل غرفة</b><input id="cd" maxlength="4" placeholder="رمز الغرفة" style="margin:8px 0;direction:ltr;text-transform:uppercase"><button data-a="join">🚪 ادخل</button></div><button class="alt big" data-a="back">رجوع</button>`}
+function render(){if(!S||S.ph=='lobby')return;const sc=$('#hand')?.scrollLeft||0,p=S.ps[myIdx];if(!p)return;const mt=S.turn==myIdx&&S.ph=='play';
+$('#app').innerHTML=`<div class="top"><button class="alt sm" data-a="back">🏠</button><span>${LVN[S.lv]}${S.tm?(S.ps[myIdx].t?' 🔵':' 🔴'):''}</span><span>🔥 ${streak} · ⭐ ${sc}</span></div>
+<div>${S.ps.map((q,i)=>i==myIdx?'':`<div class="pl ${S.turn==i&&S.ph=='play'?'on':''}"><span>${S.tm?(q.t?'🔵 ':'🔴 '):''}${esc(q.av)} ${esc(q.n)}${q.dn?' ✅':''}${S.tm&&q.t==S.ps[myIdx].t?' 🤝':''}${q.bot&&mode!='solo'?' 🤖':''}${S.th&&S.th.i==i?` <small style="display:inline;direction:ltr;unicode-bidi:isolate">🤔 ${esc(S.th.q)}</small>`:''}</span><b>🃏 ${q.h.length}</b></div>`).join('')}</div>
+<div class="table"><button class="pile" data-a="${S.drew==myIdx?'pass':'draw'}" ${mt?'':'disabled'}>${S.drew==myIdx?'⏭️<small>مرّر</small>':'🂠<small>اسحب</small>'}</button><div class="cd ${S.col}">${lab(S.top)}</div><div class="dir">${S.dir>0?'↻':'↺'}<small>${COL[S.col]}</small></div></div>
+<div class="row" style="margin:6px 0"><button class="alt sm" data-a="h" data-v="d2" ${mt&&p.hp&&p.hp.d2>0?'':'disabled'}>🎯 اسحب 2 ×${p.hp?p.hp.d2:0}</button><button class="alt sm" data-a="h" data-v="r2" ${mt&&p.hp&&p.hp.r2>0&&p.h.length>2?'':'disabled'}>🗑️ معلش شيل 2 ×${p.hp?p.hp.r2:0}</button></div>
+<div class="log ${mt?'my':''}">${mt?'🎯 دورك! اختر ورقة':'⏳ دور '+esc(S.ps[S.turn].n)}<small>${esc(S.log)}</small></div>
+${mode=='online'?'<div class="row" style="margin-top:8px">'+['😂','👏','🔥','😡'].map(x=>`<button class="alt sm" data-a="rx" data-v="${x}">${x}</button>`).join('')+'</div>':''}<div id="hand">${p.h.map((c,k)=>`<div class="cd ${c=='W'||c=='F'?'k':c[0]} ${mt&&can(c)?'ok':'no'}" data-k="${k}">${lab(c)}</div>`).join('')}</div>`;
+$('#hand').scrollLeft=sc;if(S.ph=='over'&&!$('#ov').innerHTML)over()}
+function over(){const w=S.tm?null:S.ps[S.win],me=S.tm?S.ps[myIdx].t==S.win:S.win==myIdx;modal(`<div class="box c"><div class="big2">${me?'🏆':'👏'}</div><h2>${me?(S.tm?'مبروك! فاز فريقك 🎉':'مبروك! فزت'):(S.tm?'فاز الفريق '+(S.win?'الأزرق 🔵':'الأحمر 🔴'):'فاز '+esc(w.n))}</h2><p>⭐ نقاطك: ${sc}${me?' + 25 مكافأة الفوز':''}</p><div class="row">${mode=='solo'||isHost?'<button data-a="again">🔁 مرة ثانية</button>':'<small>بانتظار المضيف…</small>'}<button class="alt" data-a="back">🏠 القائمة</button></div></div>`);
+if(me){ST.w++;const r0=rk(ST.s);ST.s+=25;sv();if(rk(ST.s)>r0)setTimeout(()=>toast('🎉 ترقيت لرتبة '+RK[rk(ST.s)][1]),900);confetti();beep(784,.2);setTimeout(()=>beep(1046,.3),200)}}
+function confetti(){for(let i=0;i<40;i++){const s=document.createElement('span');s.className='cf';s.textContent=['🎉','⭐','🎊','✨'][i%4];s.style.cssText=`left:${rnd(100)}%;animation-delay:${Math.random()*1.5}s;font-size:${18+rnd(20)}px`;document.body.append(s);setTimeout(()=>s.remove(),4500)}}
+function ask(k){const c=S.ps[myIdx].h[k],[q,a,ch]=S.sub!='m'?gq(S.lv):G[S.lv][rnd(G[S.lv].length)](),t=tmo();Q={k,a,done:0,w:c=='W'||c=='F'};t0=Date.now();
+modal(`<div class="box"><div class="tm"><i id="bar"></i></div><div class="cdw"><div class="cd ${Q.w?'k':c[0]}">${lab(c)}</div></div><div class="q">${esc(q)}</div>${S.ps[myIdx].hp&&S.ps[myIdx].hp.f>0?`<div class="row" style="margin-bottom:8px"><button class="alt sm" data-a="fifty">💡 احذف خيارين ×${S.ps[myIdx].hp.f}</button></div>`:''}<div class="ans">${(ch?ch.map((t,i)=>[i,t]).sort(()=>Math.random()-.5):opts(a).map(v=>[v,v])).map(([v,t])=>`<button class="alt" data-o="${v}">${esc(t)}</button>`).join('')}</div></div>`);
+requestAnimationFrame(()=>{const b=$('#bar');if(b){b.style.transition=`width ${t}s linear`;b.style.width='0'}});tm=setTimeout(()=>res(-1),t*1000)}
+function res(v){if(!Q||Q.done)return;Q.done=1;clearTimeout(tm);const ok=v==Q.a;
+document.querySelectorAll('.ans button').forEach(b=>{if(+b.dataset.o==Q.a)b.classList.add('good');else if(+b.dataset.o==v)b.classList.add('bad')});
+if(ok){streak++;const pts=5+Math.max(0,Math.round(5*(1-(Date.now()-t0)/1000/tmo())));const r0=rk(ST.s);sc+=pts;ST.s+=pts;if(rk(ST.s)>r0)setTimeout(()=>toast('🎉 ترقيت لرتبة '+RK[rk(ST.s)][1]),1600);ST.b=Math.max(ST.b,streak);sv();toast('+'+pts+' ⭐ '+(pts>=8?'سريع! ⚡':''));navigator.vibrate&&navigator.vibrate(30);beep(660,.1);setTimeout(()=>beep(880,.15),110);setTimeout(()=>{closeModal();if(streak%3==0)send({t:'g',h:['d2','r2','f'][rnd(3)]});Q.w?pickCol():send({t:'p',c:Q.k})},350)}
+else{streak=0;navigator.vibrate&&navigator.vibrate([80,40,80]);beep(180,.35,'sawtooth');setTimeout(()=>{closeModal();send({t:'f'})},v==-1?400:1300)}}
+function pickCol(){modal(`<div class="box c"><b>اختر اللون 🌈</b><div class="row" style="margin-top:12px">${'rbgy'.split('').map(c=>`<button class="cd ${c}" data-col="${c}"></button>`).join('')}</div></div>`)}
+document.onclick=e=>{const t=e.target.closest('[data-a],[data-k],[data-o],[data-col]');if(!t)return;const d=t.dataset;
+if(d.k!==undefined){if(S&&S.ph=='play'&&S.turn==myIdx&&!$('#ov').innerHTML){const c=S.ps[myIdx].h[+d.k];if(c&&can(c))ask(+d.k)}return}
+if(d.o!==undefined)return res(+d.o);
+if(d.col){closeModal();return send({t:'p',c:Q.k,col:d.col})}
+switch(d.a){
+case'lv':lvl=+d.v;getName();menu();break;
+case'sub':sub=d.v;getName();menu();break;
+case'nb':nb=+d.v;getName();menu();break;
+case'solo':getName();mode='solo';room=null;streak=0;newGame([{n:name,av},...bots(nb)]);myIdx=0;after();break;
+case'online':online();break;case'rn':rn=+d.v;online();break;
+case'create':getName();go(Array.from({length:4},()=>'abcdefghjkmnpqrstuvwxyz23456789'[rnd(31)]).join(''),true);break;
+case'join':{getName();const c=($('#cd').value||'').trim().toLowerCase();if(/^[a-z0-9]{4}$/.test(c))go(c,false);else toast('الرمز 4 حروف أو أرقام');break}
+case'start':start();break;
+case'draw':if(S&&S.turn==myIdx)send({t:'d'});break;
+case'pass':if(S&&S.turn==myIdx)send({t:'n'});break;
+case'h':if(S&&S.turn==myIdx&&!$('#ov').innerHTML)send({t:'h',h:d.v});break;
+case'again':closeModal();{const tf=S.tm;newGame(S.ps.map(p=>({id:p.id,n:p.n,av:p.av,bot:p.bot,t:p.t})));S.tm=tf}myIdx=Math.max(0,S.ps.findIndex(p=>p.id==myId));after();break;
+case'fifty':if(Q&&!Q.done&&!Q.u&&S.ps[myIdx].hp&&S.ps[myIdx].hp.f>0){Q.u=1;send({t:'h',h:'f'});let n=0;document.querySelectorAll('.ans button').forEach(b=>{if(+b.dataset.o!=Q.a&&n<2){b.style.visibility='hidden';n++}});t.parentElement.remove()}break;
+case'rx':room&&room.emit('react',{e:d.v}).catch(()=>{});break;
+case'cp':case'sh':{const tx='ادخل أونو العباقرة واكتب رمز الغرفة: '+room.name.slice(4).toUpperCase();if(d.a=='sh'&&navigator.share)navigator.share({text:tx}).catch(()=>{});else{try{navigator.clipboard.writeText(tx).then(()=>toast('تم النسخ 📋'),()=>toast(tx))}catch(e){toast(tx)}}break}
+case'llv':lvl=+d.v;room.presence({l:lvl});lobby();break;
+case'rdy':rdy=rdy?0:1;room.presence({r:rdy});lobby();break;
+case'friends':friends();break;
+case'tz':tz[+d.t]=+d.v;friends();break;
+case'tcreate':getName();go(Array.from({length:4},()=>'abcdefghjkmnpqrstuvwxyz23456789'[rnd(31)]).join(''),true,1);break;
+case'jt':{const t2=+d.v,sz=tsz();if(plist().filter(p=>p.presence.t===t2&&!p.isMe).length>=sz[t2])toast('الفريق ممتلئ');else room.presence({t:t2});break}
+case'back':menu();break}};
+(function(){const bg=$('#bg'),M=['7×8','x+3=9','12÷4','25%','√81','9²','15−6','3x=21','π','∑','+','−','×','÷','=','48÷6','6×7','x²','100%','2+2'],C=['r','b','g','y'],L=['0','1','2','3','4','5','6','7','8','9','+2','⇄','⛔','🌈'];
+for(let i=0;i<26;i++){const s=document.createElement('span'),card=i%3==0;
+if(card){s.className='bk';s.style.background=`var(--${C[rnd(4)]})`;s.textContent=L[rnd(L.length)]}else{s.className='m';s.textContent=M[rnd(M.length)];s.style.fontSize=(18+rnd(26))+'px'}
+const d=14+Math.random()*16;s.style.cssText+=`;left:${rnd(96)}%;animation-duration:${d}s;animation-delay:${-Math.random()*d}s;--r0:${rnd(60)-30}deg;--r1:${rnd(360)-180}deg;--o:${card?.28:.16}`;bg.append(s)}})();
+menu();
+setInterval(()=>{try{if(S&&S.ph=='play'&&(mode=='solo'||isHost)&&S.ps[S.turn]&&S.ps[S.turn].bot&&Date.now()-bAt>9000)botTick()}catch(e){}},3000);
+</script>
+</body>
+</html>
