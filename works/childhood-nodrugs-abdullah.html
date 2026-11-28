@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>طفولة بلا مخدرات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--h:172;--bg:#f2f8f9;--card:#fff;--ink:#12263a;--mut:#546879;--ln:#d6e4e9;--acc:#ffb547;--ok:#1d8a4e;--no:#c63d3d;--pri:hsl(var(--h) 68% 34%);--soft:hsl(var(--h) 60% 94%);--mid:hsl(var(--h) 65% 52%);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1b27;--card:#162a39;--ink:#eaf3f6;--mut:#a3b8c4;--ln:#274254;--pri:hsl(var(--h) 70% 66%);--soft:hsl(var(--h) 35% 20%)}}
+:root[data-theme=dark]{--bg:#0d1b27;--card:#162a39;--ink:#eaf3f6;--mut:#a3b8c4;--ln:#274254;--pri:hsl(var(--h) 70% 66%);--soft:hsl(var(--h) 35% 20%)}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:17px/1.9 Tajawal,Tahoma,sans-serif;transition:background .3s}
+.w{max-width:640px;margin:0 auto;padding:14px 16px 100px}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.bar{flex:1;height:10px;background:var(--ln);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),#ff7a6b,var(--mid));transition:width .4s}
+button{font:inherit;cursor:pointer;color:var(--ink)}
+.top button{border:1px solid var(--ln);background:var(--card);border-radius:12px;padding:6px 14px}
+.top span{color:var(--mut);font-size:14px;min-width:46px;text-align:left}
+.hero{border-radius:22px;padding:22px 18px 18px;margin-bottom:14px;color:#fff;background:linear-gradient(160deg,hsl(var(--h) 70% 30%),hsl(calc(var(--h) + 40) 65% 42%) 60%,hsl(calc(var(--h) - 130) 90% 62%));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;left:-40px;bottom:-60px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.14)}
+.ic{width:72px;height:72px;border-radius:22px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:40px;margin-bottom:6px}
+h1,h2{font-family:Cairo,Tajawal,sans-serif;margin:.1em 0;line-height:1.4}
+h1{font-size:36px;font-weight:900}h2{font-size:26px;font-weight:900}
+h3{margin:0 0 6px;font-size:18px;font-family:Cairo,Tajawal,sans-serif}
+.hero p{margin:.4em 0 0;font-size:18px;opacity:.95;position:relative;z-index:1}
+.pg>p,.pg>div>p.i{background:var(--card);border-right:6px solid var(--mid);padding:12px 16px;border-radius:14px;margin:10px 0;box-shadow:0 2px 10px rgba(18,38,58,.07)}
+.pg>p:nth-of-type(2n){border-right-color:var(--acc)}
+.note{color:var(--mut);font-size:14px;background:none!important;box-shadow:none!important;border:0!important;padding:4px 2px!important}
+.menu{display:none;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}.menu.on{display:grid}
+.menu button{padding:8px 0;border-radius:12px;border:1px solid var(--ln);background:var(--card)}.menu .cur{background:var(--pri);color:#fff;border-color:var(--pri)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.tabs button{border:1px solid var(--ln);background:var(--card);border-radius:999px;padding:6px 16px}.tabs .on{background:var(--pri);color:#fff;border-color:var(--pri)}
+#tb{background:var(--soft);border-radius:14px;padding:14px 16px;border-right:6px solid var(--acc)}
+.ck{display:flex;gap:12px;align-items:center;background:var(--card);padding:10px 14px;border-radius:14px;margin:8px 0;border:1px solid var(--ln);cursor:pointer}.ck input{width:22px;height:22px;accent-color:var(--pri)}
+.ck:has(input:checked){background:var(--soft);border-color:var(--mid)}
+.mt{height:8px;background:var(--ln);border-radius:9px;overflow:hidden;margin:10px 0}.mt i{display:block;height:100%;width:0;background:var(--acc);transition:width .3s}
+.fl{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:var(--card);border:2px solid var(--ln);border-radius:16px;padding:14px;min-height:130px;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;font-weight:700;transition:transform .25s}
+.card span{display:none;font-weight:500}.card.f{background:linear-gradient(150deg,var(--pri),hsl(calc(var(--h) + 30) 60% 42%));color:#fff;border-color:transparent;transform:scale(1.03)}.card.f span{display:block}.card.f b{display:none}
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:12px}.dd>div{padding:12px;border-radius:16px}.dd>div:first-child{background:hsl(145 50% 92%);color:#12331f}.dd>div:last-child{background:hsl(5 70% 94%);color:#4a1512}.dd p{margin:.4em 0;font-size:15px}
+.qq{background:var(--card);padding:14px;border-radius:16px;margin:12px 0;border:1px solid var(--ln)}.qq button{display:block;width:100%;margin:8px 0;text-align:right;border:1px solid var(--ln);background:var(--soft);border-radius:12px;padding:8px 14px}
+.qq .ok{background:var(--ok);color:#fff;border-color:var(--ok)}.qq .no{background:var(--no);color:#fff;border-color:var(--no)}
+.nav{position:fixed;inset:auto 0 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--ln);display:flex;gap:10px;justify-content:center}
+.nav button{flex:1;max-width:200px;padding:10px;font-weight:700;border-radius:14px;border:1px solid var(--ln);background:var(--card)}.nav .p{background:var(--pri);color:#fff;border-color:var(--pri)}
+.go{background:var(--acc);color:#12263a;font-weight:800;margin-top:14px;padding:12px 30px;border:0;border-radius:14px;font-size:18px;position:relative;z-index:1}
+button:focus-visible,input:focus-visible,.card:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media(max-width:380px){.dd,.fl{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="top"><button onclick="mn.classList.toggle('on')" aria-label="قائمة الصفحات">☰</button><div class="bar"><i id="pb"></i></div><span id="pn"></span></div>
+<div class="menu" id="mn"></div>
+<main class="pg" id="v"></main>
+</div>
+<div class="nav"><button class="p" onclick="go(n+1)">التالي ←</button><button onclick="go(n-1)">→ السابق</button></div>
+<script>
+const H=[172,172,205,205,205,205,205,265,265,265,265,28,28,350,350,150,150,150,45,172];
+const P=[
+['🌱','طفولة بلا مخدرات','c',['موقع تفاعلي من 20 صفحة عن الأطفال الذين تؤثر المخدرات في حياتهم، حتى لو لم يتعاطوها.']],
+['🎯','لماذا هذا الموقع؟','t',['يعيش كثير من الأطفال آثار المخدرات دون أن يكونوا هم من تعاطاها.','نشرح هنا من هم هؤلاء الأطفال، وكيف يتأثرون، وكيف نحميهم ونساندهم.','كل صفحة قصيرة وفيها أفكار عملية.']],
+['👧','من هم الأطفال المتضررون؟','tabs',[['أهل يتعاطون','أطفال يعيشون مع والد أو والدة أو مقدّم رعاية يتعاطى المخدرات.'],['قبل الولادة','أطفال تعرّضوا لمواد أثناء الحمل.'],['أطفال يتعاطون','مراهقون وأطفال جرّبوا مواد أو أدمنوها.'],['أطفال مستغَلّون','أطفال يُستغلّون في الترويج أو التوصيل.']]],
+['🏠','بيت يتعاطى فيه الأهل','t',['قد يعيش الطفل الإهمال وعدم الاستقرار والخوف.','كثيرًا ما يتحمّل مسؤوليات أكبر من عمره، كرعاية إخوته.','وقد يظن أن ما يحدث ذنبه، وهذا غير صحيح أبدًا.']],
+['🤰','التعرّض قبل الولادة','t',['قد يؤثر تعاطي بعض المواد أثناء الحمل في نمو الجنين.','بعض المواليد يحتاجون رعاية طبية خاصة بعد الولادة.','المتابعة الطبية المبكرة والدعم للأم يحسّنان فرص الطفل كثيرًا.']],
+['🧒','حين يتعاطى الطفل نفسه','t',['تبدأ التجربة غالبًا في المراهقة بدافع الفضول أو ضغط الأصدقاء أو الهروب من ألم.','دماغ المراهق ما زال ينمو، فيكون أكثر عرضة للإدمان.','الطفل الذي يتعاطى يحتاج علاجًا ودعمًا، لا عقابًا وحده.']],
+['⚠️','أطفال يُستغلّون في الترويج','t',['يستغل بعض المروّجين الأطفال في التوصيل والترويج لأنهم يظنون أنهم أقل شبهة.','هؤلاء الأطفال ضحايا استغلال، وحمايتهم واجبة.','الإبلاغ عن استغلال طفل قد ينقذ مستقبله.']],
+['🩺','الأثر على الصحة الجسدية','t',['اضطراب النوم والشهية وضعف التركيز.','التعرّض للحوادث والإصابات أو الإهمال الصحي والغذائي.','وعند التعاطي: أضرار على القلب والتنفس والدماغ.']],
+['💭','الأثر النفسي','t',['الخوف والقلق والحزن المستمر.','الخجل والعزلة، أو الغضب وصعوبة الثقة بالآخرين.','هذه ردود فعل طبيعية على وضع صعب، وتخفّ بالدعم المناسب.']],
+['📚','الأثر على التعليم','t',['الغياب المتكرر وتراجع المستوى الدراسي.','صعوبة المذاكرة في بيت غير مستقر.','المدرسة الداعمة قد تكون مكان الأمان الأول للطفل.']],
+['🤐','الوصمة والصمت','t',['يخفي كثير من الأطفال ما يعيشونه خوفًا من الوصمة أو من تفكك الأسرة.','وقد يُعزَلون أو يُلامون على ما فعله غيرهم.','كلمات اللوم تؤذي، وكلمات التفهّم تفتح باب المساعدة.']],
+['🔎','علامات تستحق الانتباه','chk',['غياب متكرر أو تأخر عن المدرسة','تغيّر مفاجئ في المزاج أو السلوك','انسحاب من الأصدقاء والأنشطة','إهمال في النظافة أو جوع متكرر','أموال أو أغراض غير مبررة','خوف شديد من العودة إلى البيت']],
+['🛡️','عوامل الخطر والحماية','flip',[['ما الذي يزيد الخطر؟','الإهمال والعنف الأسري وغياب الرقابة والعزلة.'],['ما الذي يحمي الطفل؟','بالغ واحد على الأقل يثق به ويصغي إليه.'],['ماذا تفعل المدرسة؟','تكتشف مبكرًا وتوفر مرشدًا يحافظ على السرية.'],['ماذا يفعل الأصدقاء؟','الصداقات الإيجابية والأنشطة تقلل الضغط والملل.']]],
+['⚖️','حقوق الطفل','t',['المادة 33 من اتفاقية حقوق الطفل: حماية الأطفال من الاستخدام غير المشروع للمخدرات ومن استغلالهم في إنتاجها والاتجار بها.','وللطفل حق في الصحة والتعليم والحماية من الإهمال والإساءة.','وله حق في أن يُسمع رأيه.']],
+['💬','كيف نتحدث معه؟','dd',[['استمع دون مقاطعة','طمئنه أنه ليس السبب','حافظ على هدوئك'],['لا تلمه أو توبّخه','لا تعده بما لا تستطيع','لا تحقّق معه كأنه متهم']]],
+['👨‍👩‍👧','دور الأسرة','t',['الروتين اليومي والاستقرار يمنحان الطفل أمانًا.','طلب الأهل للعلاج خطوة شجاعة تحمي الطفل.','حوار مفتوح بلا تخويف يجعل الطفل يلجأ إليك أولًا.']],
+['🏫','دور المدرسة','t',['معلّم يلاحظ ويصغي قد يغيّر مسار طفل.','مرشد طلابي ودعم سرّي بلا فضيحة.','تعاون مع الأسرة والجهات المختصة بحماية الطفل.']],
+['🤝','دور المجتمع والإعلام','t',['دعم برامج العلاج والتأهيل ومحاربة الوصمة.','نشر وعي دقيق بلا تهويل ولا كشف لهوية الأطفال.','الإبلاغ عن الاستغلال عبر الجهات الرسمية.']],
+['📝','اختبر معلوماتك','q',[['الطفل الذي يعيش مع والد يتعاطى هو المسؤول عمّا يحدث؟',['نعم','لا، ليس ذنبه'],1],['الطفل المستغَل في الترويج يُعدّ:',['مجرمًا فقط','ضحية تحتاج حماية'],1],['أفضل ردّ حين يعترف طفل بمشكلة:',['الاستماع والطمأنة','التوبيخ'],0],['هل علامة تحذيرية واحدة تؤكد التعاطي؟',['نعم دائمًا','لا، لكنها تستدعي الانتباه'],1]]],
+['📞','أين نجد المساعدة؟','t',['إن كان الطفل في خطر فوري، اتصل بالطوارئ.','تواصل مع خط حماية الطفل أو مراكز علاج الإدمان في بلدك.','الطبيب أو المرشد المدرسي أو الأخصائي الاجتماعي نقطة بداية جيدة.','تذكّر: طلب المساعدة قوة، وكل طفل يستحق الأمان.']]
+];
+let n=1,S=0,D=0;const v=document.getElementById('v'),mn=document.getElementById('mn');
+mn.innerHTML=P.map((_,i)=>`<button onclick="go(${i+1})">${i+1}</button>`).join('');
+const li=a=>a.map(x=>`<p>${x}</p>`).join('');
+function body(p){const k=p[2],c=p[3];
+if(k=='c')return `<button class=go onclick="go(2)">ابدأ ←</button>`;
+if(k=='t')return li(c);
+if(k=='tabs')return `<div class=tabs>${c.map((x,i)=>`<button onclick="tab(${i})" class="${i?'':'on'}">${x[0]}</button>`).join('')}</div><p id=tb>${c[0][1]}</p>`;
+if(k=='chk')return c.map(x=>`<label class=ck><input type=checkbox onchange=cnt()>${x}</label>`).join('')+`<div class=mt><i id=mt></i></div><p id=ct class=note>حدّد ما ينطبق. علامة واحدة لا تعني شيئًا بالضرورة، لكن تراكمها يستدعي الاهتمام.</p>`;
+if(k=='flip')return `<div class=fl>${c.map(x=>`<div class=card tabindex=0 onclick="this.classList.toggle('f')" onkeydown="if(event.key=='Enter'||event.key==' '){event.preventDefault();this.classList.toggle('f')}"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div><p class=note>اضغط البطاقة لتقلبها</p>`;
+if(k=='dd')return `<div class=dd><div><h3>✅ افعل</h3>${li(c[0])}</div><div><h3>❌ لا تفعل</h3>${li(c[1])}</div></div>`;
+if(k=='q')return c.map(x=>`<div class=qq><b>${x[0]}</b>${x[1].map((o,j)=>`<button onclick="ans(this,${j==x[2]})">${o}</button>`).join('')}</div>`).join('')+'<p id=sc class=note></p>';}
+function render(){S=D=0;const p=P[n-1];
+document.documentElement.style.setProperty('--h',H[n-1]);
+const t=`<div class=ic>${p[0]}</div>${n==1?'<h1>':'<h2>'}${p[1]}${n==1?'</h1>':'</h2>'}`;
+v.innerHTML=(n==1?`<div class=hero>${t}<p>${p[3][0]}</p>${body(p)}</div>`:`<div class=hero>${t}</div>${body(p)}`);
+pb.style.width=n/P.length*100+'%';pn.textContent=n+' / '+P.length;
+[...mn.children].forEach((b,i)=>b.classList.toggle('cur',i==n-1));mn.classList.remove('on');scrollTo(0,0)}
+function go(i){if(i<1||i>P.length)return;location.hash='p'+i}
+function tab(i){document.querySelectorAll('.tabs button').forEach((b,j)=>b.classList.toggle('on',i==j));tb.textContent=P[n-1][3][i][1]}
+function cnt(){const c=document.querySelectorAll('.ck input:checked').length,t=P[n-1][3].length;mt.style.width=c/t*100+'%';ct.textContent=c?`حدّدت ${c} من ${t}. تذكّر أن الهدف هو الانتباه والدعم، لا الاتهام.`:'حدّد ما ينطبق.'}
+function ans(b,ok){const q=b.parentNode;if(q.dataset.d)return;q.dataset.d=1;b.classList.add(ok?'ok':'no');if(ok)S++;D++;sc.textContent=D<4?`أجبت ${D} من 4، والصحيح ${S}`:`النتيجة النهائية: ${S} من 4. ${S==4?'ممتاز! 🌟':'راجع الصفحات السابقة وحاول مرة أخرى.'}`}
+function sync(){const m=+(location.hash.slice(2));n=m>=1&&m<=P.length?m:1;render()}
+addEventListener('hashchange',sync);
+addEventListener('keydown',e=>{if(e.target.matches('input,button'))return;if(e.key=='ArrowLeft')go(n+1);if(e.key=='ArrowRight')go(n-1)});
+sync();
+</script>
+</body>
+</html>
